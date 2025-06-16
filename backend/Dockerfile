@@ -14,8 +14,11 @@ COPY . .
 # Add the current directory to Python path
 ENV PYTHONPATH=/app
 
+# Make entrypoint script executable
+RUN chmod +x entrypoint.sh
+
 RUN useradd -m appuser
 USER appuser
 
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["./entrypoint.sh"]

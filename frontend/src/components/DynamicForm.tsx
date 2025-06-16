@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import {
   Box,
   TextField,
@@ -10,6 +10,13 @@ import {
   SelectChangeEvent
 } from '@mui/material'
 
+interface FeatureRequest {
+  feature: string;
+  complexity: string;
+  priority: string;
+  [key: string]: any;
+}
+
 interface FormField {
   id: string
   label: string
@@ -19,7 +26,7 @@ interface FormField {
 }
 
 interface DynamicFormProps {
-  onSubmit: (data: Record<string, any>) => void
+  onSubmit: (data: FeatureRequest) => void
 }
 
 const defaultFields: FormField[] = [
@@ -45,17 +52,21 @@ const defaultFields: FormField[] = [
   }
 ]
 
-export const DynamicForm: React.FC<DynamicFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<Record<string, any>>({})
+export const DynamicForm = ({ onSubmit }: DynamicFormProps) => {
+  const [formData, setFormData] = useState<FeatureRequest>({
+    feature: '',
+    complexity: '',
+    priority: ''
+  })
 
-  const handleChange = (id: string, value: any) => {
-    setFormData(prev => ({
+  const handleChange = (id: string, value: string) => {
+    setFormData((prev: FeatureRequest) => ({
       ...prev,
       [id]: value
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     onSubmit(formData)
   }

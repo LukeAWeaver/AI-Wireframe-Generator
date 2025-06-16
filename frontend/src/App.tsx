@@ -7,17 +7,27 @@ import {
   AppBar, 
   Toolbar, 
   IconButton,
-  useTheme
+  useTheme,
+  Divider
 } from '@mui/material'
-import { Menu as MenuIcon } from '@mui/icons-material'
+import { Menu as MenuIcon, Lightbulb as LightbulbIcon } from '@mui/icons-material'
 import { DynamicForm } from './components/DynamicForm'
 import { askGPT } from './utils/ai'
+import { useThemeContext } from './theme/ThemeContext'
+
+interface FeatureRequest {
+  feature: string;
+  complexity: string;
+  priority: string;
+  [key: string]: any;
+}
 
 function App() {
   const theme = useTheme()
+  const { isDarkMode, toggleTheme } = useThemeContext()
   const [response, setResponse] = useState<string>('')
 
-  const handleSubmit = async (formData: Record<string, any>) => {
+  const handleSubmit = async (formData: FeatureRequest) => {
     try {
       const result = await askGPT(formData)
       setResponse(result)
@@ -28,8 +38,14 @@ function App() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'background.default' }}>
-      <AppBar position="static">
+    <Box sx={{ 
+      flexGrow: 1, 
+      minHeight: '100vh', 
+      bgcolor: 'background.default',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      <AppBar position="static" elevation={0}>
         <Toolbar>
           <IconButton
             size="large"
@@ -43,26 +59,53 @@ function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             AI Feature Explorer
           </Typography>
- !       </Toolbar>
+          <IconButton color="inherit" onClick={toggleTheme} aria-label="toggle theme">
+            <LightbulbIcon />
+          </IconButton>
+        </Toolbar>
       </AppBar>
       
-      <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Container maxWidth="md" sx={{ mt: 4, mb: 4, flex: 1 }}>
         <Paper 
           elevation={3} 
           sx={{ 
             p: 4, 
             display: 'flex', 
             flexDirection: 'column',
-            gap: 3
+            gap: 3,
+            height: '100%'
           }}
         >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Feature Analysis
+          </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph>
+            Describe your feature and get AI-powered insights and recommendations.
+          </Typography>
+          <Divider />
           <DynamicForm onSubmit={handleSubmit} />
           {response && (
-            <Box sx={{ mt: 2, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
-              <Typography variant="h6" gutterBottom>
-                Response:
+            <Box sx={{ 
+              mt: 2, 
+              p: 3, 
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+              border: `1px solid ${theme.palette.divider}`
+            }}>
+              <Typography variant="h6" gutterBottom color="primary">
+                Analysis Results
               </Typography>
-              <Typography component="pre" sx={{ whiteSpace: 'pre-wrap' }}>
+              <Typography 
+                component="pre" 
+                sx={{ 
+                  whiteSpace: 'pre-wrap',
+                  fontFamily: 'monospace',
+                  color: 'text.secondary',
+                  bgcolor: 'background.default',
+                  p: 2,
+                  borderRadius: 1
+                }}
+              >
                 {response}
               </Typography>
             </Box>

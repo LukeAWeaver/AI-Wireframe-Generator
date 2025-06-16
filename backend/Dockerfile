@@ -1,15 +1,21 @@
-FROM node:20-alpine
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
-RUN npm install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the development server port
-EXPOSE 3001
+COPY . .
 
-# Start the development server
-CMD ["npm", "run", "dev"] 
+# Add the current directory to Python path
+ENV PYTHONPATH=/app
+
+RUN useradd -m appuser
+USER appuser
+
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

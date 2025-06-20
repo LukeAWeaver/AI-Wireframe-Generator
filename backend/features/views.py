@@ -3,8 +3,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.conf import settings
 import openai
-from .models import Feature
-from .serializers import FeatureSerializer
+from .models import Feature, User
+from .serializers import FeatureSerializer, UserSerializer
+from django.db import IntegrityError
+import os
 
 class FeatureViewSet(viewsets.ModelViewSet):
     queryset = Feature.objects.all().order_by('-created_at')
@@ -74,4 +76,21 @@ class FeatureViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({
                 'error': str(e)
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                user = serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            except IntegrityError:
+                return Response(
+                    {'error': 'Username already exists'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 

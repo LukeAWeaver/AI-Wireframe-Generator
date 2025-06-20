@@ -8,7 +8,7 @@ services:
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
-      - ./backend:/app
+      - backend_volume: ./backend:/app
     env_file:
       - .env
     environment:
@@ -24,7 +24,7 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     volumes:
-      - ./frontend:/app
+      - frontend_volume: ./frontend:/app
       - frontend_node_modules:/app/node_modules
     environment:
       - REACT_APP_API_URL=http://127.0.0.1:8000
@@ -40,7 +40,7 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - db_volume: postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s

@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import Feature
+from .models import Feature, User
 
 class FeatureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feature
-        fields = ['id', 'description', 'complexity', 'priority', 'analysis', 'created_at', 'updated_at']
-        read_only_fields = ['analysis', 'created_at', 'updated_at'] 
+        fields = '__all__'
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'uuid']
+        read_only_fields = ['uuid'] 

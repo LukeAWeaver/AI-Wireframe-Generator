@@ -1,19 +1,19 @@
-import { useState } from 'react'
 import { 
   Box, 
   Container, 
   Typography, 
-  Paper, 
   AppBar, 
   Toolbar, 
   IconButton,
   useTheme,
-  Divider
 } from '@mui/material'
 import { Menu as MenuIcon, Lightbulb as LightbulbIcon } from '@mui/icons-material'
 import { DynamicForm } from './components/DynamicForm'
+import { LoginForm } from './components/LoginForm'
+import { UserProfile } from './components/UserProfile'
 import { askGPT } from './utils/ai'
 import { useThemeContext } from './theme/ThemeContext'
+import { useUser } from './hooks/useUser'
 
 interface FeatureRequest {
   feature: string;
@@ -25,17 +25,7 @@ interface FeatureRequest {
 function App() {
   const theme = useTheme()
   const { isDarkMode, toggleTheme } = useThemeContext()
-  const [response, setResponse] = useState<string>('')
-
-  const handleSubmit = async (formData: FeatureRequest) => {
-    try {
-      const result = await askGPT(formData)
-      setResponse(result)
-    } catch (error) {
-      console.error('Error:', error)
-      setResponse('An error occurred while processing your request.')
-    }
-  }
+  const { isAuthenticated } = useUser()
 
   return (
     <Box sx={{ 
@@ -66,51 +56,11 @@ function App() {
       </AppBar>
       
       <Container maxWidth="md" sx={{ mt: 4, mb: 4, flex: 1 }}>
-        <Paper 
-          elevation={3} 
-          sx={{ 
-            p: 4, 
-            display: 'flex', 
-            flexDirection: 'column',
-            gap: 3,
-            height: '100%'
-          }}
-        >
-          <Typography variant="h4" component="h1" gutterBottom>
-            Feature Analysis
-          </Typography>
-          <Typography variant="body1" color="text.secondary" paragraph>
-            Describe your feature and get AI-powered insights and recommendations.
-          </Typography>
-          <Divider />
-          <DynamicForm onSubmit={handleSubmit} />
-          {response && (
-            <Box sx={{ 
-              mt: 2, 
-              p: 3, 
-              bgcolor: 'background.paper',
-              borderRadius: 1,
-              border: `1px solid ${theme.palette.divider}`
-            }}>
-              <Typography variant="h6" gutterBottom color="primary">
-                Analysis Results
-              </Typography>
-              <Typography 
-                component="pre" 
-                sx={{ 
-                  whiteSpace: 'pre-wrap',
-                  fontFamily: 'monospace',
-                  color: 'text.secondary',
-                  bgcolor: 'background.default',
-                  p: 2,
-                  borderRadius: 1
-                }}
-              >
-                {response}
-              </Typography>
-            </Box>
-          )}
-        </Paper>
+        {!isAuthenticated ? (
+          <LoginForm />
+        ) : (
+          <UserProfile />
+        )}
       </Container>
     </Box>
   )

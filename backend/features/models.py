@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User as DjangoUser
 import uuid
 
 class Feature(models.Model):
@@ -6,23 +7,29 @@ class Feature(models.Model):
         ('low', 'Low'),
         ('medium', 'Medium'),
         ('high', 'High'),
+        ('critical', 'Critical'),
     ]
     
     PRIORITY_CHOICES = [
         ('low', 'Low'),
         ('medium', 'Medium'),
         ('high', 'High'),
+        ('critical', 'Critical'),
     ]
 
     description = models.TextField()
     complexity = models.CharField(max_length=10, choices=COMPLEXITY_CHOICES)
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
     analysis = models.TextField(blank=True)
+    created_by = models.ForeignKey(DjangoUser, on_delete=models.CASCADE, related_name='features')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Feature: {self.description[:50]}..."
+
+    class Meta:
+        ordering = ['-created_at']
 
 class User(models.Model):
     username = models.CharField(max_length=20, unique=True)

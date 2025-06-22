@@ -8,7 +8,6 @@ echo "Current directory: $(pwd)" > /dev/stdout
 echo "Listing files in current directory:" > /dev/stdout
 ls -la > /dev/stdout
 
-echo "=== Environment Variables ===" > /dev/stdout
 echo "All environment variables:" > /dev/stdout
 env | sort > /dev/stdout
 

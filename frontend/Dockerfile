@@ -11,5 +11,4 @@ RUN npm install
 # Expose the development server port
 EXPOSE 3000
 
-# Start the development server with host flag
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"] 
+CMD ["sh", "-c", "npm run dev -- --host 0.0.0.0 --port 3000"]

@@ -193,7 +193,7 @@ const baseThemeOptions: ThemeOptions = {
   typography: tokens.typography as any,
   shape: tokens.shape,
   spacing: (factor: number) => `${factor * 4}px`,
-  shadows: tokens.shadows,
+  shadows: tokens.shadows as any,
   transitions: tokens.transitions,
   components: {
     MuiCssBaseline: {

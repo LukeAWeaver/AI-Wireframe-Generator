@@ -16,6 +16,7 @@ import { VerticalNav } from './components/VerticalNav';
 import { useThemeContext } from './theme/ThemeContext';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
+import { Settings } from './components/Settings';
 
 const Home = () => (
   <Typography variant="h4">Welcome to the AI Feature Explorer!</Typography>
@@ -23,7 +24,7 @@ const Home = () => (
 
 function App() {
   const { toggleTheme } = useThemeContext();
-  const { isAuthenticated } = useUser();
+  const { isAuthenticated, username } = useUser();
 
   const handleFormSubmit = (data: any) => {
     console.log('Form submitted:', data);
@@ -40,9 +41,6 @@ function App() {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'text.primary' }}>
                 AI Feature Explorer
               </Typography>
-              <IconButton color="inherit" onClick={toggleTheme} aria-label="toggle theme">
-                <LightbulbIcon />
-              </IconButton>
             </Toolbar>
           </AppBar>
         }
@@ -58,6 +56,7 @@ function App() {
           <Route path="/login" element={isAuthenticated ? <Navigate to="/profile" /> : <LoginForm />} />
           <Route path="/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/login" />} />
           <Route path="/dynamic-form" element={<DynamicForm onSubmit={handleFormSubmit} />} />
+          <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
         </Routes>
       </PageWrapper>
     </Box>

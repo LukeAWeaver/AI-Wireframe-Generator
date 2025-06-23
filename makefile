@@ -10,4 +10,7 @@ apply-migrations:
 	docker compose run --rm backend python manage.py migrate
 
 push:
-	@bash ./push.sh "$(filter-out push,$(MAKECMDGOALS))"
+	@bash ./push.sh $(filter-out $@,$(MAKECMDGOALS))
+
+%:
+	@:

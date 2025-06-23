@@ -6,7 +6,7 @@ import {
   Toolbar, 
   IconButton,
 } from '@mui/material'
-import { Menu as MenuIcon, Lightbulb as LightbulbIcon } from '@mui/icons-material'
+import { Lightbulb as LightbulbIcon } from '@mui/icons-material'
 import { LoginForm } from './components/LoginForm'
 import { UserProfile } from './components/UserProfile'
 import { useThemeContext } from './theme/ThemeContext'

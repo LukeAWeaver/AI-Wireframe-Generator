@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 # Load environment variables
 loaded = load_dotenv('/etc/secrets/.env')
 if not loaded:
+    print("Loading local .env file")
     load_dotenv()
 else:
     print("Production mode")

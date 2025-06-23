@@ -14,9 +14,16 @@ updates:
     commit-message:
       prefix: "chore(backend):"
 
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "chore(docker):"
+- package-ecosystem: "docker"
+  directory: "/frontend"
+  schedule:
+    interval: "daily"
+  commit-message:
+    prefix: "chore(frontend docker):"
+
+- package-ecosystem: "docker"
+  directory: "/backend"
+  schedule:
+    interval: "daily"
+  commit-message:
+    prefix: "chore(backend docker):"

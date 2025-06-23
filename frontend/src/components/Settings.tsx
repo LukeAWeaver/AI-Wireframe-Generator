@@ -9,7 +9,7 @@ export const Settings = () => {
   return (
     <Box sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
       <Typography variant="h5" gutterBottom>
-        Settings
+        Settings for user {username}
       </Typography>
       <Divider sx={{ my: 2 }} />
 

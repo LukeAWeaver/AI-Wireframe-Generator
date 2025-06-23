@@ -3,7 +3,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+loaded = load_dotenv('/etc/secrets/.env')
+if not loaded:
+    load_dotenv()
+else:
+    print("Production mode")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

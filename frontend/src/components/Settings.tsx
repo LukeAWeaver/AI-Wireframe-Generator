@@ -6,7 +6,7 @@ import { validateUsername } from '../utils/validation';
 
 export const Settings = () => {
   const { isDarkMode, toggleTheme } = useThemeContext();
-  const { username, updateUserUsername } = useUser();
+  const { username, uuid, updateUserUsername } = useUser();
   const [newUsername, setNewUsername] = useState(username || '');
   const [error, setError] = useState<string | null>(null);
 
@@ -26,12 +26,30 @@ export const Settings = () => {
         Settings
       </Typography>
       <Divider sx={{ my: 2 }} />
-      <Typography variant="h6" gutterBottom>
+
+      <Typography variant="subtitle1" gutterBottom>
+        Your Identifier
+      </Typography>
+      <TextField
+        label="User ID"
+        value={uuid}
+        InputProps={{ readOnly: true }}
+        fullWidth
+        sx={{ mb: 3 }}
+      />
+
+      <Typography variant="subtitle1" gutterBottom>
         Theme
       </Typography>
-      <Button variant="contained" onClick={toggleTheme} sx={{ mb: 3 }}>
+      <Button
+        variant="contained"
+        onClick={toggleTheme}
+        sx={{ mb: 3 }}
+        fullWidth
+      >
         Toggle to {isDarkMode ? 'Light' : 'Dark'} Mode
       </Button>
+
       <Divider sx={{ my: 2 }} />
       <Typography variant="h6" gutterBottom>
         Update Username

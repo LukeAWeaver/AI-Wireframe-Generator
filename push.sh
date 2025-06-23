@@ -5,7 +5,7 @@ set -e
 VERSION_FILE="version.txt"
 VERSION=$(cat "$VERSION_FILE")
 
-# POSIX-compliant split
+# POSIX-compliant version split
 IFS='.' read MAJOR MINOR PATCH <<EOF
 $VERSION
 EOF
@@ -17,11 +17,11 @@ bump_patch() {
 }
 
 if [ $# -eq 0 ]; then
-    echo "❌ Please provide a commit message: make push \"your commit message\""
+    echo "❌ Please provide a commit message: make push your commit message"
     exit 1
 fi
 
-COMMIT_MESSAGE="$1"
+COMMIT_MESSAGE="$*"
 
 git add .
 git commit -m "$COMMIT_MESSAGE"

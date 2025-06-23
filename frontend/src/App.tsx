@@ -11,7 +11,6 @@ import { DynamicForm } from './components/DynamicForm';
 import { Tutorial } from './components/Tutorial';
 import { PageWrapper } from './components/PageWrapper';
 import { VerticalNav } from './components/VerticalNav';
-import { useThemeContext } from './theme/ThemeContext';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 import { Settings } from './components/Settings';

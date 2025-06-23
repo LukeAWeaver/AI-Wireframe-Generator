@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Feature, User
+from .models import FeatureAnalysis, User
 
-class FeatureSerializer(serializers.ModelSerializer):
+class FeatureAnalysisSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Feature
+        model = FeatureAnalysis
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):

@@ -2,11 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
-from features.views import FeatureViewSet, UserViewSet
+from features.views import FeatureAnalysisViewSet, UserViewSet
 from .auth_views import LoginView, RegisterView, LogoutView
 
 router = DefaultRouter()
-router.register(r'features', FeatureViewSet)
+router.register(r'features', FeatureAnalysisViewSet)
 router.register(r'users', UserViewSet)
 
 urlpatterns = [

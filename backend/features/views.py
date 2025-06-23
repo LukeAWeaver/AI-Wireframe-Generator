@@ -4,16 +4,16 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.conf import settings
 import openai
-from .models import Feature, User
-from .serializers import FeatureSerializer, UserSerializer
+from .models import FeatureAnalysis, User
+from .serializers import FeatureAnalysisSerializer, UserSerializer
 from django.db import IntegrityError
 import os
 import re
 import html
 
-class FeatureViewSet(viewsets.ModelViewSet):
-    queryset = Feature.objects.all().order_by('-created_at')
-    serializer_class = FeatureSerializer
+class FeatureAnalysisViewSet(viewsets.ModelViewSet):
+    queryset = FeatureAnalysis.objects.all().order_by('-created_at')
+    serializer_class = FeatureAnalysisSerializer
     permission_classes = [IsAuthenticated]
 
     def sanitize_input(self, text):
@@ -109,8 +109,8 @@ class FeatureViewSet(viewsets.ModelViewSet):
                     'error': f'OpenAI API error: {str(openai_error)}'
                 }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-            # Create and save the feature with user association
-            feature_obj = Feature.objects.create(
+            # Create and save the feature analysis with user association
+            feature_obj = FeatureAnalysis.objects.create(
                 description=feature,
                 complexity=complexity,
                 priority=priority,

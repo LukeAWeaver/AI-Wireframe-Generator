@@ -11,6 +11,7 @@ import { LoginForm } from './components/LoginForm'
 import { UserProfile } from './components/UserProfile'
 import { useThemeContext } from './theme/ThemeContext'
 import { useUser } from './hooks/useUser'
+import { APP_VERSION } from './version'
 
 function App() {
   const { toggleTheme } = useThemeContext()
@@ -42,6 +43,9 @@ function App() {
           <UserProfile />
         )}
       </Container>
+      <Typography variant="body2" color="text.secondary" align="center" mt={2}>
+        v{APP_VERSION}
+      </Typography>
     </Box>
   )
 }

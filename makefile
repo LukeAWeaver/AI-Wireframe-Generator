@@ -9,7 +9,11 @@ apply-migrations:
 	docker compose run --rm backend python manage.py makemigrations
 	docker compose run --rm backend python manage.py migrate
 
-push:
+version-ts:
+	@echo "export const APP_VERSION = '$(VERSION)'" > frontend/src/version.ts
+	@echo "📝 Updated frontend/src/version.ts to v$(VERSION)"
+	
+push: version-ts
 	@bash ./push.sh $(filter-out $@,$(MAKECMDGOALS))
 
 %:

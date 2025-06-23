@@ -21,7 +21,6 @@ const Home = () => (
 );
 
 function App() {
-  const { toggleTheme } = useThemeContext();
   const { isAuthenticated, username } = useUser();
 
   const handleFormSubmit = (data: any) => {

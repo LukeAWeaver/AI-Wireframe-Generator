@@ -3,9 +3,7 @@ import {
   Typography, 
   AppBar, 
   Toolbar, 
-  IconButton,
 } from '@mui/material';
-import { Lightbulb as LightbulbIcon } from '@mui/icons-material';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginForm } from './components/LoginForm';
 import { UserProfile } from './components/UserProfile';
@@ -39,7 +37,7 @@ function App() {
           <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'text.primary' }}>
-                AI Feature Explorer
+                AI Feature Explorer - {username}
               </Typography>
             </Toolbar>
           </AppBar>

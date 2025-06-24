@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { ThemeContextProvider } from './theme/ThemeContext'
 import { store, persistor } from './store/store'
+import { RightSidebarProvider } from './components/RightSidebarContext'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -14,10 +15,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeContextProvider>
-          <BrowserRouter>
-            <CssBaseline />
-            <App />
-          </BrowserRouter>
+          <RightSidebarProvider>
+            <BrowserRouter>
+              <CssBaseline />
+              <App />
+            </BrowserRouter>
+          </RightSidebarProvider>
         </ThemeContextProvider>
       </PersistGate>
     </Provider>

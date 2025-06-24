@@ -26,16 +26,7 @@ function App() {
 
   return (
       <PageWrapper
-        sidebar={<VerticalNav />}
-        header={
-          <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'text.primary' }}>
-                AI Feature Explorer - {username}
-              </Typography>
-            </Toolbar>
-          </AppBar>
-        }
+        sidebarLeft={<VerticalNav />}
         footer={
           <Typography variant="body2" color="text.secondary" align="center" sx={{ p: 2 }}>
             v{APP_VERSION}

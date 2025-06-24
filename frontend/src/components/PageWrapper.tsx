@@ -1,105 +1,101 @@
-import React, { useEffect, ReactNode } from 'react';
-import { Box, Container } from '@mui/material';
+import React, { ReactNode } from 'react';
+import { Box } from '@mui/material';
+import { useRightSidebar } from './RightSidebarContext';
 
 interface PageWrapperProps {
   children: ReactNode;
-  backgroundColor?: string;
-  scrollToTopOnMount?: boolean;
-  header?: ReactNode;
+  sidebarLeft?: ReactNode;
   footer?: ReactNode;
-  sidebar?: ReactNode;
+  backgroundColor?: string;
   sx?: any;
 }
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({
   children,
-  backgroundColor,
-  scrollToTopOnMount = false,
-  header,
+  sidebarLeft,
   footer,
-  sidebar,
+  backgroundColor,
   sx = {},
 }) => {
-  useEffect(() => {
-    if (scrollToTopOnMount) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [scrollToTopOnMount]);
+  const { sidebarContent } = useRightSidebar();
 
   return (
     <Box
       component="main"
       role="main"
       sx={{
-        width: '100vw',
-        height: '100vh',
+        minWidth: '100vw',
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: backgroundColor || 'background.default',
-        overflow: 'hidden',
         ...sx,
       }}
     >
-      {header && (
-        <Box sx={{ flexShrink: 0, width: '100%' }}>
-          {header}
-        </Box>
-      )}
-
-      <Box
-        sx={{
-          flex: 1,
-          display: 'flex',
-          minHeight: 0,
-          overflow: 'hidden',
-          width: '100%',
-        }}
-      >
-        {sidebar && (
+      {/* Main horizontal flex area */}
+      <Box sx={{ display: 'flex', flex: 1, minHeight: 0, width: '100%' }}>
+        {/* Left Sidebar */}
+        {sidebarLeft && (
           <Box
             sx={{
+              width: 240,
               flexShrink: 0,
-              width: { xs: '100%', md: '240px' },
+              borderRight: '1px solid',
+              borderColor: 'divider',
               height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: 'background.paper',
             }}
           >
-            {sidebar}
+            {sidebarLeft}
           </Box>
         )}
 
-        <Container
-          maxWidth={false}
-          disableGutters
+        {/* Main Content */}
+        <Box
           sx={{
             flex: 1,
+            minWidth: 0,
             minHeight: 0,
             display: 'flex',
             flexDirection: 'column',
-            maxWidth: { xs: '100%', md: '100%' },
-            mx: 'auto',
+            height: '100%',
             px: { xs: 1, md: 2 },
             py: { xs: 1, md: 2 },
-            width: '100%',
-            height: '100%',
           }}
         >
-          <Box
-            sx={{
-              flex: 1,
-              minHeight: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              width: '100%',
-              height: '100%',
-            }}
-          >
-            {children}
-          </Box>
-        </Container>
+          {children}
+        </Box>
+
+        {/* Right Sidebar (dynamic from context) */}
+        <Box
+          sx={{
+            width: 300,
+            flexShrink: 0,
+            borderLeft: '1px solid',
+            borderColor: 'divider',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'background.paper',
+          }}
+        >
+          {sidebarContent}
+        </Box>
       </Box>
 
+      {/* Footer pinned at the bottom */}
       {footer && (
-        <Box sx={{ flexShrink: 0, width: '100%' }}>
+        <Box
+          sx={{
+            width: '100%',
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            flexShrink: 0,
+            backgroundColor: 'background.paper',
+          }}
+        >
           {footer}
         </Box>
       )}

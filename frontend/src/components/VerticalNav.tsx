@@ -9,7 +9,7 @@ export const VerticalNav = () => {
   const navItems = [
     { text: 'Home', to: '/', icon: <Home />, auth: true },
     { text: 'Tutorial', to: '/tutorial', icon: <School />, auth: true },
-    { text: 'Dynamic Form', to: '/dynamic-form', icon: <DynamicForm />, auth: true },
+    { text: 'Wireframe Ggenerator', to: '/wireframe-generator', icon: <DynamicForm />, auth: true },
     !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
     isAuthenticated && { text: 'Settings', to: '/settings', icon: <SettingsIcon />, auth: true },

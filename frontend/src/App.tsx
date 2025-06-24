@@ -1,4 +1,4 @@
-import { Typography, AppBar, Toolbar } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginForm } from './components/LoginForm';
 import { UserProfile } from './components/UserProfile';
@@ -29,7 +29,7 @@ function App() {
         sidebarLeft={<VerticalNav />}
         footer={
           <Typography variant="body2" color="text.secondary" align="center" sx={{ p: 2 }}>
-            v{APP_VERSION}
+            v{APP_VERSION} - {username}
           </Typography>
         }
       >

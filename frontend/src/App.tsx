@@ -1,9 +1,4 @@
-import { 
-  Box, 
-  Typography, 
-  AppBar, 
-  Toolbar, 
-} from '@mui/material';
+import { Typography, AppBar, Toolbar } from '@mui/material';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginForm } from './components/LoginForm';
 import { UserProfile } from './components/UserProfile';

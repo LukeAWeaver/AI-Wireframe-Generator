@@ -1,4 +1,4 @@
-import { ReactComponent as DetailedArchitectureDiagram } from '@assets/svg/detailed-architecture.svg';
+import { ReactComponent as DetailedArchitectureDiagram } from '@assets/svg/architecture-diagram.svg';
 
 export const Architecture = () => (
   <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -9,5 +9,8 @@ export const Architecture = () => (
     <div style={{ maxWidth: 900, width: '100%', marginTop: 24 }}>
       <DetailedArchitectureDiagram style={{ width: '100%', height: 'auto' }} />
     </div>
+    <p style={{ maxWidth: 900, margin: '24px auto 0', color: '#ccc', fontSize: '1.1rem', textAlign: 'center' }}>
+      <b>Wireframe Generation Purpose:</b> This platform enables users to describe UI layouts in natural language, which are then sent to the backend and integrated with the OpenAI API (ChatGPT). The backend processes the prompt, requests a wireframe from ChatGPT, and returns a rendered wireframe preview to the frontend. This workflow accelerates prototyping, bridges the gap between design and engineering, and leverages AI to turn ideas into interactive wireframes in real time.
+    </p>
   </div>
 ); 

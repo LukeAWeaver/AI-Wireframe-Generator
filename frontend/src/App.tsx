@@ -10,6 +10,7 @@ import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 import { Settings } from './components/Settings';
 import { Architecture } from './components/Architecture';
+import { WireframeGenerator } from './components/WireframeGenerator';
 
 const Home = () => (
   <Typography variant="h4">Welcome to the AI Feature Explorer!</Typography>
@@ -49,6 +50,7 @@ function App() {
           <Route path="/dynamic-form" element={<DynamicForm onSubmit={handleFormSubmit} />} />
           <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
           <Route path="/architecture" element={<Architecture />} />
+          <Route path="/wireframe-generator" element={<WireframeGenerator />} />
         </Routes>
       </PageWrapper>
   );

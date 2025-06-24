@@ -9,17 +9,19 @@ interface PageWrapperProps {
   scrollToTopOnMount?: boolean;
   header?: ReactNode;
   footer?: ReactNode;
+  sidebar?: ReactNode;
   sx?: any;
 }
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({
   children,
-  maxWidth = 1024,
+  maxWidth = '100%',
   padding = 2,
   backgroundColor,
   scrollToTopOnMount = false,
   header,
   footer,
+  sidebar,
   sx = {},
 }) => {
   useEffect(() => {
@@ -33,47 +35,75 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
       component="main"
       role="main"
       sx={{
-        minHeight: '100vh',
+        width: '100vw',
+        height: '100vh',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: backgroundColor || 'background.default',
-        overflowY: 'auto',
+        overflow: 'hidden',
         ...sx,
       }}
     >
       {header && (
-        <Box sx={{ flexShrink: 0 }}>
+        <Box sx={{ flexShrink: 0, width: '100%' }}>
           {header}
         </Box>
       )}
-      
-      <Container
-        maxWidth={false}
+
+      <Box
         sx={{
           flex: 1,
           display: 'flex',
-          flexDirection: 'column',
-          maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
-          mx: 'auto',
-          px: typeof padding === 'number' ? padding : padding,
-          py: 2,
+          minHeight: 0,
+          overflow: 'hidden',
           width: '100%',
         }}
       >
-        <Box
+        {sidebar && (
+          <Box
+            sx={{
+              flexShrink: 0,
+              width: { xs: '100%', md: '240px' },
+              height: '100%',
+            }}
+          >
+            {sidebar}
+          </Box>
+        )}
+
+        <Container
+          maxWidth={false}
+          disableGutters
           sx={{
             flex: 1,
+            minHeight: 0,
             display: 'flex',
             flexDirection: 'column',
+            maxWidth: { xs: '100%', md: '100%' },
+            mx: 'auto',
+            px: { xs: 1, md: 2 },
+            py: { xs: 1, md: 2 },
             width: '100%',
+            height: '100%',
           }}
         >
-          {children}
-        </Box>
-      </Container>
+          <Box
+            sx={{
+              flex: 1,
+              minHeight: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {children}
+          </Box>
+        </Container>
+      </Box>
 
       {footer && (
-        <Box sx={{ flexShrink: 0 }}>
+        <Box sx={{ flexShrink: 0, width: '100%' }}>
           {footer}
         </Box>
       )}

@@ -14,6 +14,7 @@ import { VerticalNav } from './components/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 import { Settings } from './components/Settings';
+import { Architecture } from './components/Architecture';
 
 const Home = () => (
   <Typography variant="h4">Welcome to the AI Feature Explorer!</Typography>
@@ -28,9 +29,8 @@ function App() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <VerticalNav />
       <PageWrapper
+        sidebar={<VerticalNav />}
         header={
           <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
             <Toolbar>
@@ -53,9 +53,9 @@ function App() {
           <Route path="/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/login" />} />
           <Route path="/dynamic-form" element={<DynamicForm onSubmit={handleFormSubmit} />} />
           <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
+          <Route path="/architecture" element={<Architecture />} />
         </Routes>
       </PageWrapper>
-    </Box>
   );
 }
 

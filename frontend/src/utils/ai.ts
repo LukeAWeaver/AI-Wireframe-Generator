@@ -1,3 +1,6 @@
+// Only keep used interfaces and variables
+// If none are used, leave the file empty
+
 interface FormField {
   type: 'text' | 'email' | 'number' | 'textarea' | 'checkbox' | 'select'
   label: string

@@ -3,8 +3,6 @@ import { Box, Container } from '@mui/material';
 
 interface PageWrapperProps {
   children: ReactNode;
-  maxWidth?: number | string;
-  padding?: number | string;
   backgroundColor?: string;
   scrollToTopOnMount?: boolean;
   header?: ReactNode;
@@ -15,8 +13,6 @@ interface PageWrapperProps {
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({
   children,
-  maxWidth = '100%',
-  padding = 2,
   backgroundColor,
   scrollToTopOnMount = false,
   header,

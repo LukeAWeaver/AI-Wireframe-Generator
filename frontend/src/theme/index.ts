@@ -95,13 +95,6 @@ const tokens = {
   shape: {
     borderRadius: 8,
   },
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-  },
   shadows: [
     'none',
     '0px 2px 4px rgba(0, 0, 0, 0.2)',
@@ -192,7 +185,7 @@ const baseThemeOptions: ThemeOptions = {
   },
   typography: tokens.typography as any,
   shape: tokens.shape,
-  spacing: (factor: number) => `${factor * 4}px`,
+  spacing: (factor: number) => `${factor * 8}px`,
   shadows: tokens.shadows as any,
   transitions: tokens.transitions,
   components: {
@@ -292,7 +285,4 @@ export const darkTheme = createTheme({
     text: darkColors.text,
     divider: darkColors.divider,
   },
-});
-
-// Export tokens for use in other files
-export { tokens }; 
+}); 

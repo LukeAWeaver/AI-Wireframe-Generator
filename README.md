@@ -1,6 +1,6 @@
 # AI Feature Explorer
 
-A monorepo containing a React frontend and Express backend for exploring AI features with dynamic form generation.
+A monorepo containing a React frontend and Express backend for exploring AI features with wireframe generation.
 
 ## Project Structure
 
@@ -106,7 +106,7 @@ docker run -p 8087:8087 ai-feature-explorer-frontend
 
 ## Features
 
-- Dynamic form rendering based on JSON schema
+- Wireframe rendering based on JSON schema
 - AI-powered form schema generation using GPT-4
 - Modern UI with Tailwind CSS
 - TypeScript support

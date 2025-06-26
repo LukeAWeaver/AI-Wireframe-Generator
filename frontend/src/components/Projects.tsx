@@ -7,7 +7,6 @@ import {
   Link,
   IconButton,
   useTheme,
-  useMediaQuery,
   Paper,
 } from '@mui/material';
 import { GitHub, KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';

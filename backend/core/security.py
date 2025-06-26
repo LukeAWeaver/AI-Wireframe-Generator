@@ -46,21 +46,20 @@ class SecurityMiddleware:
         
     def _validate_request(self, request):
         """Validate request for suspicious patterns"""
-        # Check for suspicious user agents
-        user_agent = request.META.get('HTTP_USER_AGENT', '')
-        suspicious_patterns = [
-            r'bot',
-            r'crawler',
-            r'spider',
-            r'scanner',
-            r'curl',
-            r'wget'
-        ]
-        
-        for pattern in suspicious_patterns:
-            if re.search(pattern, user_agent.lower()):
-                return False
-                
+        # Only block suspicious user agents in production
+        if not getattr(settings, 'DEBUG', False):
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            suspicious_patterns = [
+                r'bot',
+                r'crawler',
+                r'spider',
+                r'scanner',
+                r'curl',
+                r'wget'
+            ]
+            for pattern in suspicious_patterns:
+                if re.search(pattern, user_agent.lower()):
+                    return False
         # Check for suspicious paths
         path = request.path.lower()
         suspicious_paths = [
@@ -71,11 +70,9 @@ class SecurityMiddleware:
             '/config',
             '/backup'
         ]
-        
         for suspicious_path in suspicious_paths:
             if suspicious_path in path:
                 return False
-                
         return True
         
     def _get_client_ip(self, request):

@@ -20,5 +20,5 @@ RUN chmod +x entrypoint.sh
 RUN useradd -m appuser
 USER appuser
 
-EXPOSE 8000
+EXPOSE 3001
 CMD ["./entrypoint.sh"]

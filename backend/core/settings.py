@@ -22,7 +22,11 @@ if not SECRET_KEY:
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # SECURITY: Configure allowed hosts properly
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "ai-ux-visualization.onrender.com",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -128,9 +132,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings - SECURE CONFIGURATION
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000').split(',')
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Frontend dev server (localhost)
+    "http://127.0.0.1:3000",  # Frontend dev server (127.0.0.1)
+    "https://ai-ux-visualization.onrender.com",  # Production frontend
+]
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+CORS_ALLOWED_METHODS = [
+    'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'
+]
 CORS_ALLOWED_HEADERS = [
     'accept',
     'accept-encoding',
@@ -142,6 +152,8 @@ CORS_ALLOWED_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+# If you want to allow all origins (not recommended for production), uncomment below:
+# CORS_ALLOW_ALL_ORIGINS = True
 
 # REST Framework settings - SECURE CONFIGURATION
 REST_FRAMEWORK = {
@@ -199,4 +211,6 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'unique-snowflake',
     }
-} 
+}
+
+print(f"Django settings loaded. DEBUG={DEBUG}") 

@@ -1,6 +1,8 @@
-<svg width="1100" height="500" viewBox="0 0 1100 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:#181818">
-  <!-- User -->
-  <rect x="40" y="100" width="180" height="50" rx="16" fill="#2196f3"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1100" height="500" viewBox="0 0 1100 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="1100" height="500" fill="#181818"/>
   <text x="130" y="130" text-anchor="middle" fill="#fff" font-size="20" font-family="Arial">User (Browser)</text>
   <!-- Frontend -->
   <rect x="300" y="100" width="220" height="50" rx="16" fill="#1976d2"/>

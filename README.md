@@ -1,6 +1,15 @@
 # AI Feature Explorer
 
-A monorepo containing a React frontend and Express backend for exploring AI features with wireframe generation.
+A React + Django monorepo for exploring AI features with wireframe generation.
+
+## 🌍 Deployment Architecture & Traffic Flow
+Client (Browser, Frontend, API Request)
+    ↓ HTTPS (TCP 443)
+→ Render-hosted Django API
+    (Managed by Render, HTTPS via Render's certs, fully cloud-hosted backend API)
+    ↓
+→ Ollama API
+    (Traffic flows to Cloudflare Edge → Secure Cloudflare Tunnel → localhost:11434)
 
 ## Project Structure
 

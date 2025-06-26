@@ -1,11 +1,11 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.conf import settings
 import openai
-from .models import FeatureAnalysis, User
-from .serializers import FeatureAnalysisSerializer, UserSerializer
+from .models import FeatureAnalysis, User, PortfolioTechnology
+from .serializers import FeatureAnalysisSerializer, UserSerializer, PortfolioTechnologySerializer
 from django.db import IntegrityError
 import os
 import re
@@ -144,4 +144,9 @@ class UserViewSet(viewsets.ModelViewSet):
                     {'error': 'Username already exists'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PortfolioTechnologyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = PortfolioTechnology.objects.all().order_by('category', 'name')
+    serializer_class = PortfolioTechnologySerializer
+    permission_classes = [AllowAny] 

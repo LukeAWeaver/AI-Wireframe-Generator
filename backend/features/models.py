@@ -41,4 +41,16 @@ class User(models.Model):
         return self.username
 
     class Meta:
-        ordering = ['-created_at'] 
+        ordering = ['-created_at']
+
+class PortfolioTechnology(models.Model):
+    category = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
+    description = models.TextField()
+
+    class Meta:
+        db_table = 'portfolio_technologies'
+        verbose_name_plural = 'Portfolio Technologies'
+
+    def __str__(self):
+        return f"{self.category}: {self.name}" 

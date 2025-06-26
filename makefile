@@ -18,3 +18,6 @@ push: version-ts
 
 %:
 	@:
+
+frontend:
+	docker compose build --no-cache frontend

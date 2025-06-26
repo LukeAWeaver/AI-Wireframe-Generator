@@ -8,6 +8,7 @@ import App from './App'
 import { ThemeContextProvider } from './theme/ThemeContext'
 import { store, persistor } from './store/store'
 import { RightSidebarProvider } from './components/RightSidebarContext'
+import { PortfolioTechnologiesProvider } from './components/PortfolioTechnologiesContext'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -16,10 +17,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <PersistGate loading={null} persistor={persistor}>
         <ThemeContextProvider>
           <RightSidebarProvider>
-            <BrowserRouter>
-              <CssBaseline />
-              <App />
-            </BrowserRouter>
+            <PortfolioTechnologiesProvider>
+              <BrowserRouter>
+                <CssBaseline />
+                <App />
+              </BrowserRouter>
+            </PortfolioTechnologiesProvider>
           </RightSidebarProvider>
         </ThemeContextProvider>
       </PersistGate>

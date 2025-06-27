@@ -8,8 +8,21 @@ if os.getenv('ENVIRONMENT') != 'production':
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Logs directory - create only if we have write permissions
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
-os.makedirs(LOGS_DIR, exist_ok=True)
+try:
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    CAN_WRITE_LOGS = True
+except PermissionError:
+    # In production environments like Render, we might not have write permissions
+    # Use a temporary directory or disable file logging
+    LOGS_DIR = '/tmp/logs'  # Fallback to temp directory
+    try:
+        os.makedirs(LOGS_DIR, exist_ok=True)
+        CAN_WRITE_LOGS = True
+    except (PermissionError, OSError):
+        CAN_WRITE_LOGS = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
@@ -217,6 +230,22 @@ CACHES = {
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO' if DEBUG else 'WARNING')
 ENABLE_REQUEST_LOGGING = os.getenv('ENABLE_REQUEST_LOGGING', 'True' if DEBUG else 'False') == 'True'
 
+# Define handlers based on what's available
+handlers = {
+    'console': {
+        'class': 'logging.StreamHandler',
+        'formatter': 'verbose',
+    },
+}
+
+# Only add file handler if we can write to logs
+if CAN_WRITE_LOGS:
+    handlers['file'] = {
+        'class': 'logging.FileHandler',
+        'filename': os.path.join(LOGS_DIR, 'requests.log'),
+        'formatter': 'json',
+    }
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -234,20 +263,10 @@ LOGGING = {
             'style': '{',
         },
     },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(LOGS_DIR, 'requests.log'),
-            'formatter': 'json',
-        },
-    },
+    'handlers': handlers,
     'loggers': {
         'request_logger': {
-            'handlers': ['console', 'file'] if ENABLE_REQUEST_LOGGING else ['file'],
+            'handlers': ['console', 'file'] if ENABLE_REQUEST_LOGGING and CAN_WRITE_LOGS else ['console'],
             'level': LOG_LEVEL,
             'propagate': False,
         },

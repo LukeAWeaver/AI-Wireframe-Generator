@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'core.logging_middleware.RequestLoggingMiddleware',  # Add request logging middleware
     'core.security.SecurityMiddleware',  # Custom security middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -210,4 +211,50 @@ CACHES = {
     }
 }
 
-print(f"Django settings loaded. DEBUG={DEBUG}") 
+# Logging configuration
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO' if DEBUG else 'WARNING')
+ENABLE_REQUEST_LOGGING = os.getenv('ENABLE_REQUEST_LOGGING', 'True' if DEBUG else 'False') == 'True'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+        'json': {
+            'format': '{message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'logs/requests.log',
+            'formatter': 'json',
+        },
+    },
+    'loggers': {
+        'request_logger': {
+            'handlers': ['console', 'file'] if ENABLE_REQUEST_LOGGING else ['file'],
+            'level': LOG_LEVEL,
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+            'propagate': False,
+        },
+    },
+}
+
+print(f"Django settings loaded. DEBUG={DEBUG}, LOG_LEVEL={LOG_LEVEL}, REQUEST_LOGGING={ENABLE_REQUEST_LOGGING}") 

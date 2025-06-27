@@ -7,10 +7,13 @@ services:
       - "127.0.0.1:3001:3001"
     volumes:
       - ./backend:/app
+      - ./backend/logs:/app/logs
     env_file:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - ENABLE_REQUEST_LOGGING=True
     depends_on:
       db:
         condition: service_healthy

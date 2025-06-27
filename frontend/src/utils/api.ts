@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/api';
+import { API_BASE_URL, debugLog, errorLog } from './config';
 
 // Token management helpers
 export function setToken(token: string) {
@@ -15,7 +15,9 @@ export function removeToken() {
 
 export const createUser = async (username: string) => {
   const token = getToken();
-  const response = await fetch(`${API_URL}/users/`, {
+  debugLog('Creating user:', username);
+  
+  const response = await fetch(`${API_BASE_URL}/users/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,6 +28,7 @@ export const createUser = async (username: string) => {
 
   if (!response.ok) {
     const error = await response.json();
+    errorLog(error, 'createUser');
     throw new Error(error.error || 'Failed to create user');
   }
 
@@ -34,7 +37,9 @@ export const createUser = async (username: string) => {
 
 export const generateWireframe = async (prompt: string) => {
   const token = getToken();
-  const response = await fetch(`${API_URL}/features/analyze/`, {
+  debugLog('Generating wireframe for prompt:', prompt);
+  
+  const response = await fetch(`${API_BASE_URL}/features/analyze/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,6 +54,7 @@ export const generateWireframe = async (prompt: string) => {
 
   if (!response.ok) {
     const error = await response.json();
+    errorLog(error, 'generateWireframe');
     throw new Error(error.error || 'Failed to generate wireframe');
   }
 
@@ -56,8 +62,11 @@ export const generateWireframe = async (prompt: string) => {
 };
 
 export const fetchPortfolioTechnologies = async () => {
-  const response = await fetch(`${API_URL}/portfolio-technologies/`);
+  debugLog('Fetching portfolio technologies');
+  
+  const response = await fetch(`${API_BASE_URL}/portfolio-technologies/`);
   if (!response.ok) {
+    errorLog('Failed to fetch portfolio technologies', 'fetchPortfolioTechnologies');
     throw new Error('Failed to fetch portfolio technologies');
   }
   return response.json();

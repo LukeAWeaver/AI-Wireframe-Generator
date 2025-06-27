@@ -1,3 +1,5 @@
+import { API_BASE_URL, debugLog, errorLog } from './config';
+
 // Only keep used interfaces and variables
 // If none are used, leave the file empty
 
@@ -22,7 +24,9 @@ interface FeatureRequest {
 
 export const askGPT = async (data: FeatureRequest): Promise<string> => {
   try {
-    const response = await fetch('http://localhost:3001/api/analyze', {
+    debugLog('Calling AI service with data:', data);
+    
+    const response = await fetch(`${API_BASE_URL}/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,14 +41,16 @@ export const askGPT = async (data: FeatureRequest): Promise<string> => {
     const result = await response.json()
     return result.analysis
   } catch (error) {
-    console.error('Error calling AI service:', error)
+    errorLog(error, 'askGPT');
     throw error
   }
 }
 
 export async function askGPTForm(prompt: string): Promise<FormSchema> {
   try {
-    const response = await fetch('http://localhost:3001/api/generate-form', {
+    debugLog('Generating form schema for prompt:', prompt);
+    
+    const response = await fetch(`${API_BASE_URL}/generate-form`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +65,7 @@ export async function askGPTForm(prompt: string): Promise<FormSchema> {
     const schema = await response.json();
     return schema;
   } catch (error) {
-    console.error('Error generating form schema:', error);
+    errorLog(error, 'askGPTForm');
     throw error;
   }
 } 

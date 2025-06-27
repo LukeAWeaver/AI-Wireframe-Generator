@@ -1,8 +1,11 @@
 import time
+import logging
 from django.core.cache import cache
 from django.http import HttpResponseForbidden
 from django.conf import settings
 import re
+
+logger = logging.getLogger('security')
 
 class SecurityMiddleware:
     def __init__(self, get_response):
@@ -10,14 +13,22 @@ class SecurityMiddleware:
         self.rate_limit_cache = {}
         
     def __call__(self, request):
+        # Log incoming request for security checks
+        print(f"🔒 SECURITY CHECK: {request.method} {request.path}")
+        print(f"🌐 IP: {self._get_client_ip(request)}")
+        print(f"👤 User-Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}")
+        
         # Rate limiting
         if not self._check_rate_limit(request):
+            print(f"❌ RATE LIMIT EXCEEDED: {self._get_client_ip(request)}")
             return HttpResponseForbidden("Rate limit exceeded")
             
         # Request validation
         if not self._validate_request(request):
+            print(f"❌ REQUEST BLOCKED: {request.method} {request.path}")
             return HttpResponseForbidden("Invalid request")
             
+        print(f"✅ SECURITY PASSED: {request.method} {request.path}")
         response = self.get_response(request)
         
         # Security headers

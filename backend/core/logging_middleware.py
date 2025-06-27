@@ -66,6 +66,18 @@ class RequestLoggingMiddleware(MiddlewareMixin):
         remote_addr = self.get_client_ip(request)
         content_type = request.META.get('CONTENT_TYPE', '')
         
+        # Special logging for CORS preflight requests
+        if method == 'OPTIONS':
+            print(f"\n{'='*80}")
+            print(f"🔄 CORS PREFLIGHT REQUEST: {method} {path}")
+            print(f"⏰ Time: {request.start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+            print(f"🌐 IP: {remote_addr}")
+            print(f"👤 User-Agent: {user_agent}")
+            print(f"📋 Origin: {request.META.get('HTTP_ORIGIN', 'No Origin')}")
+            print(f"📋 Access-Control-Request-Method: {request.META.get('HTTP_ACCESS_CONTROL_REQUEST_METHOD', 'None')}")
+            print(f"📋 Access-Control-Request-Headers: {request.META.get('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', 'None')}")
+            print(f"{'='*80}\n")
+        
         # Get request body (for POST/PUT requests)
         body = ''
         if method in ['POST', 'PUT', 'PATCH']:

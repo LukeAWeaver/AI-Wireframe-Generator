@@ -11,7 +11,6 @@ router.register(r'users', UserViewSet)
 router.register(r'portfolio-technologies', PortfolioTechnologyViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/auth/login/', LoginView.as_view(), name='login'),
     path('api/auth/register/', RegisterView.as_view(), name='register'),

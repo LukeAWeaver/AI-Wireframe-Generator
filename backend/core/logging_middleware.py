@@ -5,12 +5,49 @@ from datetime import datetime
 from django.utils.deprecation import MiddlewareMixin
 from django.http import JsonResponse
 
-# Ensure logs directory exists
+# Ensure logs directory exists (with fallback for production environments)
 logs_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs')
-os.makedirs(logs_dir, exist_ok=True)
+try:
+    os.makedirs(logs_dir, exist_ok=True)
+except PermissionError:
+    # In production environments like Render, we might not have write permissions
+    # Use a temporary directory or disable file logging
+    logs_dir = '/tmp/logs'
+    try:
+        os.makedirs(logs_dir, exist_ok=True)
+    except (PermissionError, OSError):
+        # If we still can't create logs directory, disable file logging
+        logs_dir = None
 
 # Set up logging
 logger = logging.getLogger('request_logger')
+
+# If we can't create logs directory, configure logger to only use console
+if logs_dir is None:
+    import logging.config
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple',
+            },
+        },
+        'formatters': {
+            'simple': {
+                'format': '{levelname} {message}',
+                'style': '{',
+            },
+        },
+        'loggers': {
+            'request_logger': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+        },
+    })
 
 class RequestLoggingMiddleware(MiddlewareMixin):
     """
@@ -84,8 +121,9 @@ class RequestLoggingMiddleware(MiddlewareMixin):
         
         print(f"{'='*80}\n")
         
-        # Also log to file
-        logger.info(f"Request: {json.dumps(log_data, indent=2)}")
+        # Also log to file (only if we can write to logs)
+        if logs_dir is not None:
+            logger.info(f"Request: {json.dumps(log_data, indent=2)}")
         
         return None
     
@@ -133,8 +171,9 @@ class RequestLoggingMiddleware(MiddlewareMixin):
         
         print(f"{'='*80}\n")
         
-        # Also log to file
-        logger.info(f"Response: {json.dumps(log_data, indent=2)}")
+        # Also log to file (only if we can write to logs)
+        if logs_dir is not None:
+            logger.info(f"Response: {json.dumps(log_data, indent=2)}")
         
         return response
     
@@ -163,8 +202,9 @@ class RequestLoggingMiddleware(MiddlewareMixin):
         print(f"⏱️ Duration: {duration*1000:.2f}ms")
         print(f"{'='*80}\n")
         
-        # Also log to file
-        logger.error(f"Exception: {json.dumps(log_data, indent=2)}")
+        # Also log to file (only if we can write to logs)
+        if logs_dir is not None:
+            logger.error(f"Exception: {json.dumps(log_data, indent=2)}")
         
         return None
     

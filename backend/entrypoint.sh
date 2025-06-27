@@ -15,6 +15,8 @@ set -x
 # echo "ENVIRONMENT: $ENVIRONMENT" > /dev/stdout
 # echo "DEBUG: $DEBUG" > /dev/stdout
 # echo "DJANGO_SETTINGS_MODULE: $DJANGO_SETTINGS_MODULE" > /dev/stdout
+echo "Running database migrations..." > /dev/stdout
+python manage.py migrate --noinput
 
 if [ "$ENVIRONMENT" = "development" ]; then
     echo "Starting development server..." > /dev/stdout

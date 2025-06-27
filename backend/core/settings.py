@@ -3,8 +3,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Only load .env if not running in Docker (optional, but safe for local dev)
-load_dotenv()
-
+if os.getenv('ENVIRONMENT') != 'production':
+    load_dotenv()
+    
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

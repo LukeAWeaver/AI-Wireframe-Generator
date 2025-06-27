@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 # Only load .env if not running in Docker (optional, but safe for local dev)
 if os.getenv('ENVIRONMENT') != 'production':
     load_dotenv()
-    
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "ai-ux-visualization.onrender.com",
+    "ai-ux-visualization-backend.onrender.com", 
 ]
 
 # Application definition

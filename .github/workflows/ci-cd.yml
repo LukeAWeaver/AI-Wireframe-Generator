@@ -58,6 +58,10 @@ jobs:
         python manage.py test
     
     # Docker
+    - name: Create .env file from secrets
+      run: |
+        echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+        echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
     - name: Test Docker
       run: |
         docker compose config

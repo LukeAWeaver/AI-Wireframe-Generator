@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useUser } from '../hooks/useUser';
 import { validateUsername } from '../utils/validation';
-import { createUser } from '../utils/api';
+import { createUser, IUserResponse } from '../utils/api';
 
 export const LoginForm = () => {
   const { setUserData } = useUser();
@@ -30,7 +30,7 @@ export const LoginForm = () => {
     setError(null);
 
     try {
-      const userData = await createUser(username);
+      const userData: IUserResponse = await createUser(username);
       setUserData(userData.username, userData.uuid);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create user');
@@ -47,7 +47,7 @@ export const LoginForm = () => {
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
         Please choose a username to get started. This will be your unique identifier.
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+      <Box component="form" onSubmit={(e) => { void handleSubmit(e); }} sx={{ mt: 2 }}>
         <TextField
           fullWidth
           label="Username"

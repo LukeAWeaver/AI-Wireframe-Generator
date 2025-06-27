@@ -1,16 +1,17 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import { SxProps, Theme } from '@mui/system';
 import { useRightSidebar } from './RightSidebarContext';
 
-interface PageWrapperProps {
+interface IPageWrapperProps {
   children: ReactNode;
   sidebarLeft?: ReactNode;
   footer?: ReactNode;
   backgroundColor?: string;
-  sx?: any;
+  sx?: SxProps<Theme>;
 }
 
-export const PageWrapper: React.FC<PageWrapperProps> = ({
+export const PageWrapper: React.FC<IPageWrapperProps> = ({
   children,
   sidebarLeft,
   footer,

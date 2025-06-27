@@ -1,10 +1,16 @@
-// Environment configuration
-export const isDevelopment = import.meta.env.DEV;
-export const isProduction = import.meta.env.PROD;
+interface IImportMetaEnv {
+  readonly VITE_API_URL?: string;
+  readonly DEV: boolean;
+  readonly PROD: boolean;
+}
+
+const env = (import.meta as unknown as { env: IImportMetaEnv }).env;
+export const isDevelopment = env.DEV;
+export const isProduction = env.PROD;
 
 // API configuration
 export const API_BASE_URL = isProduction 
-  ? import.meta.env.VITE_API_URL || 'https://your-production-api.com/api'
+  ? env.VITE_API_URL || 'https://your-production-api.com/api'
   : 'http://localhost:3001/api';
 
 // App configuration
@@ -16,14 +22,14 @@ export const APP_CONFIG = {
 };
 
 // Debug logging (only in development)
-export const debugLog = (...args: any[]) => {
+export const debugLog = (...args: unknown[]) => {
   if (isDevelopment) {
     console.log('[DEBUG]', ...args);
   }
 };
 
 // Error logging with environment context
-export const errorLog = (error: any, context?: string) => {
+export const errorLog = (error: unknown, context?: string) => {
   console.error(`[ERROR]${context ? ` [${context}]` : ''}`, error);
   if (isDevelopment) {
     console.trace();

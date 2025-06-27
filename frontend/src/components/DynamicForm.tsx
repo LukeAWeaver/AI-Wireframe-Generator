@@ -10,26 +10,25 @@ import {
   SelectChangeEvent
 } from '@mui/material'
 
-interface FeatureRequest {
+interface IFeatureRequest {
   feature: string;
   complexity: string;
   priority: string;
-  [key: string]: any;
 }
 
-interface FormField {
-  id: string
-  label: string
-  type: string
-  required?: boolean
-  options?: string[]
+interface IFormField {
+  id: string;
+  label: string;
+  type: string;
+  required?: boolean;
+  options?: string[];
 }
 
-interface DynamicFormProps {
-  onSubmit: (data: FeatureRequest) => void
+interface IDynamicFormProps {
+  onSubmit: (data: IFeatureRequest) => void;
 }
 
-const defaultFields: FormField[] = [
+const defaultFields: IFormField[] = [
   {
     id: 'feature',
     label: 'Feature Description',
@@ -52,15 +51,15 @@ const defaultFields: FormField[] = [
   }
 ]
 
-export const DynamicForm = ({ onSubmit }: DynamicFormProps) => {
-  const [formData, setFormData] = useState<FeatureRequest>({
+export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
+  const [formData, setFormData] = useState<Record<string, string>>({
     feature: '',
     complexity: '',
     priority: ''
   })
 
   const handleChange = (id: string, value: string) => {
-    setFormData((prev: FeatureRequest) => ({
+    setFormData((prev) => ({
       ...prev,
       [id]: value
     }))
@@ -68,34 +67,40 @@ export const DynamicForm = ({ onSubmit }: DynamicFormProps) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(formData)
+    const featureRequest: IFeatureRequest = {
+      feature: formData['feature'] || '',
+      complexity: formData['complexity'] || '',
+      priority: formData['priority'] || ''
+    }
+    onSubmit(featureRequest)
   }
 
-  const renderField = (field: FormField) => {
+  const renderField = (field: IFormField) => {
+    const id = field.id;
     switch (field.type) {
       case 'textarea':
         return (
           <TextField
-            id={field.id}
+            id={id}
             label={field.label}
             multiline
             rows={4}
             required={field.required}
-            value={formData[field.id] || ''}
-            onChange={(e) => handleChange(field.id, e.target.value)}
+            value={formData[id] || ''}
+            onChange={(e) => handleChange(id, e.target.value)}
             fullWidth
           />
         )
       case 'select':
         return (
           <FormControl fullWidth required={field.required}>
-            <InputLabel id={`${field.id}-label`}>{field.label}</InputLabel>
+            <InputLabel id={`${id}-label`}>{field.label}</InputLabel>
             <Select
-              labelId={`${field.id}-label`}
-              id={field.id}
-              value={formData[field.id] || ''}
+              labelId={`${id}-label`}
+              id={id}
+              value={formData[id] || ''}
               label={field.label}
-              onChange={(e: SelectChangeEvent) => handleChange(field.id, e.target.value)}
+              onChange={(e: SelectChangeEvent) => handleChange(id, e.target.value)}
             >
               {field.options?.map(option => (
                 <MenuItem key={option} value={option}>

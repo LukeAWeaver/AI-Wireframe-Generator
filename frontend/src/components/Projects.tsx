@@ -17,14 +17,14 @@ import RDAIArchDiagram from '../assets/svg/react-django-llm-arch.svg';
 import { useRightSidebar } from './RightSidebarContext';
 import { usePortfolioTechnologies } from './PortfolioTechnologiesContext';
 
-interface Project {
+interface IProject {
   id: string;
   title: string;
   url: string;
   svgDiagram: string;
 }
 
-const projects: Project[] = [
+const projects: IProject[] = [
   {
     id: 'tech-dem0-files',
     title: 'Static FE Serverless ( React + Next.js )',

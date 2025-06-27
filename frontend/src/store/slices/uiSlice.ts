@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface UiState {
+interface IUiState {
   isLoading: boolean;
   theme: 'light' | 'dark';
   sidebarOpen: boolean;
 }
 
-const initialState: UiState = {
+const initialState: IUiState = {
   isLoading: false,
   theme: 'light',
   sidebarOpen: false,

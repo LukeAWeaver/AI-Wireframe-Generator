@@ -6,12 +6,12 @@ declare module '*.svg' {
 }
 
 // Vite environment variables
-interface ImportMetaEnv {
+interface IImportMetaEnv {
   readonly VITE_API_URL?: string;
   readonly DEV: boolean;
   readonly PROD: boolean;
 }
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
+interface IImportMeta {
+  readonly env: IImportMetaEnv;
 } 

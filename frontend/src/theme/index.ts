@@ -183,11 +183,11 @@ const baseThemeOptions: ThemeOptions = {
     info: tokens.colors.info,
     success: tokens.colors.success,
   },
-  typography: tokens.typography as any,
+  typography: tokens.typography as ThemeOptions['typography'],
   shape: tokens.shape,
   spacing: (factor: number) => `${factor * 8}px`,
-  shadows: tokens.shadows as any,
-  transitions: tokens.transitions,
+  shadows: tokens.shadows as unknown as ThemeOptions['shadows'],
+  transitions: tokens.transitions as ThemeOptions['transitions'],
   components: {
     MuiCssBaseline: {
       styleOverrides: {

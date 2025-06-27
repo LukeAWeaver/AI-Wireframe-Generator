@@ -3,7 +3,7 @@ import { API_BASE_URL, debugLog, errorLog } from './config';
 // Only keep used interfaces and variables
 // If none are used, leave the file empty
 
-interface FormField {
+interface IFormField {
   type: 'text' | 'email' | 'number' | 'textarea' | 'checkbox' | 'select'
   label: string
   name: string
@@ -12,17 +12,17 @@ interface FormField {
   placeholder?: string
 }
 
-interface FormSchema {
-  fields: FormField[]
+interface IFormSchema {
+  fields: IFormField[]
 }
 
-interface FeatureRequest {
+interface IFeatureRequest {
   feature: string
   complexity: string
   priority: string
 }
 
-export const askGPT = async (data: FeatureRequest): Promise<string> => {
+export const askGPT = async (data: IFeatureRequest): Promise<string> => {
   try {
     debugLog('Calling AI service with data:', data);
     
@@ -38,7 +38,7 @@ export const askGPT = async (data: FeatureRequest): Promise<string> => {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    const result = await response.json()
+    const result: { analysis: string } = await response.json() as { analysis: string };
     return result.analysis
   } catch (error) {
     errorLog(error, 'askGPT');
@@ -46,7 +46,7 @@ export const askGPT = async (data: FeatureRequest): Promise<string> => {
   }
 }
 
-export async function askGPTForm(prompt: string): Promise<FormSchema> {
+export async function askGPTForm(prompt: string): Promise<IFormSchema> {
   try {
     debugLog('Generating form schema for prompt:', prompt);
     
@@ -62,7 +62,7 @@ export async function askGPTForm(prompt: string): Promise<FormSchema> {
       throw new Error('Failed to generate form schema');
     }
 
-    const schema = await response.json();
+    const schema: IFormSchema = await response.json() as IFormSchema;
     return schema;
   } catch (error) {
     errorLog(error, 'askGPTForm');

@@ -1,9 +1,9 @@
-export interface ValidationResult {
+export interface IValidationResult {
   isValid: boolean;
   error?: string;
 }
 
-export const validateUsername = (username: string): ValidationResult => {
+export const validateUsername = (username: string): IValidationResult => {
   // Check if empty
   if (!username || username.trim().length === 0) {
     return {

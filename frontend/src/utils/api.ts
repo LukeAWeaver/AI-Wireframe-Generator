@@ -1,5 +1,13 @@
 import { API_BASE_URL, debugLog, errorLog } from './config';
 
+// Local copy of IPortfolioTechnology for type safety
+interface IPortfolioTechnology {
+  id: number;
+  category: string;
+  name: string;
+  description: string;
+}
+
 // Token management helpers
 export function setToken(token: string) {
   localStorage.setItem('access_token', token);
@@ -13,7 +21,17 @@ export function removeToken() {
   localStorage.removeItem('access_token');
 }
 
-export const createUser = async (username: string) => {
+interface IAPIError {
+  error?: string;
+  [key: string]: unknown;
+}
+
+export interface IUserResponse {
+  username: string;
+  uuid: string;
+}
+
+export const createUser = async (username: string): Promise<IUserResponse> => {
   const token = getToken();
   debugLog('Creating user:', username);
   
@@ -27,12 +45,13 @@ export const createUser = async (username: string) => {
   });
 
   if (!response.ok) {
-    const error = await response.json();
+    const error = await response.json() as IAPIError;
     errorLog(error, 'createUser');
     throw new Error(error.error || 'Failed to create user');
   }
 
-  return response.json();
+  const user: IUserResponse = await response.json() as IUserResponse;
+  return user;
 };
 
 export const generateWireframe = async (prompt: string) => {
@@ -53,12 +72,13 @@ export const generateWireframe = async (prompt: string) => {
   });
 
   if (!response.ok) {
-    const error = await response.json();
+    const error: IAPIError = await response.json() as IAPIError;
     errorLog(error, 'generateWireframe');
     throw new Error(error.error || 'Failed to generate wireframe');
   }
 
-  return response.json();
+  const result = await response.json() as IAPIError;
+  return result;
 };
 
 export const fetchPortfolioTechnologies = async () => {
@@ -69,5 +89,6 @@ export const fetchPortfolioTechnologies = async () => {
     errorLog('Failed to fetch portfolio technologies', 'fetchPortfolioTechnologies');
     throw new Error('Failed to fetch portfolio technologies');
   }
-  return response.json();
+  const technologies: IPortfolioTechnology[] = await response.json() as IPortfolioTechnology[];
+  return technologies;
 }; 

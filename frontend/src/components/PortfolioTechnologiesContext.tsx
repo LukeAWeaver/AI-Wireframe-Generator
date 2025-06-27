@@ -1,20 +1,20 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { fetchPortfolioTechnologies } from '../utils/api';
 
-interface PortfolioTechnology {
+interface IPortfolioTechnology {
   id: number;
   category: string;
   name: string;
   description: string;
 }
 
-interface PortfolioTechnologiesContextType {
-  technologies: PortfolioTechnology[];
+interface IPortfolioTechnologiesContextType {
+  technologies: IPortfolioTechnology[];
   loading: boolean;
   error: string | null;
 }
 
-const PortfolioTechnologiesContext = createContext<PortfolioTechnologiesContextType>({
+const PortfolioTechnologiesContext = createContext<IPortfolioTechnologiesContextType>({
   technologies: [],
   loading: true,
   error: null,
@@ -23,19 +23,26 @@ const PortfolioTechnologiesContext = createContext<PortfolioTechnologiesContextT
 export const usePortfolioTechnologies = () => useContext(PortfolioTechnologiesContext);
 
 export const PortfolioTechnologiesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [technologies, setTechnologies] = useState<PortfolioTechnology[]>([]);
+  const [technologies, setTechnologies] = useState<IPortfolioTechnology[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchPortfolioTechnologies()
-      .then((data) => {
+      .then((data: IPortfolioTechnology[]) => {
         console.log('data', data);
         setTechnologies(data);
         setLoading(false);
       })
-      .catch((err) => {
-        setError(err.message);
+      .catch((err: unknown) => {
+        let message = 'Unknown error';
+        if (typeof err === 'object' && err !== null && 'message' in err) {
+          const maybeError = err as { message?: unknown };
+          if (typeof maybeError.message === 'string') {
+            message = maybeError.message;
+          }
+        }
+        setError(message);
         setLoading(false);
       });
   }, []);

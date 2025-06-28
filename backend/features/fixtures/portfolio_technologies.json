@@ -1,0 +1,290 @@
+[
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Frontend",
+      "name": "React",
+      "description": "Component-based JavaScript library for building user interfaces"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Frontend",
+      "name": "Vite",
+      "description": "Next-generation frontend build tool for fast development"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Frontend",
+      "name": "Next.js",
+      "description": "React framework for server-side rendering and static site generation"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "MUI",
+      "description": "React UI framework implementing Material Design components"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "Emotion",
+      "description": "CSS-in-JS styling library for React"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "Sass",
+      "description": "CSS preprocessor with nested rules, variables, and functions"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "Styled-components",
+      "description": "CSS-in-JS tool for styling React components"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "Redux Toolkit",
+      "description": "Standardized Redux state management toolset"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "SWR",
+      "description": "React Hooks library for data fetching with caching and revalidation"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "Axios",
+      "description": "Promise-based HTTP client for browser and Node.js"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Authentication",
+      "name": "Google OAuth",
+      "description": "OAuth 2.0 authentication using Google credentials"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Authentication",
+      "name": "Firebase Authentication",
+      "description": "Firebase service for managing user authentication and identity"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Routing",
+      "name": "React Router",
+      "description": "Declarative routing library for React applications"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UXInteractions",
+      "name": "dnd-kit",
+      "description": "Lightweight drag-and-drop toolkit for React"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UXInteractions",
+      "name": "@use-gesture/react",
+      "description": "Hooks for handling gestures like drag, pinch, and wheel in React"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UIComponents",
+      "name": "React Toastify",
+      "description": "Notification library for React with toast messages"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UIComponents",
+      "name": "MUI Components",
+      "description": "Component library from MUI for React UI development"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "TypeScript",
+      "description": "Statically typed superset of JavaScript"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "ESLint",
+      "description": "Linter to enforce code quality and standards"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "Prettier",
+      "description": "Code formatter ensuring consistent style"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "Jest",
+      "description": "Testing framework for JavaScript and TypeScript"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "env-cmd",
+      "description": "Environment variable management for Node.js applications"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Testing",
+      "name": "React Testing Library",
+      "description": "Testing utilities for React components focusing on user interactions"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Database",
+      "name": "Firebase Realtime Database",
+      "description": "NoSQL cloud-hosted database for syncing data in real time"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Database",
+      "name": "MongoDB",
+      "description": "Document-based NoSQL database"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Hosting",
+      "name": "Vercel",
+      "description": "Cloud platform for frontend frameworks and static sites"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Hosting",
+      "name": "AWS S3",
+      "description": "Amazon S3 object storage for static site hosting"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Hosting",
+      "name": "CloudFront",
+      "description": "AWS CDN for content delivery with low latency"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "CICD",
+      "name": "GitHub Actions",
+      "description": "CI/CD automation platform integrated with GitHub repositories"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "CICD",
+      "name": "Git Workflows",
+      "description": "Branching strategies and workflows for source control"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "APIs",
+      "name": "Google Finance API",
+      "description": "API for accessing stock and financial market data from Google"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "APIs",
+      "name": "Yahoo Finance API",
+      "description": "API for accessing stock quotes, financial data, and market information"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "APIs",
+      "name": "AWS AppSync",
+      "description": "Managed GraphQL service from AWS for building APIs with real-time and offline capabilities"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Compute",
+      "name": "AWS Lambda",
+      "description": "Serverless compute service to run code without managing servers"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Compute",
+      "name": "AWS EventBridge",
+      "description": "Event bus for event-driven architectures and scheduling tasks"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Monitoring",
+      "name": "AWS CloudWatch",
+      "description": "Monitoring and observability service for AWS applications"
+    }
+  }
+]

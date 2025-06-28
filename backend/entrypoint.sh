@@ -18,6 +18,9 @@ set -x
 echo "Running database migrations..." > /dev/stdout
 python manage.py migrate --noinput
 
+echo "Loading portfolio technologies fixture..." > /dev/stdout
+python manage.py loaddata portfolio_technologies --app features
+
 if [ "$ENVIRONMENT" = "development" ]; then
     echo "Starting development server..." > /dev/stdout
     exec python manage.py runserver 0.0.0.0:3001

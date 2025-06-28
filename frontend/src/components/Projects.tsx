@@ -17,11 +17,19 @@ import RDAIArchDiagram from '../assets/svg/react-django-llm-arch.svg';
 import { useRightSidebar } from './RightSidebarContext';
 import { usePortfolioTechnologies } from './PortfolioTechnologiesContext';
 
+interface IPortfolioTechnology {
+  id: number;
+  category: string;
+  name: string;
+  description: string;
+}
+
 interface IProject {
   id: string;
   title: string;
   url: string;
   svgDiagram: string;
+  technologies?: IPortfolioTechnology[];
 }
 
 const projects: IProject[] = [
@@ -42,6 +50,7 @@ const projects: IProject[] = [
     title: 'Full Stack ( React + Django ) + local LLM',
     url: 'https://github.com/LukeAWeaver/AI-UX-visualization',
     svgDiagram: RDAIArchDiagram,
+    technologies: [/* Will be populated dynamically */],
   },
 ];
 
@@ -60,8 +69,26 @@ export const Projects: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const { setSidebarContent } = useRightSidebar();
-  const { technologies, loading, error } = usePortfolioTechnologies();
-  console.log('PortfolioTechnologiesContext value:', { technologies, loading, error });
+  const { technologies, technologiesByName, loading, error } = usePortfolioTechnologies();
+  console.log('PortfolioTechnologiesContext value:', { technologies, technologiesByName, loading, error });
+
+  // Dynamically populate technologies for the current project
+  const projectsWithTechnologies = projects.map(project => {
+    if (project.id === 'this-project-files') {
+      return {
+        ...project,
+        technologies: [
+          technologiesByName['React'],
+          technologiesByName['Django'],
+          technologiesByName['TypeScript'],
+          technologiesByName['MUI'],
+          technologiesByName['Redux Toolkit'],
+          technologiesByName['Axios'],
+        ].filter(Boolean) // Remove any undefined entries
+      };
+    }
+    return project;
+  });
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -93,8 +120,8 @@ export const Projects: React.FC = () => {
     setSidebarContent(
       <Box sx={{ p: 2, textAlign: 'center' }}>
         <img
-          src={projects[selectedIndex].svgDiagram}
-          alt={`Architecture diagram for ${projects[selectedIndex].title}`}
+          src={projectsWithTechnologies[selectedIndex].svgDiagram}
+          alt={`Architecture diagram for ${projectsWithTechnologies[selectedIndex].title}`}
           style={{
             maxWidth: '100%',
             width: '100%',
@@ -104,11 +131,11 @@ export const Projects: React.FC = () => {
           }}
         />
         <Typography variant="caption" sx={{ mt: 1, display: 'block' }}>
-          {projects[selectedIndex].title} Architecture
+          {projectsWithTechnologies[selectedIndex].title} Architecture
         </Typography>
       </Box>
     );
-  }, [selectedIndex, setSidebarContent]);
+  }, [selectedIndex, setSidebarContent, projectsWithTechnologies]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'ArrowLeft') {
@@ -160,7 +187,7 @@ export const Projects: React.FC = () => {
           }}
         >
           <Box className="embla__container">
-            {projects.map((project, index) => {
+            {projectsWithTechnologies.map((project, index) => {
               const isSelected = index === selectedIndex;
               return (
                 <Box

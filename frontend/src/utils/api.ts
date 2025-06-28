@@ -1,3 +1,4 @@
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { API_BASE_URL, debugLog, errorLog } from './config';
 
 // Local copy of IPortfolioTechnology for type safety
@@ -7,6 +8,37 @@ interface IPortfolioTechnology {
   name: string;
   description: string;
 }
+
+// Create Axios instance with default configuration
+const apiClient: AxiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Request interceptor to add auth token
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor for error handling
+apiClient.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  (error) => {
+    errorLog(error, 'API Request');
+    return Promise.reject(error);
+  }
+);
 
 // Token management helpers
 export function setToken(token: string) {
@@ -32,63 +64,49 @@ export interface IUserResponse {
 }
 
 export const createUser = async (username: string): Promise<IUserResponse> => {
-  const token = getToken();
   debugLog('Creating user:', username);
   
-  const response = await fetch(`${API_BASE_URL}/users/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    body: JSON.stringify({ username }),
-  });
-
-  if (!response.ok) {
-    const error = await response.json() as IAPIError;
-    errorLog(error, 'createUser');
-    throw new Error(error.error || 'Failed to create user');
+  try {
+    const response = await apiClient.post<IUserResponse>('/users/', { username });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.data) {
+      const errorData = error.response.data as IAPIError;
+      errorLog(errorData, 'createUser');
+      throw new Error(errorData.error || 'Failed to create user');
+    }
+    throw error;
   }
-
-  const user: IUserResponse = await response.json() as IUserResponse;
-  return user;
 };
 
 export const generateWireframe = async (prompt: string) => {
-  const token = getToken();
   debugLog('Generating wireframe for prompt:', prompt);
   
-  const response = await fetch(`${API_BASE_URL}/features/analyze/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    body: JSON.stringify({
+  try {
+    const response = await apiClient.post('/features/analyze/', {
       feature: prompt,
       complexity: 'medium',
       priority: 'medium',
-    }),
-  });
-
-  if (!response.ok) {
-    const error: IAPIError = await response.json() as IAPIError;
-    errorLog(error, 'generateWireframe');
-    throw new Error(error.error || 'Failed to generate wireframe');
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.data) {
+      const errorData = error.response.data as IAPIError;
+      errorLog(errorData, 'generateWireframe');
+      throw new Error(errorData.error || 'Failed to generate wireframe');
+    }
+    throw error;
   }
-
-  const result = await response.json() as IAPIError;
-  return result;
 };
 
-export const fetchPortfolioTechnologies = async () => {
+export const fetchPortfolioTechnologies = async (): Promise<IPortfolioTechnology[]> => {
   debugLog('Fetching portfolio technologies');
   
-  const response = await fetch(`${API_BASE_URL}/portfolio-technologies/`);
-  if (!response.ok) {
+  try {
+    const response = await apiClient.get<IPortfolioTechnology[]>('/portfolio-technologies/');
+    return response.data;
+  } catch (error) {
     errorLog('Failed to fetch portfolio technologies', 'fetchPortfolioTechnologies');
     throw new Error('Failed to fetch portfolio technologies');
   }
-  const technologies: IPortfolioTechnology[] = await response.json() as IPortfolioTechnology[];
-  return technologies;
 }; 

@@ -10,6 +10,14 @@
   {
     "model": "features.portfoliotechnology",
     "fields": {
+      "category": "Backend",
+      "name": "Django",
+      "description": "High-level Python web framework for rapid development and clean design"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
       "category": "Frontend",
       "name": "Vite",
       "description": "Next-generation frontend build tool for fast development"

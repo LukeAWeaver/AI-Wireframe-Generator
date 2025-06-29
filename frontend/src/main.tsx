@@ -5,10 +5,8 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import { ThemeContextProvider } from './theme/ThemeContext'
+import { ThemeContextProvider, RightSidebarProvider, PortfolioTechnologiesProvider } from './contexts'
 import { store, persistor } from './store/store'
-import { RightSidebarProvider } from './components/RightSidebarContext'
-import { PortfolioTechnologiesProvider } from './components/PortfolioTechnologiesContext'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,14 +1,7 @@
 import { useState, FormEvent } from 'react'
-import {
-  Box,
-  TextField,
-  MenuItem,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  SelectChangeEvent
-} from '@mui/material'
+import { InputField } from './compound/InputField'
+import { Button } from './styled/Button'
+import { ButtonGroup } from './compound/ButtonGroup'
 
 interface IFeatureRequest {
   feature: string;
@@ -77,60 +70,45 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
 
   const renderField = (field: IFormField) => {
     const id = field.id;
-    switch (field.type) {
-      case 'textarea':
-        return (
-          <TextField
-            id={id}
-            label={field.label}
-            multiline
-            rows={4}
-            required={field.required}
-            value={formData[id] || ''}
-            onChange={(e) => handleChange(id, e.target.value)}
-            fullWidth
-          />
-        )
-      case 'select':
-        return (
-          <FormControl fullWidth required={field.required}>
-            <InputLabel id={`${id}-label`}>{field.label}</InputLabel>
-            <Select
-              labelId={`${id}-label`}
-              id={id}
-              value={formData[id] || ''}
-              label={field.label}
-              onChange={(e: SelectChangeEvent) => handleChange(id, e.target.value)}
-            >
-              {field.options?.map(option => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )
-      default:
-        return null
+    if (field.type === 'textarea') {
+      return (
+        <InputField
+          id={id}
+          label={field.label}
+          required={field.required}
+          value={formData[id] || ''}
+          onChange={e => handleChange(id, e.target.value)}
+          multiline
+          rows={4}
+        />
+      );
     }
+    if (field.type === 'select') {
+      return (
+        <InputField
+          id={id}
+          label={field.label}
+          required={field.required}
+          value={formData[id] || ''}
+          onChange={e => handleChange(id, e.target.value)}
+          select
+          options={field.options}
+        />
+      );
+    }
+    return null;
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       {defaultFields.map(field => (
-        <Box key={field.id}>
-          {renderField(field)}
-        </Box>
+        <div key={field.id}>{renderField(field)}</div>
       ))}
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        fullWidth
-        size="large"
-      >
-        Submit
-      </Button>
-    </Box>
+      <ButtonGroup>
+        <Button type="submit" variant="primary" size="lg">
+          Submit
+        </Button>
+      </ButtonGroup>
+    </form>
   )
 } 

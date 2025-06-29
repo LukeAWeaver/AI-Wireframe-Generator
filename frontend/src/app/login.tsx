@@ -1,15 +1,10 @@
 import { useState } from 'react';
-import { 
-  Box, 
-  TextField, 
-  Button, 
-  Typography, 
-  Paper,
-  CircularProgress
-} from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { useUser } from '../hooks/useUser';
 import { validateUsername } from '../utils/validation';
 import { createUser, IUserResponse } from '../utils/api';
+import { InputField } from './compound/InputField';
+import { Button } from './styled/Button';
 
 export const LoginForm = () => {
   const { setUserData } = useUser();
@@ -47,38 +42,29 @@ export const LoginForm = () => {
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
         Please choose a username to get started. This will be your unique identifier.
       </Typography>
-      <Box component="form" onSubmit={(e) => { void handleSubmit(e); }} sx={{ mt: 2 }}>
-        <TextField
-          fullWidth
+      <form onSubmit={(e) => { void handleSubmit(e); }} style={{ marginTop: 16 }}>
+        <InputField
           label="Username"
           value={username}
-          onChange={(e) => {
+          onChange={e => {
             setUsername(e.target.value);
             setError(null);
           }}
-          error={!!error}
-          helperText={error}
-          disabled={isLoading}
-          sx={{ mb: 2 }}
+          error={error || undefined}
+          required
           autoComplete="off"
-          inputProps={{
-            autoComplete: 'off',
-            autoCorrect: 'off',
-            autoCapitalize: 'off',
-            spellCheck: 'false',
-            'aria-autocomplete': 'none'
-          }}
+          id="login-username"
         />
-        <Button 
-          fullWidth 
-          variant="contained" 
+        <Button
           type="submit"
+          variant="primary"
+          size="md"
           disabled={!username || isLoading}
-          startIcon={isLoading ? <CircularProgress size={20} /> : null}
+          style={{ width: '100%', marginTop: 16 }}
         >
           {isLoading ? 'Creating Account...' : 'Get Started'}
         </Button>
-      </Box>
+      </form>
     </Paper>
   );
 }; 

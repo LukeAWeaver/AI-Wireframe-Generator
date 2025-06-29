@@ -1,19 +1,16 @@
 import { Typography } from '@mui/material';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { LoginForm } from './components/LoginForm';
-import { UserProfile } from './components/UserProfile';
+import { LoginForm } from './app/login';
+import { Settings } from './app/settings';
+import { UserProfile } from './app/profile';
+import { Architecture } from './app/architecture';
+import { Projects } from './app/projects';
+import { Home } from './app/home';
+import { WireframeGenerator } from './app/wireframe-generator';
 import { PageWrapper } from './components/PageWrapper';
 import { VerticalNav } from './components/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
-import { Settings } from './components/Settings';
-import { Architecture } from './components/Architecture';
-import { WireframeGenerator } from './components/WireframeGenerator';
-import { Projects } from './components/Projects';
-
-const Home = () => (
-  <Typography variant="h4">Welcome to the AI Feature Explorer!</Typography>
-);
 
 function App() {
   const { isAuthenticated, username } = useUser();

@@ -3,7 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import staticFEDiagram from '../assets/svg/static-FE-diagram.svg';
 import reactServerlessArchDiagram from '../assets/svg/react-aws-arch.svg';
 import RDAIArchDiagram from '../assets/svg/react-django-llm-arch.svg';
-import { useRightSidebar, usePortfolioTechnologies } from '../contexts';
+import { useRightSidebar, usePortfolioTechnologies } from '@contexts';
 
 interface IProject {
   id: string;

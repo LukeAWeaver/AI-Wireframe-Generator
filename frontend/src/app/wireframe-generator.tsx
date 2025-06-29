@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Typography, TextField, Button, Paper, Card, CardContent, Grid, Divider } from '@mui/material';
 import { useUser } from '../hooks/useUser';
-import { useRightSidebar } from '../contexts';
+import { useRightSidebar } from '@contexts';
 
 export const WireframeGenerator = () => {
   const { username, uuid } = useUser();

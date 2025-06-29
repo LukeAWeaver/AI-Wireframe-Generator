@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonPrimitive, ButtonPrimitiveProps } from '../primitives/ButtonPrimitive';
+import { ButtonPrimitive, ButtonPrimitiveProps } from '@primitives/ButtonPrimitive';
 import { getTheme } from '../../theme/theme';
 
 export interface ButtonProps extends Omit<ButtonPrimitiveProps, 'size'> {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DialogPrimitive, DialogPrimitiveProps } from '../primitives/DialogPrimitive';
+import { DialogPrimitive, DialogPrimitiveProps } from '@primitives/DialogPrimitive';
 import { getTheme } from '../../theme/theme';
 
 export interface DialogProps extends DialogPrimitiveProps {

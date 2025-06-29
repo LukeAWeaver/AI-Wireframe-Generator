@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../styled/Button';
 import { spacing } from '../../theme/tokens';
 
 export interface ButtonGroupProps {

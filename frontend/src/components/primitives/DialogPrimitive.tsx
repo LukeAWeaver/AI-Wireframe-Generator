@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useImperativeHandle } from 'react';
 
 export interface DialogPrimitiveProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
@@ -10,12 +10,9 @@ export interface DialogPrimitiveProps extends React.HTMLAttributes<HTMLDivElemen
 export const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogPrimitiveProps>(
   ({ open, onClose, children, initialFocusRef, ...props }, ref) => {
     const dialogRef = useRef<HTMLDivElement>(null);
-    // Allow parent to pass a ref (function refs only)
-    const combinedRef = useCallback((node: HTMLDivElement | null) => {
-      dialogRef.current = node;
-      if (typeof ref === 'function') ref(node);
-      // For object refs, do not assign to current (leave it to React)
-    }, [ref]);
+
+    // Use useImperativeHandle to properly handle the ref
+    useImperativeHandle(ref, () => dialogRef.current!, []);
 
     // Focus trap: keep focus inside dialog
     useEffect(() => {
@@ -57,7 +54,7 @@ export const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogPrimitiveP
 
     return (
       <div
-        ref={combinedRef}
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         tabIndex={-1}

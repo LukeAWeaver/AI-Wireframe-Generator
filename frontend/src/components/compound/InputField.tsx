@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, InputProps } from '../styled/Input';
+import { Input, InputProps } from '@styled/Input';
 
 export interface InputFieldProps extends Omit<InputProps, 'id'> {
   id?: string;

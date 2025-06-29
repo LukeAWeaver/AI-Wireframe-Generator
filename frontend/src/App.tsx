@@ -7,8 +7,8 @@ import { Architecture } from './app/architecture';
 import { Projects } from './app/projects';
 import { Home } from './app/home';
 import { WireframeGenerator } from './app/wireframe-generator';
-import { PageWrapper } from './components/PageWrapper';
-import { VerticalNav } from './components/VerticalNav';
+import { PageWrapper } from '@components/PageWrapper';
+import { VerticalNav } from '@components/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 

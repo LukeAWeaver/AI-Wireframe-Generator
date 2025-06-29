@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputPrimitive, InputPrimitiveProps } from '../primitives/InputPrimitive';
+import { InputPrimitive, InputPrimitiveProps } from '@primitives/InputPrimitive';
 import { getTheme } from '../../theme/theme';
 
 export interface InputProps extends Omit<InputPrimitiveProps, 'size'> {

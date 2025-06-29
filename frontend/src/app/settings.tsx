@@ -1,5 +1,5 @@
 import { Box, Typography, Button, TextField, Divider } from '@mui/material';
-import { useThemeContext } from '../contexts';
+import { useThemeContext } from '@contexts';
 import { useUser } from '../hooks/useUser';
 
 export const Settings = () => {

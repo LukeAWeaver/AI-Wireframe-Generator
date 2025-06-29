@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { Box, Drawer } from '@mui/material';
+import { Box } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
-import { useRightSidebar } from '../contexts';
+import { useRightSidebar } from '@contexts';
 
 interface IPageWrapperProps {
   children: ReactNode;

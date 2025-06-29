@@ -3,8 +3,8 @@ import { Paper, Typography } from '@mui/material';
 import { useUser } from '../hooks/useUser';
 import { validateUsername } from '../utils/validation';
 import { createUser, IUserResponse } from '../utils/api';
-import { InputField } from './compound/InputField';
-import { Button } from './styled/Button';
+import { InputField } from '@compound/InputField';
+import { Button } from '@styled/Button';
 
 export const LoginForm = () => {
   const { setUserData } = useUser();
@@ -46,7 +46,7 @@ export const LoginForm = () => {
         <InputField
           label="Username"
           value={username}
-          onChange={e => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setUsername(e.target.value);
             setError(null);
           }}

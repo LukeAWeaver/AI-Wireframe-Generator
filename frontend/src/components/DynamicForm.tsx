@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react'
-import { InputField } from './compound/InputField'
-import { Button } from './styled/Button'
-import { ButtonGroup } from './compound/ButtonGroup'
+import { InputField } from '@compound/InputField'
+import { Button } from '@styled/Button'
+import { ButtonGroup } from '@compound/ButtonGroup'
 
 interface IFeatureRequest {
   feature: string;

@@ -22,29 +22,41 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
 
       const triggerRect = triggerRef.current.getBoundingClientRect();
       const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      
+      // Get viewport dimensions
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
 
       let top = 0;
       let left = 0;
 
       switch (position) {
         case 'top':
-          top = triggerRect.top + scrollTop - tooltipRect.height - 8;
-          left = triggerRect.left + scrollLeft + (triggerRect.width / 2) - (tooltipRect.width / 2);
+          top = triggerRect.top - tooltipRect.height - 8;
+          left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
           break;
         case 'bottom':
-          top = triggerRect.bottom + scrollTop + 8;
-          left = triggerRect.left + scrollLeft + (triggerRect.width / 2) - (tooltipRect.width / 2);
+          top = triggerRect.bottom + 8;
+          left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
           break;
         case 'left':
-          top = triggerRect.top + scrollTop + (triggerRect.height / 2) - (tooltipRect.height / 2);
-          left = triggerRect.left + scrollLeft - tooltipRect.width - 8;
+          top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
+          left = triggerRect.left - tooltipRect.width - 8;
           break;
         case 'right':
-          top = triggerRect.top + scrollTop + (triggerRect.height / 2) - (tooltipRect.height / 2);
-          left = triggerRect.right + scrollLeft + 8;
+          top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
+          left = triggerRect.right + 8;
           break;
+      }
+
+      // Ensure tooltip stays within viewport bounds
+      if (left < 8) left = 8;
+      if (left + tooltipRect.width > viewportWidth - 8) {
+        left = viewportWidth - tooltipRect.width - 8;
+      }
+      if (top < 8) top = 8;
+      if (top + tooltipRect.height > viewportHeight - 8) {
+        top = viewportHeight - tooltipRect.height - 8;
       }
 
       setTooltipPosition({ top, left });
@@ -56,10 +68,8 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
       
       timeoutRef.current = setTimeout(() => {
         setIsVisible(true);
-        // Calculate position after tooltip is visible
-        setTimeout(calculatePosition, 0);
       }, delay);
-    }, [disabled, delay, calculatePosition]);
+    }, [disabled, delay]);
 
     // Hide tooltip immediately
     const hideTooltip = useCallback(() => {
@@ -68,6 +78,16 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
       }
       setIsVisible(false);
     }, []);
+
+    // Calculate position after tooltip becomes visible
+    useEffect(() => {
+      if (isVisible) {
+        // Use requestAnimationFrame to ensure DOM is updated
+        requestAnimationFrame(() => {
+          calculatePosition();
+        });
+      }
+    }, [isVisible, calculatePosition]);
 
     // Handle mouse events
     const handleMouseEnter = useCallback(() => {
@@ -139,7 +159,7 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
             id="tooltip-content"
             role="tooltip"
             style={{
-              position: 'absolute',
+              position: 'fixed',
               top: tooltipPosition.top,
               left: tooltipPosition.left,
               zIndex: 1000,

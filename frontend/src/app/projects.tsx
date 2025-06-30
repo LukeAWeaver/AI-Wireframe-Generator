@@ -4,6 +4,7 @@ import staticFEDiagram from '../assets/svg/static-FE-diagram.svg';
 import reactServerlessArchDiagram from '../assets/svg/react-aws-arch.svg';
 import RDAIArchDiagram from '../assets/svg/react-django-llm-arch.svg';
 import { useRightSidebar, usePortfolioTechnologies } from '@contexts';
+import { TechnologyBadge } from '../components/compound/TechnologyBadge';
 
 interface IProject {
   id: string;
@@ -185,13 +186,21 @@ export const Projects: React.FC = () => {
                         style={{ width: '100%', height: 160, objectFit: 'contain', marginBottom: 16 }}
                       />
                       <div style={{ marginTop: 8, fontSize: 14, color: '#666', textAlign: 'center' }}>
-                        Technologies:
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
-                          {project.technologiesUsed.map(techKey => (
-                            <li key={techKey} style={{ background: '#f5f5f5', borderRadius: 8, padding: '2px 8px', fontSize: 13 }}>
-                              {technologiesByName[techKey]?.name || techKey}
-                            </li>
-                          ))}
+                          {project.technologiesUsed.map(techKey => {
+                            const technology = technologiesByName[techKey];
+                            return (
+                              <li key={techKey}>
+                                {technology ? (
+                                  <TechnologyBadge technology={technology} />
+                                ) : (
+                                  <span style={{ background: '#f5f5f5', borderRadius: 8, padding: '2px 8px', fontSize: 13 }}>
+                                    {techKey}
+                                  </span>
+                                )}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </div>

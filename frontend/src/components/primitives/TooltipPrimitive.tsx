@@ -1,0 +1,157 @@
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+
+export interface TooltipPrimitiveProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'content'> {
+  content: React.ReactNode;
+  children: React.ReactNode;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  delay?: number;
+  disabled?: boolean;
+}
+
+export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiveProps>(
+  ({ content, children, position = 'top', delay = 300, disabled = false, ...props }, ref) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const tooltipRef = useRef<HTMLDivElement>(null);
+    const timeoutRef = useRef<NodeJS.Timeout>();
+
+    // Calculate tooltip position
+    const calculatePosition = useCallback(() => {
+      if (!triggerRef.current || !tooltipRef.current) return;
+
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      let top = 0;
+      let left = 0;
+
+      switch (position) {
+        case 'top':
+          top = triggerRect.top + scrollTop - tooltipRect.height - 8;
+          left = triggerRect.left + scrollLeft + (triggerRect.width / 2) - (tooltipRect.width / 2);
+          break;
+        case 'bottom':
+          top = triggerRect.bottom + scrollTop + 8;
+          left = triggerRect.left + scrollLeft + (triggerRect.width / 2) - (tooltipRect.width / 2);
+          break;
+        case 'left':
+          top = triggerRect.top + scrollTop + (triggerRect.height / 2) - (tooltipRect.height / 2);
+          left = triggerRect.left + scrollLeft - tooltipRect.width - 8;
+          break;
+        case 'right':
+          top = triggerRect.top + scrollTop + (triggerRect.height / 2) - (tooltipRect.height / 2);
+          left = triggerRect.right + scrollLeft + 8;
+          break;
+      }
+
+      setTooltipPosition({ top, left });
+    }, [position]);
+
+    // Show tooltip with delay
+    const showTooltip = useCallback(() => {
+      if (disabled) return;
+      
+      timeoutRef.current = setTimeout(() => {
+        setIsVisible(true);
+        // Calculate position after tooltip is visible
+        setTimeout(calculatePosition, 0);
+      }, delay);
+    }, [disabled, delay, calculatePosition]);
+
+    // Hide tooltip immediately
+    const hideTooltip = useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setIsVisible(false);
+    }, []);
+
+    // Handle mouse events
+    const handleMouseEnter = useCallback(() => {
+      showTooltip();
+    }, [showTooltip]);
+
+    const handleMouseLeave = useCallback(() => {
+      hideTooltip();
+    }, [hideTooltip]);
+
+    // Handle focus events for accessibility
+    const handleFocus = useCallback(() => {
+      showTooltip();
+    }, [showTooltip]);
+
+    const handleBlur = useCallback(() => {
+      hideTooltip();
+    }, [hideTooltip]);
+
+    // Recalculate position on scroll and resize
+    useEffect(() => {
+      if (!isVisible) return;
+
+      const handleScroll = () => calculatePosition();
+      const handleResize = () => calculatePosition();
+
+      window.addEventListener('scroll', handleScroll, true);
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll, true);
+        window.removeEventListener('resize', handleResize);
+      };
+    }, [isVisible, calculatePosition]);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+      return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+      };
+    }, []);
+
+    return (
+      <div
+        ref={ref}
+        style={{ position: 'relative', display: 'inline-block' }}
+        {...props}
+      >
+        {/* Trigger element */}
+        <div
+          ref={triggerRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          tabIndex={disabled ? -1 : 0}
+          role={disabled ? undefined : 'button'}
+          aria-describedby={isVisible ? 'tooltip-content' : undefined}
+        >
+          {children}
+        </div>
+
+        {/* Tooltip content */}
+        {isVisible && (
+          <div
+            ref={tooltipRef}
+            id="tooltip-content"
+            role="tooltip"
+            style={{
+              position: 'absolute',
+              top: tooltipPosition.top,
+              left: tooltipPosition.left,
+              zIndex: 1000,
+              pointerEvents: 'none',
+            }}
+          >
+            {content}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+TooltipPrimitive.displayName = 'TooltipPrimitive'; 

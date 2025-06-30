@@ -134,10 +134,9 @@ export const Projects: React.FC = () => {
           style={{
             overflow: 'hidden',
             borderRadius: 16,
-            padding: '20px 0',
           }}
         >
-          <div className="embla__container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="embla__container" style={{ display: 'flex', alignItems: 'center' }}>
             {projects.map((project, index) => {
               const isSelected = index === selectedIndex;
               return (
@@ -145,17 +144,15 @@ export const Projects: React.FC = () => {
                   key={project.id}
                   className="embla__slide"
                   style={{
-                    flex: '0 0 60%',
+                    flex: '0 0 70%',
                     minWidth: 0,
-                    padding: '0 15px',
                     display: 'flex',
                     justifyContent: 'center',
-                    transform: isSelected ? 'scale(1.05)' : 'scale(0.95)',
+                    transform: isSelected ? 'scale(1.08)' : 'scale(0.92)',
                     zIndex: isSelected ? 2 : 1,
-                    boxShadow: isSelected ? '0 8px 24px rgba(0,0,0,0.15)' : '0 4px 12px rgba(0,0,0,0.08)',
-                    opacity: isSelected ? 1 : 0.8,
-                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    margin: isSelected ? '0' : '0 10px',
+                    boxShadow: isSelected ? '0 4px 16px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,0,0,0.10)',
+                    opacity: isSelected ? 1 : 0.7,
+                    transition: 'transform 0.3s, box-shadow 0.3s, opacity 0.3s',
                   }}
                   role="group"
                   aria-label={`Project ${index + 1} of ${projects.length}: ${project.title}`}
@@ -163,17 +160,17 @@ export const Projects: React.FC = () => {
                   <div
                     style={{
                       width: '100%',
-                      maxWidth: 350,
-                      minWidth: 280,
-                      height: 380,
+                      maxWidth: 400,
+                      minWidth: 250,
+                      height: 400,
                       display: 'flex',
                       flexDirection: 'column',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      outline: isSelected ? '3px solid #1976d2' : 'none',
+                      transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
+                      outline: isSelected ? '2px solid #1976d2' : 'none',
                       margin: '0 auto',
                       background: '#fff',
                       borderRadius: 16,
-                      boxShadow: isSelected ? '0 8px 24px rgba(0,0,0,0.15)' : '0 4px 12px rgba(0,0,0,0.08)',
+                      boxShadow: isSelected ? '0 4px 16px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,0,0,0.10)',
                       overflow: 'hidden',
                     }}
                     tabIndex={0}

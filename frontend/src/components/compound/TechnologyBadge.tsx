@@ -48,7 +48,7 @@ export const TechnologyBadge: React.FC<TechnologyBadgeProps> = ({
       }
       position="top"
       mode={mode}
-      delay={200}
+      delay={100}
     >
       <span style={defaultStyle} className={className}>
         {technology.name}

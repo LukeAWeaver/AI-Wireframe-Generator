@@ -54,9 +54,21 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
       if (left + tooltipRect.width > viewportWidth - 8) {
         left = viewportWidth - tooltipRect.width - 8;
       }
-      if (top < 8) top = 8;
+      if (top < 8) {
+        // If tooltip would go off top, show it below instead
+        if (position === 'top') {
+          top = triggerRect.bottom + 8;
+        } else {
+          top = 8;
+        }
+      }
       if (top + tooltipRect.height > viewportHeight - 8) {
-        top = viewportHeight - tooltipRect.height - 8;
+        // If tooltip would go off bottom, show it above instead
+        if (position === 'bottom') {
+          top = triggerRect.top - tooltipRect.height - 8;
+        } else {
+          top = viewportHeight - tooltipRect.height - 8;
+        }
       }
 
       setTooltipPosition({ top, left });
@@ -82,10 +94,12 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
     // Calculate position after tooltip becomes visible
     useEffect(() => {
       if (isVisible) {
-        // Use requestAnimationFrame to ensure DOM is updated
-        requestAnimationFrame(() => {
+        // Use a small delay to ensure DOM is fully updated
+        const timer = setTimeout(() => {
           calculatePosition();
-        });
+        }, 10);
+        
+        return () => clearTimeout(timer);
       }
     }, [isVisible, calculatePosition]);
 

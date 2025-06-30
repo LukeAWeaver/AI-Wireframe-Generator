@@ -22,11 +22,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
         color: theme.colors.text,
         padding: theme.spacing.sm,
         borderRadius: theme.radii.md,
-        boxShadow: theme.shadows.md,
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
         fontSize: theme.fontSizes.sm,
         maxWidth: 250,
         wordWrap: 'break-word',
         border: `1px solid ${theme.colors.border}`,
+        zIndex: 9999,
+        position: 'relative',
       }}
     >
       {content}

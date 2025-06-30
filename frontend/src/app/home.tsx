@@ -1,5 +1,3 @@
-import { Typography } from '@mui/material';
+import { HomeContent } from '../components/compound/HomeContent';
 
-export const Home = () => (
-  <Typography variant="h4">Welcome to the AI Feature Explorer!</Typography>
-); 
+export const Home = () => <HomeContent />; 

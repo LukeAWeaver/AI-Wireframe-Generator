@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback, useImperativeHandle } from 'react';
+import Box from '@mui/material/Box';
 
 export interface DialogPrimitiveProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
@@ -53,7 +54,7 @@ export const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogPrimitiveP
     if (!open) return null;
 
     return (
-      <div
+      <Box
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
@@ -62,7 +63,7 @@ export const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogPrimitiveP
         onKeyDown={handleKeyDown}
       >
         {children}
-      </div>
+      </Box>
     );
   }
 );

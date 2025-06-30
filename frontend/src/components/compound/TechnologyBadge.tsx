@@ -1,5 +1,8 @@
 import React from 'react';
 import { Tooltip } from '../styled/Tooltip';
+import { Badge } from '../styled/Badge';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 interface IPortfolioTechnology {
   id: number;
@@ -21,38 +24,28 @@ export const TechnologyBadge: React.FC<TechnologyBadgeProps> = ({
   style,
   className,
 }) => {
-  const defaultStyle: React.CSSProperties = {
-    background: '#f5f5f5',
-    borderRadius: 8,
-    padding: '2px 8px',
-    fontSize: 13,
-    display: 'inline-block',
-    cursor: 'help',
-    ...style,
-  };
-
   return (
     <Tooltip
       content={
-        <div>
-          <div style={{ fontWeight: 600, marginBottom: 4 }}>
+        <Box>
+          <Typography sx={{ fontWeight: 600, mb: 0.5 }} variant="subtitle2">
             {technology.name}
-          </div>
-          <div style={{ fontSize: 12, opacity: 0.8 }}>
+          </Typography>
+          <Typography sx={{ fontSize: 12, opacity: 0.8 }} variant="body2">
             {technology.description}
-          </div>
-          <div style={{ fontSize: 11, opacity: 0.6, marginTop: 4 }}>
+          </Typography>
+          <Typography sx={{ fontSize: 11, opacity: 0.6, mt: 0.5 }} variant="caption">
             Category: {technology.category}
-          </div>
-        </div>
+          </Typography>
+        </Box>
       }
       position="top"
       mode={mode}
       delay={100}
     >
-      <span style={defaultStyle} className={className}>
+      <Badge style={style} className={className}>
         {technology.name}
-      </span>
+      </Badge>
     </Tooltip>
   );
 }; 

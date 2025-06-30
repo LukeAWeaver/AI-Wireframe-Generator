@@ -1,10 +1,11 @@
 import React from 'react';
+import Button, { ButtonProps } from '@mui/material/Button';
 
-export interface ButtonPrimitiveProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface ButtonPrimitiveProps extends ButtonProps {}
 
 export const ButtonPrimitive = React.forwardRef<HTMLButtonElement, ButtonPrimitiveProps>(
   (props, ref) => {
-    return <button ref={ref} {...props} />;
+    return <Button ref={ref} {...props} />;
   }
 );
 

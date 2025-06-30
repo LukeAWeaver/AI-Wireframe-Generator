@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react'
 import { InputField } from '@compound/InputField'
 import { Button } from '@styled/Button'
 import { ButtonGroup } from '@compound/ButtonGroup'
+import { Box } from '@mui/material'
 
 interface IFeatureRequest {
   feature: string;
@@ -77,7 +78,7 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
           label={field.label}
           required={field.required}
           value={formData[id] || ''}
-          onChange={e => handleChange(id, e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => handleChange(id, e.target.value)}
           multiline
           rows={4}
         />
@@ -90,7 +91,7 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
           label={field.label}
           required={field.required}
           value={formData[id] || ''}
-          onChange={e => handleChange(id, e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => handleChange(id, e.target.value)}
           select
           options={field.options}
         />
@@ -102,7 +103,9 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       {defaultFields.map(field => (
-        <div key={field.id}>{renderField(field)}</div>
+        <Box key={field.id}>
+          {renderField(field)}
+        </Box>
       ))}
       <ButtonGroup>
         <Button type="submit" variant="primary" size="lg">

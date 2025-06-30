@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import Box from '@mui/material/Box';
 
 export interface TooltipPrimitiveProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'content'> {
   content: React.ReactNode;
@@ -147,13 +148,13 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
     }, []);
 
     return (
-      <div
+      <Box
         ref={ref}
-        style={{ position: 'relative', display: 'inline-block' }}
+        sx={{ position: 'relative', display: 'inline-block' }}
         {...props}
       >
         {/* Trigger element */}
-        <div
+        <Box
           ref={triggerRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -164,15 +165,15 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
           aria-describedby={isVisible ? 'tooltip-content' : undefined}
         >
           {children}
-        </div>
+        </Box>
 
         {/* Tooltip content */}
         {isVisible && (
-          <div
+          <Box
             ref={tooltipRef}
             id="tooltip-content"
             role="tooltip"
-            style={{
+            sx={{
               position: 'fixed',
               top: tooltipPosition.top,
               left: tooltipPosition.left,
@@ -181,9 +182,9 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
             }}
           >
             {content}
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
     );
   }
 );

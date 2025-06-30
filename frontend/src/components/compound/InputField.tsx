@@ -1,7 +1,9 @@
 import React from 'react';
-import { Input, InputProps } from '@styled/Input';
+import { Input } from '../styled/Input';
+import { BoxPrimitive } from '../primitives/BoxPrimitive';
+import { Badge } from '../styled/Badge';
 
-export interface InputFieldProps extends Omit<InputProps, 'id'> {
+export interface InputFieldProps {
   id?: string;
   label: string;
   description?: string;
@@ -11,6 +13,7 @@ export interface InputFieldProps extends Omit<InputProps, 'id'> {
   rows?: number;
   select?: boolean;
   options?: string[];
+  [key: string]: any;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -32,10 +35,10 @@ export const InputField: React.FC<InputFieldProps> = ({
   const ariaDescribedBy = [descId, errorId].filter(Boolean).join(' ') || undefined;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+    <BoxPrimitive style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <label htmlFor={inputId} style={{ marginBottom: 4, fontWeight: 500 }}>
         {label}
-        {required && <span aria-hidden="true" style={{ color: 'red', marginLeft: 2 }}>*</span>}
+        {required && <Badge style={{ color: 'red', marginLeft: 2 }}>*</Badge>}
       </label>
       <Input
         id={inputId}
@@ -49,10 +52,10 @@ export const InputField: React.FC<InputFieldProps> = ({
         {...inputProps}
       />
       {error ? (
-        <div id={errorId} style={{ color: 'red', fontSize: 12, marginTop: 2 }}>{error}</div>
+        <Badge id={errorId} style={{ color: 'red', fontSize: 12, marginTop: 2 }}>{error}</Badge>
       ) : description ? (
-        <div id={descId} style={{ color: '#666', fontSize: 12, marginTop: 2 }}>{description}</div>
+        <Badge id={descId} style={{ color: '#666', fontSize: 12, marginTop: 2 }}>{description}</Badge>
       ) : null}
-    </div>
+    </BoxPrimitive>
   );
 }; 

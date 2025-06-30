@@ -1,23 +1,21 @@
 import React from 'react';
 import { DialogPrimitive, DialogPrimitiveProps } from '@primitives/DialogPrimitive';
-import { getTheme } from '../../theme/theme';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 
-export interface DialogProps extends DialogPrimitiveProps {
-  mode?: 'light' | 'dark';
-}
+export interface DialogProps extends DialogPrimitiveProps {}
 
 export const Dialog: React.FC<DialogProps> = ({
-  mode = 'light',
   children,
   ...props
 }) => {
-  const theme = getTheme(mode);
+  const theme = useTheme();
 
   if (!props.open) return null;
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         position: 'fixed',
         top: 0,
         left: 0,
@@ -30,8 +28,8 @@ export const Dialog: React.FC<DialogProps> = ({
       }}
     >
       {/* Backdrop */}
-      <div
-        style={{
+      <Box
+        sx={{
           position: 'absolute',
           top: 0,
           left: 0,
@@ -48,10 +46,10 @@ export const Dialog: React.FC<DialogProps> = ({
         style={{
           position: 'relative',
           zIndex: 2,
-          background: theme.colors.surface,
-          borderRadius: theme.radii.lg,
-          boxShadow: theme.shadows.lg,
-          padding: theme.spacing.lg,
+          background: theme.palette.background.paper,
+          borderRadius: theme.shape.borderRadius,
+          boxShadow: theme.shadows[8],
+          padding: theme.spacing(4),
           minWidth: 320,
           maxWidth: '90vw',
           maxHeight: '90vh',
@@ -61,6 +59,6 @@ export const Dialog: React.FC<DialogProps> = ({
       >
         {children}
       </DialogPrimitive>
-    </div>
+    </Box>
   );
 }; 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { spacing } from '../../theme/tokens';
+import { BoxPrimitive } from '../primitives/BoxPrimitive';
 
 export interface ButtonGroupProps {
   children: React.ReactNode;
@@ -15,7 +16,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   style,
 }) => {
   return (
-    <div
+    <BoxPrimitive
       style={{
         display: 'flex',
         flexDirection: direction === 'horizontal' ? 'row' : 'column',
@@ -24,6 +25,6 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
       }}
     >
       {children}
-    </div>
+    </BoxPrimitive>
   );
 }; 

@@ -171,6 +171,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.95)',
                   opacity: idx === selectedIndex ? 1 : 0.7,
                 }}
+                onClick={() => emblaApi && emblaApi.scrollTo(idx)}
               >
                 <ProjectCard
                   title={project.title}
@@ -178,9 +179,6 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   technologies={project.technologiesUsed}
                   imageUrl={project.svgDiagram}
                   url={project.url}
-                  onViewDetails={() => {}}
-                  onEdit={() => {}}
-                  onDelete={() => {}}
                 />
               </Stack>
             ))}

@@ -46,8 +46,10 @@ export const ProjectCard = (props: ProjectCardProps) => {
           size="small"
           href={url}
           component="a"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={e => {
+            e.preventDefault();
+            if (url) window.open(url, '_blank', 'noopener,noreferrer');
+          }}
         >
           View on Github
         </Button>

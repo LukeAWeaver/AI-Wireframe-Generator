@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, List, ListItem, ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
-import { Home, Login, AccountCircle, Settings as SettingsIcon, Info, ViewQuilt, Folder } from '@mui/icons-material';
+import { Home, Login, AccountCircle, Settings as SettingsIcon, ViewQuilt, Folder } from '@mui/icons-material';
 import { useUser } from '../hooks/useUser';
 
 export const VerticalNav = () => {

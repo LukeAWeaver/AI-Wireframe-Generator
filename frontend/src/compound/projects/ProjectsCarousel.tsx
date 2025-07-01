@@ -160,13 +160,14 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
               <Stack
                 key={project.id}
                 sx={{
-                  flex: '0 0 400px',
-                  maxWidth: '400px',
-                  minWidth: '400px',
+                  flex: idx === selectedIndex ? '0 0 80%' : '0 0 10%',
+                  maxWidth: idx === selectedIndex ? '80%' : '10%',
+                  minWidth: idx === selectedIndex ? '80%' : '10%',
+                  height: '320px',
                   display: 'flex',
-                  borderRadius: "10px",
+                  borderRadius: '10px',
                   border: idx === selectedIndex ? '3px solid #42a5f5' : '3px solid transparent',
-                  transition: 'border 0.2s',
+                  transition: 'flex 0.3s, max-width 0.3s, min-width 0.3s, border 0.2s',
                 }}
               >
                 <ProjectCard

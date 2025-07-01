@@ -1,7 +1,5 @@
-import React from 'react';
 import { Box } from '@components/Box';
 import { Button } from '@components/Button';
-import { Badge } from '@components/Badge';
 
 export interface ProjectCardProps {
   title: string;

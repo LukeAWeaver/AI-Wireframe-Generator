@@ -9,26 +9,17 @@ export interface InputFieldProps {
   description?: string;
   error?: string;
   required?: boolean;
-  multiline?: boolean;
-  rows?: number;
-  select?: boolean;
-  options?: string[];
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export const InputField = (props: InputFieldProps) => {
   const {
-    id,
     label,
     description,
     error,
     required,
-    multiline,
-    rows,
-    select,
-    options,
     value,
     onChange,
     ...inputProps

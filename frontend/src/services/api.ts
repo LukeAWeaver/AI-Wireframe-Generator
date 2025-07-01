@@ -79,11 +79,16 @@ export const createUser = async (username: string): Promise<IUserResponse> => {
   }
 };
 
-export const generateWireframe = async (prompt: string) => {
+// Placeholder type for wireframe response
+interface IWireframeResponse {
+  [key: string]: unknown;
+}
+
+export const generateWireframe = async (prompt: string): Promise<IWireframeResponse> => {
   debugLog('Generating wireframe for prompt:', prompt);
   
   try {
-    const response = await apiClient.post('/features/analyze/', {
+    const response = await apiClient.post<IWireframeResponse>('/features/analyze/', {
       feature: prompt,
       complexity: 'medium',
       priority: 'medium',

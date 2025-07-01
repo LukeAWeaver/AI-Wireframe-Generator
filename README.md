@@ -1,7 +1,7 @@
 # AI Feature Explorer
 
 A React + Django monorepo for exploring AI features with wireframe generation.
-
+🌍 deployed site: https://ai-ux-visualization.onrender.com
 ## 🌍 Deployment Architecture & Traffic Flow
 Client (Browser, Frontend, API Request)
     ↓ HTTPS (TCP 443)

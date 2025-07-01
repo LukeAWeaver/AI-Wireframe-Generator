@@ -27,7 +27,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
           alt={title}
           style={{
             width: '100%',
-            height: 200,
+            height: 500,
             objectFit: 'fill',
             borderRadius: 8,
             marginBottom: 16,

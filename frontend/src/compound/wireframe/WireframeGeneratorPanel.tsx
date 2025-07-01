@@ -64,7 +64,28 @@ export const WireframeGeneratorPanel = () => {
           value={input}
           onChange={e => setInput(e.target.value)}
           fullWidth
-          size="small"
+          size="medium"
+          variant="outlined"
+          InputProps={{
+            sx: { fontSize: 24, py: 2, border: 'none' }
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              borderRadius: 2,
+              fontSize: 24,
+              py: 2,
+              '& fieldset': {
+                borderWidth: 2,
+                borderColor: 'rgba(255,255,255,0.5)', // or your theme color
+              },
+              '&:hover fieldset': {
+                borderColor: 'primary.main',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main',
+              },
+            },
+          }}
         />
         <Button variant="contained" onClick={handleBuild} sx={{ minWidth: 120 }}>
           Build

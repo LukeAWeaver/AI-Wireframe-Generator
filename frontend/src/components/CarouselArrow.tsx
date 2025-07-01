@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+import Button, { ButtonProps } from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 
-export interface CarouselArrowProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface CarouselArrowProps extends ButtonProps {
   active?: boolean;
 }
 
@@ -19,8 +19,8 @@ export const CarouselArrow = ({ active, style, ...props }: CarouselArrowProps) =
         color: active ? theme.palette.primary.main : theme.palette.text.primary,
         boxShadow: theme.shadows[1],
         fontSize: 28,
-        minWidth: 48,
-        minHeight: 48,
+        minWidth: 32,
+        minHeight: 32,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

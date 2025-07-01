@@ -34,7 +34,8 @@ export const InputField = (props: InputFieldProps) => {
     ...inputProps
   } = props;
 
-  const inputId = id || React.useId();
+  const generatedId = React.useId();
+  const inputId = props.id || generatedId;
   const descId = description ? `${inputId}-desc` : undefined;
   const errorId = error ? `${inputId}-error` : undefined;
 

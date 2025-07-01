@@ -9,11 +9,11 @@ export const VerticalNav = () => {
   const navItems = [
     { text: 'Home', to: '/', icon: <Home />, auth: true },
     { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
-    { text: 'More Projects', to: '/projects', icon: <Folder />, auth: true },
+    { text: 'Project Overviews', to: '/projects', icon: <Folder />, auth: true },
     !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
     isAuthenticated && { text: 'Settings', to: '/settings', icon: <SettingsIcon />, auth: true },
-    { text: 'Architecture', to: '/architecture', icon: <Info />, auth: true },
+    // { text: 'Architecture', to: '/architecture', icon: <Info />, auth: true },
   ].filter(Boolean);
 
   return (

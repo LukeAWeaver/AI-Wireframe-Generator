@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '@components/Button';
 import { Box } from '@components/Box';
 
 export interface ButtonGroupProps {

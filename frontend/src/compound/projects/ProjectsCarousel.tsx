@@ -73,6 +73,12 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
     }
   }, [emblaApi, onSelect])
 
+
+  useEffect(() => {
+    return () => setSidebarContent(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     const project = projects[selectedIndex]
     setSidebarContent(
@@ -132,7 +138,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
     >
       {/* Header */}
       <Typography variant="h1" sx={{ fontSize: 32 }}>
-        More Projects
+        Project Overviews
       </Typography>
 
       {/* Carousel */}
@@ -151,16 +157,15 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
             }}
           >
             {projects.map((project, idx) => (
-              <Box
+              <Stack
                 key={project.id}
                 sx={{
                   flex: '0 0 400px',
                   maxWidth: '400px',
                   minWidth: '400px',
-                  height: '320px',
                   display: 'flex',
+                  borderRadius: "10px",
                   border: idx === selectedIndex ? '3px solid #42a5f5' : '3px solid transparent',
-                  boxSizing: 'border-box',
                   transition: 'border 0.2s',
                 }}
               >
@@ -174,7 +179,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   onEdit={() => {}}
                   onDelete={() => {}}
                 />
-              </Box>
+              </Stack>
             ))}
           </Box>
         </Box>

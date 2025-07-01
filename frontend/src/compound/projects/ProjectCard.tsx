@@ -11,17 +11,14 @@ export interface ProjectCardProps {
   onViewDetails?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
+  url?: string;
 }
 
 export const ProjectCard = (props: ProjectCardProps) => {
   const {
     title,
-    description,
-    technologies,
     imageUrl,
-    onViewDetails,
-    onEdit,
-    onDelete,
+    url,
   } = props;
 
   return (
@@ -33,45 +30,29 @@ export const ProjectCard = (props: ProjectCardProps) => {
           style={{
             width: '100%',
             height: 200,
-            objectFit: 'cover',
+            objectFit: 'fill',
             borderRadius: 8,
             marginBottom: 16,
           }}
         />
       )}
       
-      <h3 style={{ margin: '0 0 8px 0', fontSize: 18, fontWeight: 600 }}>
+      <h3 style={{ margin: '0 0 8px 0', fontSize: 18, fontWeight: 600, textAlign: 'center' }}>
         {title}
       </h3>
+
       
-      <p style={{ margin: '0 0 16px 0', color: '#666', lineHeight: 1.5 }}>
-        {description}
-      </p>
-      
-      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
-        {technologies.map(tech => (
-          <Badge key={tech}>
-            {tech}
-          </Badge>
-        ))}
-      </Box>
-      
-      <Box style={{ display: 'flex', gap: 8 }}>
-        {onViewDetails && (
-          <Button variant="contained" size="small" onClick={onViewDetails}>
-            View Details
-          </Button>
-        )}
-        {onEdit && (
-          <Button variant="outlined" size="small" onClick={onEdit}>
-            Edit
-          </Button>
-        )}
-        {onDelete && (
-          <Button variant="text" size="small" color="error" onClick={onDelete}>
-            Delete
-          </Button>
-        )}
+      <Box style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+        <Button
+          variant="contained"
+          size="small"
+          href={url}
+          component="a"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on Github
+        </Button>
       </Box>
     </Box>
   );

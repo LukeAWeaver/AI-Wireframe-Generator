@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL, debugLog, errorLog } from './config';
+import { API_BASE_URL, debugLog, errorLog } from '@utils/config';
 
 // Only keep used interfaces and variables
 // If none are used, leave the file empty

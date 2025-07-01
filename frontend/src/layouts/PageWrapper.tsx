@@ -64,20 +64,22 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         </Box>
 
         {/* Right Sidebar (dynamic from context) */}
-        <Box
-          sx={{
-            width: 300,
-            flexShrink: 0,
-            borderLeft: '1px solid',
-            borderColor: 'divider',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            backgroundColor: 'background.paper',
-          }}
-        >
-          {sidebarContent}
-        </Box>
+        {sidebarContent && (
+          <Box
+            sx={{
+              width: 300,
+              flexShrink: 0,
+              borderLeft: '1px solid',
+              borderColor: 'divider',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: 'background.paper',
+            }}
+          >
+            {sidebarContent}
+          </Box>
+        )}
       </Box>
 
       {/* Footer pinned at the bottom */}

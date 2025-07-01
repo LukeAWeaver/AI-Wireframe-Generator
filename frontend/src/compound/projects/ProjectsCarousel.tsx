@@ -7,11 +7,13 @@ import { Badge } from '@components'
 import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Stack from '@mui/material/Stack'
 
 interface IProject {
   id: string
   title: string
   url: string
+  purpose: string
   svgDiagram: string
   technologiesUsed: string[]
   description: string
@@ -86,7 +88,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
         }}
       >
         <Typography sx={{ fontSize: 16, fontWeight: 500, mb: 2 }}>
-          {project.title}
+          {project.purpose}
         </Typography>
         <Typography sx={{ fontSize: 14, color: '#888', mb: 3, maxWidth: 320 }}>
           {project.description}
@@ -117,20 +119,23 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
   }
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
+    <Stack
+      minHeight="100%"
       justifyContent="center"
       alignItems="center"
       p={2}
+      gap={4}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"
       aria-label="Projects carousel"
     >
-      <Typography variant="h1" sx={{ fontSize: 32, mb: 4 }}>
+      {/* Header */}
+      <Typography variant="h1" sx={{ fontSize: 32 }}>
         More Projects
       </Typography>
+
+      {/* Carousel */}
       <Box width="100%" maxWidth={900} mx="auto" position="relative">
         <Box
           className="embla"
@@ -145,13 +150,18 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
               gap: 2,
             }}
           >
-            {projects.map(project => (
+            {projects.map((project, idx) => (
               <Box
                 key={project.id}
                 sx={{
-                  flex: '0 0 80%',
-                  minWidth: 0,
-                  maxWidth: '80%',
+                  flex: '0 0 400px',
+                  maxWidth: '400px',
+                  minWidth: '400px',
+                  height: '320px',
+                  display: 'flex',
+                  border: idx === selectedIndex ? '3px solid #42a5f5' : '3px solid transparent',
+                  boxSizing: 'border-box',
+                  transition: 'border 0.2s',
                 }}
               >
                 <ProjectCard
@@ -159,6 +169,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   description={project.description}
                   technologies={project.technologiesUsed}
                   imageUrl={project.svgDiagram}
+                  url={project.url}
                   onViewDetails={() => {}}
                   onEdit={() => {}}
                   onDelete={() => {}}
@@ -167,26 +178,27 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
             ))}
           </Box>
         </Box>
-
-        <Box display="flex" justifyContent="center" gap={2} mt={3}>
-          <CarouselArrow
-            onClick={scrollPrev}
-            disabled={!prevBtnEnabled}
-            aria-label="Previous project"
-            active={prevBtnEnabled}
-          >
-            &#8592;
-          </CarouselArrow>
-          <CarouselArrow
-            onClick={scrollNext}
-            disabled={!nextBtnEnabled}
-            aria-label="Next project"
-            active={nextBtnEnabled}
-          >
-            &#8594;
-          </CarouselArrow>
-        </Box>
       </Box>
-    </Box>
+
+      {/* Pagination Buttons */}
+      <Box display="flex" justifyContent="center" gap={2}>
+        <CarouselArrow
+          onClick={scrollPrev}
+          disabled={!prevBtnEnabled}
+          aria-label="Previous project"
+          active={prevBtnEnabled}
+        >
+          &#8592;
+        </CarouselArrow>
+        <CarouselArrow
+          onClick={scrollNext}
+          disabled={!nextBtnEnabled}
+          aria-label="Next project"
+          active={nextBtnEnabled}
+        >
+          &#8594;
+        </CarouselArrow>
+      </Box>
+    </Stack>
   )
 }

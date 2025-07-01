@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode, useMemo } from 'react';
-import { fetchPortfolioTechnologies } from '../utils/api';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import { fetchPortfolioTechnologies } from '@services/api';
 
 interface IPortfolioTechnology {
   id: number;
@@ -24,7 +24,8 @@ const PortfolioTechnologiesContext = createContext<IPortfolioTechnologiesContext
 
 export const usePortfolioTechnologies = () => useContext(PortfolioTechnologiesContext);
 
-export const PortfolioTechnologiesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+interface PortfolioTechnologiesProviderProps { children: React.ReactNode; }
+export const PortfolioTechnologiesProvider = ({ children }: PortfolioTechnologiesProviderProps) => {
   const [technologies, setTechnologies] = useState<IPortfolioTechnology[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

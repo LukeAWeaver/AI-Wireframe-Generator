@@ -1,14 +1,12 @@
 import { Typography } from '@mui/material';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { LoginForm } from './app/login';
 import { Settings } from './app/settings';
-import { UserProfile } from './app/profile';
-import { Architecture } from './app/architecture';
+import { Profile } from './app/profile';
 import { Projects } from './app/projects';
 import { Home } from './app/home';
 import { WireframeGenerator } from './app/wireframe-generator';
-import { PageWrapper } from '@components/PageWrapper';
-import { VerticalNav } from '@components/VerticalNav';
+import { PageWrapper } from './layouts/PageWrapper';
+import { VerticalNav } from './navigation/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 
@@ -26,10 +24,10 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={isAuthenticated ? <Navigate to="/profile" /> : <LoginForm />} />
-          <Route path="/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/login" />} />
+          {/* <Route path="/login" element={isAuthenticated ? <Navigate to="/profile" /> : <LoginForm />} /> */}
+          <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
-          <Route path="/architecture" element={<Architecture />} />
+          {/* <Route path="/architecture" element={<Architecture />} /> */}
           <Route path="/wireframe-generator" element={<WireframeGenerator />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>

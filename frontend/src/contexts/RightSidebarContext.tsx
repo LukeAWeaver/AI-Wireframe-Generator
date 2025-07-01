@@ -8,7 +8,8 @@ const RightSidebarContext = createContext<{
   setSidebarContent: () => {},
 });
 
-export const RightSidebarProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+interface RightSidebarProviderProps { children: React.ReactNode; }
+export const RightSidebarProvider = ({ children }: RightSidebarProviderProps) => {
   const [sidebarContent, setSidebarContent] = useState<ReactNode>(null);
   return (
     <RightSidebarContext.Provider value={{ sidebarContent, setSidebarContent }}>

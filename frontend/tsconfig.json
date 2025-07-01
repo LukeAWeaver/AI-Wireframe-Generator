@@ -20,11 +20,20 @@
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@components": ["components"],
-      "@compound/*": ["components/compound/*"],
+      "@compound/*": ["compound/*"],
+      "@compound": ["compound"],
       "@primitives/*": ["components/primitives/*"],
       "@styled/*": ["components/styled/*"],
       "@contexts/*": ["contexts/*"],
-      "@contexts": ["contexts"]
+      "@contexts": ["contexts"],
+      "@hooks/*": ["hooks/*"],
+      "@hooks": ["hooks"],
+      "@services/*": ["services/*"],
+      "@services": ["services"],
+      "@utils/*": ["utils/*"],
+      "@utils": ["utils"],
+      "@layouts/*": ["layouts/*"],
+      "@layouts": ["layouts"]
     }
   },
   "include": ["src", "vite.config.ts"],

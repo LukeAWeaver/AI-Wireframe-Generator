@@ -1,17 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import staticFEDiagram from '../assets/svg/static-FE-diagram.svg';
-import reactServerlessArchDiagram from '../assets/svg/react-aws-arch.svg';
-import RDAIArchDiagram from '../assets/svg/react-django-llm-arch.svg';
-import { useRightSidebar, usePortfolioTechnologies } from '@contexts';
-import { TechnologyBadge } from '../components/compound/TechnologyBadge';
-import { CardFooter } from '../components/styled/CardFooter';
-import { CarouselArrow } from '../components/styled/CarouselArrow';
-import { Badge } from '../components/styled/Badge';
-import { ProjectCard } from '../components/compound/ProjectCard';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { ProjectsCarousel } from '../components/compound/ProjectsCarousel';
+import staticFEDiagram from '@assets/svg/static-FE-diagram.svg';
+import reactServerlessArchDiagram from '@assets/svg/react-aws-arch.svg';
+import RDAIArchDiagram from '@assets/svg/react-django-llm-arch.svg';
+import { ProjectsCarousel } from '@compound';
 
 interface IProject {
   id: string;
@@ -49,4 +39,4 @@ const projects: IProject[] = [
   },
 ];
 
-export const Projects = () => <ProjectsCarousel />; 
+export const Projects = () => <ProjectsCarousel projects={projects} />; 

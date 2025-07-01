@@ -4,7 +4,7 @@
 // const architectureDiagram = '/architecture-diagram.svg';
 
 // Embed SVG directly as fallback
-const ArchitectureSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+const ArchitectureSVG = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="1100" height="500" viewBox="0 0 1100 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#181818' }} {...props}>
     {/* User */}
     <rect x="40" y="100" width="180" height="50" rx="16" fill="#2196f3"/>
@@ -64,6 +64,6 @@ const ArchitectureSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 console.log('Using embedded SVG component');
 
-import { ArchitectureOverview } from '../components/compound/ArchitectureOverview';
+import { ArchitectureOverview } from '@compound/ArchitectureOverview';
 
 export const Architecture = () => <ArchitectureOverview />; 

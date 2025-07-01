@@ -1,3 +1,3 @@
-import { LoginForm } from '../components/compound/LoginForm';
+import { LoginForm } from '@compound';
 
 export const Login = () => <LoginForm />; 

@@ -1,2 +1,2 @@
-import { WireframeGeneratorPanel } from '../components/compound/WireframeGeneratorPanel';
+import { WireframeGeneratorPanel } from '@compound';
 export const WireframeGenerator = () => <WireframeGeneratorPanel />; 

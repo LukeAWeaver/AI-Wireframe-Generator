@@ -1,3 +1,3 @@
-import { HomeContent } from '../components/compound/HomeContent';
+import { HomeContent } from '@compound';
 
 export const Home = () => <HomeContent />; 

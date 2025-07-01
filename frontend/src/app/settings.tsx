@@ -1,3 +1,3 @@
-import { SettingsPanel } from '../components/compound/SettingsPanel';
+import { SettingsPanel } from '@compound';
 
 export const Settings = () => <SettingsPanel />; 

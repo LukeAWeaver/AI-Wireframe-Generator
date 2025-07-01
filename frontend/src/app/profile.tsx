@@ -1,2 +1,2 @@
-import { UserProfilePanel } from '../components/compound/UserProfilePanel';
+import { UserProfilePanel } from '@compound';
 export const Profile = () => <UserProfilePanel />; 

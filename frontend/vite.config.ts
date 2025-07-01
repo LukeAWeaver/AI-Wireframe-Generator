@@ -9,10 +9,14 @@ export default defineConfig({
     alias: {
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@compound': path.resolve(__dirname, 'src/components/compound'),
+      '@compound': path.resolve(__dirname, 'src/compound'),
       '@primitives': path.resolve(__dirname, 'src/components/primitives'),
       '@styled': path.resolve(__dirname, 'src/components/styled'),
       '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@layouts': path.resolve(__dirname, 'src/layouts'),
     },
   },
   build: {

@@ -1,3 +1,3 @@
-import { TutorialContent } from '../components/compound/TutorialContent';
+import { TutorialContent } from '../layouts';
 
 export const Tutorial = () => <TutorialContent />; 

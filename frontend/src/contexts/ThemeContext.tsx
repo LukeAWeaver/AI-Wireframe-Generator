@@ -14,7 +14,8 @@ const ThemeContext = createContext<ThemeContextType>({
 
 export const useThemeContext = () => useContext(ThemeContext);
 
-export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface ThemeContextProviderProps { children: React.ReactNode; }
+export const ThemeContextProvider = ({ children }: ThemeContextProviderProps) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleTheme = () => {

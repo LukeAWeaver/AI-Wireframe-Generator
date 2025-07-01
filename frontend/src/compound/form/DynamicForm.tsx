@@ -108,7 +108,11 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
         </Box>
       ))}
       <ButtonGroup>
-        <Button type="submit" variant="primary" size="lg">
+        <Button
+          variant="contained"
+          size="large"
+          type="submit"
+        >
           Submit
         </Button>
       </ButtonGroup>

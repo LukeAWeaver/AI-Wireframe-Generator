@@ -51,10 +51,14 @@ export const Input = (props: InputProps) => {
     ...props.style,
   };
 
+  const sizeMap = { small: 24, medium: 32, large: 40 };
+  const inputSize = typeof props.size === 'string' ? sizeMap[props.size] : props.size;
+
   return (
     <InputPrimitive
       {...props}
       style={combinedStyle}
+      size={inputSize}
     />
   );
 }; 

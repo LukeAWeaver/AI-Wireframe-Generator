@@ -1,4 +1,3 @@
-import React from 'react';
 import { DialogPrimitive, DialogPrimitiveProps } from '../primitives/DialogPrimitive';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { TooltipPrimitive, TooltipPrimitiveProps } from '../primitives/TooltipPrimitive';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
@@ -34,7 +33,7 @@ export const Tooltip = (props: TooltipProps) => {
     <TooltipPrimitive
       content={tooltipContent}
       position={props.position}
-      {...props}
+      {...Object.fromEntries(Object.entries(props).filter(([key]) => key !== 'content'))}
     >
       {props.children}
     </TooltipPrimitive>

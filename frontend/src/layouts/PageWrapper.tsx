@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 import { useRightSidebar } from '@contexts';

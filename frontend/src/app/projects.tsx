@@ -1,4 +1,4 @@
-import staticFEDiagram from '@assets/svg/static-FE-diagram.svg';
+import nextServerlessDiagram from '@assets/svg/nextjs-serverless-diagram.svg';
 import reactServerlessArchDiagram from '@assets/svg/react-aws-arch.svg';
 import RDAIArchDiagram from '@assets/svg/react-django-llm-arch.svg';
 import { ProjectsCarousel } from '@compound';
@@ -19,7 +19,7 @@ const projects: IProject[] = [
     title: 'Static FE Serverless ( React + Next.js )',
     url: 'https://github.com/LukeAWeaver/tech-dem0-files',
     purpose: "Stock Analyzer",
-    svgDiagram: staticFEDiagram,
+    svgDiagram: nextServerlessDiagram,
     technologiesUsed: ['React', 'Next.js', 'Vite', 'TypeScript', 'MUI'],
     description: 'A modern, responsive web application for financial data visualization and analysis, built with Next.js, React, MUI, PrimeReact, and Firebase. This project integrates real-time stock market data, provides authentication, and demonstrates scalable UI patterns.',
   },

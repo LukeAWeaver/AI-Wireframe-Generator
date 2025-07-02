@@ -126,7 +126,8 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
 
   return (
     <Stack
-      minHeight="100%"
+      flex={1}
+      minHeight={0}
       justifyContent="center"
       alignItems="center"
       p={2}
@@ -136,13 +137,14 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       role="region"
       aria-label="Projects carousel"
     >
-      {/* Header */}
-      <Typography variant="h1" sx={{ fontSize: 32 }}>
-        Project Overviews
-      </Typography>
-
       {/* Carousel */}
-      <Box width="100%" maxWidth={900} mx="auto" position="relative">
+      <Box 
+        width="100%" 
+        maxWidth="100%" 
+        mx="auto" 
+        position="relative" 
+        sx={{ overflow: 'auto', flex: 1, minHeight: 0, height: '100%' }}
+      >
         <Box
           className="embla"
           ref={emblaRef}
@@ -154,17 +156,20 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
               display: 'flex',
               alignItems: 'center',
               gap: 2,
+              width: '100%',
+              maxWidth: '100%',
             }}
           >
             {projects.map((project, idx) => (
               <Stack
                 key={project.id}
                 sx={{
-                  flex: '0 0 80%',
-                  maxWidth: '80%',
+                  flex: '0 0 100%',
+                  width: '100%',
                   minWidth: 0,
                   aspectRatio: '4 / 3',
                   display: 'flex',
+                  boxSizing: "border-box",
                   borderRadius: '10px',
                   border: idx === selectedIndex ? '3px solid #42a5f5' : '3px solid transparent',
                   transition: 'border 0.2s, transform 0.3s',

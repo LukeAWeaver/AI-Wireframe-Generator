@@ -19,8 +19,9 @@ export const PageWrapper = (props: IPageWrapperProps) => {
       component="main"
       role="main"
       sx={{
-        minWidth: '100vw',
-        minHeight: '100vh',
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: props.backgroundColor || 'background.default',
@@ -50,7 +51,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         {/* Main Content */}
         <Box
           sx={{
-            flex: 1,
+            flex: '1 1 0%',
             minWidth: 0,
             minHeight: 0,
             display: 'flex',

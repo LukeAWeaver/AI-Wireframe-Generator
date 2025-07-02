@@ -30,7 +30,6 @@ export const ProjectCard = (props: ProjectCardProps) => {
             height: 500,
             objectFit: 'fill',
             borderRadius: 8,
-            marginBottom: 16,
           }}
         />
       )}
@@ -40,7 +39,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
       </h3>
 
       
-      <Box style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+      <Box style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
         <Button
           variant="contained"
           size="small"

@@ -161,16 +161,20 @@ const lightColors = {
 // Dark theme colors
 const darkColors = {
   background: {
-    default: '#121212',
-    paper: '#1e1e1e',
-    elevated: '#2d2d2d',
+    default: '#0d1117',
+    paper: '#1a1a1a',
+    elevated: '#23272f',
   },
   text: {
-    primary: '#ffffff',
-    secondary: 'rgba(255, 255, 255, 0.7)',
-    disabled: 'rgba(255, 255, 255, 0.5)',
+    primary: '#f2f2f2',
+    secondary: '#cfcfcf',
+    disabled: '#8e8e8e',
   },
-  divider: 'rgba(255, 255, 255, 0.12)',
+  divider: '#23272f',
+  accent: '#3b82f6',
+  accentAlt: '#6366f1',
+  border: '#23272f',
+  borderStrong: '#2c2c2c',
 };
 
 // Base theme configuration
@@ -284,5 +288,98 @@ export const darkTheme = createTheme({
     background: darkColors.background,
     text: darkColors.text,
     divider: darkColors.divider,
+    primary: {
+      main: darkColors.accent,
+      contrastText: '#f2f2f2',
+    },
+    secondary: {
+      main: darkColors.accentAlt,
+      contrastText: '#f2f2f2',
+    },
+  },
+  components: {
+    ...baseThemeOptions.components,
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          scrollbarColor: '#6b6b6b #23272f',
+          backgroundColor: '#0d1117',
+          color: '#f2f2f2',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#1a1a1a',
+          boxShadow: '0 2px 8px rgba(20,20,30,0.32)',
+          border: '1px solid #23272f',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: 'none',
+          fontWeight: 500,
+          color: '#f2f2f2',
+        },
+        contained: {
+          backgroundColor: '#3b82f6',
+          color: '#f2f2f2',
+          boxShadow: 'none',
+          '&:hover, &:focus': {
+            backgroundColor: '#6366f1',
+            color: '#f2f2f2',
+          },
+        },
+        outlined: {
+          borderColor: '#3b82f6',
+          color: '#3b82f6',
+          '&:hover, &:focus': {
+            borderColor: '#6366f1',
+            color: '#6366f1',
+          },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected, &.Mui-selected:hover, &:hover, &:focus': {
+            backgroundColor: '#23272f',
+            color: '#3b82f6',
+          },
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#1a1a1a',
+          boxShadow: '0 2px 8px rgba(20,20,30,0.32)',
+          borderRight: '1px solid #23272f',
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#1a1a1a',
+          borderBottom: '1px solid #23272f',
+          boxShadow: '0 2px 8px rgba(20,20,30,0.32)',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#23272f',
+          boxShadow: '0 2px 8px rgba(20,20,30,0.32)',
+          border: '1px solid #2c2c2c',
+        },
+      },
+    },
   },
 }); 

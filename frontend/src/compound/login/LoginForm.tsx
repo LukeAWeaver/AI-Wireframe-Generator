@@ -57,7 +57,6 @@ export const LoginForm = () => {
         />
         <Button
           variant="contained"
-          size="medium"
           onClick={e => { void handleSubmit(e); }}
           fullWidth
           disabled={isLoading}

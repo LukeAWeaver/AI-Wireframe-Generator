@@ -17,7 +17,6 @@ export const PageWrapper = (props: IPageWrapperProps) => {
   return (
     <Box
       component="main"
-      role="main"
       sx={{
         width: '100%',
         height: '100%',

@@ -34,9 +34,6 @@ export const Button = (props: ButtonProps) => {
   return (
     <ButtonPrimitive
       {...props}
-      variant={props.variant || 'contained'}
-      size={props.size || 'medium'}
-      color={props.color || 'primary'}
       style={combinedStyle}
     />
   );

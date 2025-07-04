@@ -34,7 +34,6 @@ export const Dialog = (props: DialogProps) => {
           background: 'rgba(0,0,0,0.4)',
           zIndex: 1,
         }}
-        aria-hidden="true"
       />
       {/* Dialog content */}
       <DialogPrimitive
@@ -43,7 +42,7 @@ export const Dialog = (props: DialogProps) => {
           position: 'relative',
           zIndex: 2,
           background: theme.palette.background.paper,
-          borderRadius: theme.shape.borderRadius,
+          borderRadius: 1,
           boxShadow: theme.shadows[8],
           padding: theme.spacing(4),
           minWidth: 320,

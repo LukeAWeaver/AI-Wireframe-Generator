@@ -13,15 +13,19 @@ export const colors = {
     onPrimary: '#ffffff',
   },
   dark: {
-    background: '#181a1b',
-    surface: '#23272f',
-    primary: '#90caf9',
-    secondary: '#ce93d8',
+    background: '#0d1117',
+    surface: '#1a1a1a',
+    surfaceAlt: '#23272f',
+    surfaceMuted: '#2c2c2c',
+    primary: '#3b82f6',
+    secondary: '#6366f1',
     error: '#ef9a9a',
-    text: '#f5f5f5',
-    textSecondary: '#bdbdbd',
-    border: '#33373a',
-    onPrimary: '#181a1b',
+    text: '#f2f2f2',
+    textBody: '#cfcfcf',
+    textMuted: '#8e8e8e',
+    border: '#23272f',
+    borderStrong: '#2c2c2c',
+    onPrimary: '#0d1117',
   },
 };
 
@@ -51,7 +55,7 @@ export const fontSizes = {
 };
 
 export const shadows = {
-  sm: '0 1px 2px rgba(0,0,0,0.05)',
-  md: '0 2px 8px rgba(0,0,0,0.10)',
-  lg: '0 4px 16px rgba(0,0,0,0.15)',
+  sm: '0 1px 2px rgba(20,20,30,0.25)',
+  md: '0 2px 8px rgba(20,20,30,0.32)',
+  lg: '0 4px 16px rgba(20,20,30,0.40)',
 }; 

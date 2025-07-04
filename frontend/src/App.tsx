@@ -20,7 +20,7 @@ function App() {
         sidebarLeft={<VerticalNav />}
         footer={
           fullscreenTabs.includes(location.pathname) ? undefined :
-          <Typography variant="body2" color="text.secondary" align="center" sx={{ p: 2 }}>
+          <Typography variant="body2" color="text.secondary" align="center">
             v{APP_VERSION} - {username}
           </Typography>
         }

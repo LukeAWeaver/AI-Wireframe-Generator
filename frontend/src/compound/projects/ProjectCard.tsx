@@ -1,6 +1,6 @@
 import { Box } from '@components/Box';
 import { Button } from '@components/Button';
-import { Stack } from '@mui/material';
+import { Paper, Stack } from '@mui/material';
 
 export interface ProjectCardProps {
   title: string;
@@ -21,19 +21,19 @@ export const ProjectCard = (props: ProjectCardProps) => {
   } = props;
 
   return (
-    <Box variant="card" spacing="md" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <Box style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Paper elevation={3} sx={{ p: 2, width: '100%', display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box style={{ flex: 1, display: 'flex' }}>
         {imageUrl && (
           <img
             src={imageUrl}
             alt={title}
             style={{
               flexShrink: 1,
-              width: "100%",
-              height: "100%",
-              maxHeight: "500px",
+              width: '100%',
+              height: '100%',
+              maxHeight: 500,
               objectFit: 'contain',
-              borderRadius: 10,
+              borderRadius: 8,
             }}
           />
         )}
@@ -45,7 +45,6 @@ export const ProjectCard = (props: ProjectCardProps) => {
         <Box style={{ display: 'flex', justifyContent: 'center' }}>
           <Button
             variant="contained"
-            size="small"
             href={url}
             component="a"
             onClick={e => {
@@ -57,6 +56,6 @@ export const ProjectCard = (props: ProjectCardProps) => {
           </Button>
         </Box>
       </Stack>
-    </Box>
+    </Paper>
   );
 }; 

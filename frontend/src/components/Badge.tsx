@@ -12,11 +12,10 @@ export const Badge = ({ children, style, ...props }: BadgeProps) => {
       sx={{
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: 1,
         px: 1,
         py: 0.5,
         fontSize: theme.typography.body2.fontSize,
-        display: 'inline-block',
         border: `1px solid ${theme.palette.divider}`,
         ...style,
       }}

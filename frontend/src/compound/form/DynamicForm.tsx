@@ -101,7 +101,7 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       {defaultFields.map(field => (
         <Box key={field.id}>
           {renderField(field)}
@@ -110,7 +110,6 @@ export const DynamicForm = ({ onSubmit }: IDynamicFormProps) => {
       <ButtonGroup>
         <Button
           variant="contained"
-          size="large"
           type="submit"
         >
           Submit

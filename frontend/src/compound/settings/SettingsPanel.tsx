@@ -1,4 +1,4 @@
-import { Box, Typography, Button, TextField, Divider } from '@mui/material';
+import { Box, Typography, Button, TextField, Divider, Paper } from '@mui/material';
 import { useThemeContext } from '@contexts';
 import { useUser } from '@hooks/useUser';
 
@@ -7,7 +7,7 @@ export const SettingsPanel = () => {
   const { username, uuid } = useUser();
 
   return (
-    <Box sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
+    <Paper elevation={3} sx={{ p: 4, maxWidth: 600, mx: 'auto', mt: 4 }}>
       <Typography variant="h5" gutterBottom>
         Settings for user {username}
       </Typography>
@@ -37,6 +37,6 @@ export const SettingsPanel = () => {
       </Button>
 
       {/* Add more settings here as needed */}
-    </Box>
+    </Paper>
   );
 }; 

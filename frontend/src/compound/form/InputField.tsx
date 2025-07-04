@@ -35,7 +35,7 @@ export const InputField = (props: InputFieldProps) => {
       {label && (
         <label htmlFor={inputId} style={{ marginBottom: 4, fontWeight: 500 }}>
           {label}
-          {required && <Badge style={{ color: 'red', marginLeft: 2 }}>*</Badge>}
+          {required && <Badge style={{ color: 'error.main', marginLeft: 8 }}>*</Badge>}
         </label>
       )}
       
@@ -44,17 +44,17 @@ export const InputField = (props: InputFieldProps) => {
         value={value}
         onChange={onChange}
         aria-describedby={description ? descId : error ? errorId : undefined}
-        aria-invalid={error ? 'true' : 'false'}
+        aria-invalid={error ? 'true' : undefined}
         fullWidth
         {...inputProps}
       />
       
       {description && (
-        <Badge id={descId} style={{ color: '#666', fontSize: 12, marginTop: 4 }}>{description}</Badge>
+        <Badge id={descId} style={{ color: 'text.secondary', fontSize: 12, marginTop: 4 }}>{description}</Badge>
       )}
       
       {error && (
-        <Badge id={errorId} style={{ color: 'red', fontSize: 12, marginTop: 4 }}>{error}</Badge>
+        <Badge id={errorId} style={{ color: 'error.main', fontSize: 12, marginTop: 4 }}>{error}</Badge>
       )}
     </Box>
   );

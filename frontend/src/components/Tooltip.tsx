@@ -15,14 +15,13 @@ export const Tooltip = (props: TooltipProps) => {
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
         p: 1,
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: 1,
         boxShadow: 3,
         fontSize: theme.typography.body2.fontSize,
         maxWidth: 250,
         wordWrap: 'break-word',
         border: `1px solid ${theme.palette.divider}`,
         zIndex: 9999,
-        position: 'relative',
       }}
     >
       {props.content}

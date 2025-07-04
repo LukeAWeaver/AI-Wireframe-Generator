@@ -64,7 +64,6 @@ export const WireframeGeneratorPanel = () => {
           value={input}
           onChange={e => setInput(e.target.value)}
           fullWidth
-          size="medium"
           variant="outlined"
           InputProps={{
             sx: { fontSize: 24, py: 2, border: 'none' }
@@ -76,7 +75,7 @@ export const WireframeGeneratorPanel = () => {
               py: 2,
               '& fieldset': {
                 borderWidth: 2,
-                borderColor: 'rgba(255,255,255,0.5)', // or your theme color
+                borderColor: 'rgba(255,255,255,0.5)',
               },
               '&:hover fieldset': {
                 borderColor: 'primary.main',

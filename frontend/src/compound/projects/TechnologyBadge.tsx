@@ -25,13 +25,13 @@ export const TechnologyBadge = (props: TechnologyBadgeProps) => {
     <Tooltip
       content={
         <Box>
-          <Typography sx={{ fontWeight: 600, mb: 0.5 }} variant="subtitle2">
+          <Typography variant="subtitle2" fontWeight={600} mb={0.5}>
             {technology.name}
           </Typography>
-          <Typography sx={{ fontSize: 12, opacity: 0.8 }} variant="body2">
+          <Typography variant="body2" fontSize={12} sx={{ opacity: 0.8 }}>
             {technology.description}
           </Typography>
-          <Typography sx={{ fontSize: 11, opacity: 0.6, mt: 0.5 }} variant="caption">
+          <Typography variant="caption" fontSize={11} sx={{ opacity: 0.6, mt: 0.5 }}>
             Category: {technology.category}
           </Typography>
         </Box>

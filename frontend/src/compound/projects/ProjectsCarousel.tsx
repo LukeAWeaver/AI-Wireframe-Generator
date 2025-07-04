@@ -8,6 +8,7 @@ import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
+import { Paper } from '@mui/material'
 
 interface IProject {
   id: string
@@ -127,48 +128,59 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
   return (
     <Stack
       minHeight={0}
-      width="100%" 
+      width="100%"
       height="100%"
-      display="flex"
       justifyContent="space-between"
       alignItems="center"
       onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="region"
-      aria-label="Projects carousel"
+      sx={{
+        px: { xs: 0, sm: 2 },
+        py: { xs: 1, sm: 2 },
+        '& .embla__container': {
+          flexDirection: 'row',
+        },
+        '& .embla__slide, & .embla__container > *': {
+          minWidth: { xs: '100vw', sm: 'auto' },
+          maxWidth: { xs: '100vw', sm: 'auto' },
+          width: { xs: '100vw', sm: 'auto' },
+        },
+      }}
     >
       {/* Carousel */}
       <Box
-        width="100%" 
+        width="100%"
         height="100%"
+        sx={{
+          touchAction: 'pan-y',
+          WebkitOverflowScrolling: 'touch',
+          overflowX: 'hidden',
+        }}
       >
         <Box
           className="embla"
           ref={emblaRef}
-          sx={{ overflow: 'hidden' }}
+          sx={{ overflow: 'hidden', borderRadius: 2 }}
         >
           <Box
             className="embla__container"
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: 0,
               width: '100%',
-              maxWidth: '100%',
+              borderRadius: 2,
             }}
           >
             {projects.map((project, idx) => (
-              <Stack
+              <Paper
                 key={project.id}
                 sx={{
-                  flex: '0 0 100%',
-                  maxWidth: '100%',
+                  flex: '0 0 80%',
+                  maxWidth: '80%',
                   minWidth: 0,
-                  aspectRatio: '4 / 3',
+                  width: { xs: '100vw', sm: 'auto' },
                   display: 'flex',
                   boxSizing: 'border-box',
-                  borderRadius: '10px',
-                  border: idx === selectedIndex ? '3px solid #42a5f5' : '3px solid transparent',
+                  borderRadius: 2,
                   transition: 'border 0.2s, transform 0.3s',
                   transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
                   opacity: idx === selectedIndex ? 1 : 0.7,
@@ -182,19 +194,19 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   imageUrl={project.svgDiagram}
                   url={project.url}
                 />
-              </Stack>
+              </Paper>
             ))}
           </Box>
         </Box>
       </Box>
-
       {/* Pagination Buttons */}
-      <Box display="flex" justifyContent="center" gap={2}>
+      <Box display="flex" justifyContent="center" gap={2} sx={{ mt: { xs: 1, sm: 2 } }}>
         <CarouselArrow
           onClick={scrollPrev}
           disabled={!prevBtnEnabled}
           aria-label="Previous project"
           active={prevBtnEnabled}
+          sx={{ minWidth: { xs: 44, sm: 36 }, minHeight: { xs: 44, sm: 36 } }}
         >
           &#8592;
         </CarouselArrow>
@@ -203,6 +215,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
           disabled={!nextBtnEnabled}
           aria-label="Next project"
           active={nextBtnEnabled}
+          sx={{ minWidth: { xs: 44, sm: 36 }, minHeight: { xs: 44, sm: 36 } }}
         >
           &#8594;
         </CarouselArrow>

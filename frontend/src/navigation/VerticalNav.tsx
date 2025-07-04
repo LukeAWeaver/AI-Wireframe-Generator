@@ -21,14 +21,12 @@ export const VerticalNav = () => {
 
   return (
     <Box 
-      height={"100%"} 
-      display={"flex"} 
-      flexDirection={"column"}
+      height="100%"
       sx={{ 
         width: 240, 
         flexShrink: 0,  
         bgcolor: 'background.paper',
-        borderRight:1, 
+        borderRight: 1, 
         userSelect: 'none',
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',
@@ -38,7 +36,7 @@ export const VerticalNav = () => {
       }}
     >
       <List sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "100%" }}>
-        <Box >
+        <Box>
         {navItems.map((item) => item && (
           <ListItem key={item.text} disablePadding>
             <ListItemButton
@@ -60,7 +58,7 @@ export const VerticalNav = () => {
           </ListItem>
         ))}
         </Box>
-        <Box  >
+        <Box>
           <Divider />
           <ListItemButton
             onClick={toggleTheme}

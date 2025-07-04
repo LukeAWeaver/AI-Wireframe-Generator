@@ -12,7 +12,7 @@ export const CarouselArrow = ({ active, style, ...props }: CarouselArrowProps) =
       variant="outlined"
       sx={{
         p: 2,
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: 1,
         border: `1px solid ${active ? theme.palette.primary.main : theme.palette.divider}`,
         background: theme.palette.background.paper,
         color: active ? theme.palette.primary.main : theme.palette.text.primary,
@@ -25,7 +25,6 @@ export const CarouselArrow = ({ active, style, ...props }: CarouselArrowProps) =
         justifyContent: 'center',
         cursor: props.disabled ? 'not-allowed' : 'pointer',
         transition: 'border 0.2s, box-shadow 0.2s',
-        outline: 'none',
         ...style,
       }}
       disableElevation

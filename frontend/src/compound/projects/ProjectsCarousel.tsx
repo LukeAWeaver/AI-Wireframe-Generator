@@ -126,36 +126,34 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
 
   return (
     <Stack
-      flex={1}
       minHeight={0}
-      justifyContent="center"
+      width="100%" 
+      height="100%"
+      display="flex"
+      justifyContent="space-between"
       alignItems="center"
-      p={2}
-      gap={4}
+      border={1}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"
       aria-label="Projects carousel"
     >
       {/* Carousel */}
-      <Box 
+      <Box
         width="100%" 
-        maxWidth="100%" 
-        mx="auto" 
-        position="relative" 
-        sx={{ overflow: 'auto', flex: 1, minHeight: 0, height: '100%' }}
+        height="100%"
       >
         <Box
           className="embla"
           ref={emblaRef}
-          sx={{ overflow: 'hidden', borderRadius: 2 }}
+          sx={{ overflow: 'hidden' }}
         >
           <Box
             className="embla__container"
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: 2,
+              gap: 0,
               width: '100%',
               maxWidth: '100%',
             }}
@@ -165,15 +163,15 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                 key={project.id}
                 sx={{
                   flex: '0 0 100%',
-                  width: '100%',
+                  maxWidth: '100%',
                   minWidth: 0,
                   aspectRatio: '4 / 3',
                   display: 'flex',
-                  boxSizing: "border-box",
+                  boxSizing: 'border-box',
                   borderRadius: '10px',
                   border: idx === selectedIndex ? '3px solid #42a5f5' : '3px solid transparent',
                   transition: 'border 0.2s, transform 0.3s',
-                  transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.95)',
+                  transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
                   opacity: idx === selectedIndex ? 1 : 0.7,
                 }}
                 onClick={() => emblaApi && emblaApi.scrollTo(idx)}

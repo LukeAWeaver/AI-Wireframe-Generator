@@ -1,10 +1,12 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { Box, List, ListItem, ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
-import { Home, Login, AccountCircle, Settings as SettingsIcon, ViewQuilt, Folder } from '@mui/icons-material';
+import { Box, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Divider } from '@mui/material';
+import { Home, Login, AccountCircle, Settings as SettingsIcon, ViewQuilt, Folder, LightMode, DarkMode } from '@mui/icons-material';
 import { useUser } from '../hooks/useUser';
+import { useThemeContext } from '../contexts/ThemeContext';
 
 export const VerticalNav = () => {
   const { isAuthenticated } = useUser();
+  const { isDarkMode, toggleTheme } = useThemeContext();
   const location = useLocation();
 
   const navItems = [
@@ -18,20 +20,65 @@ export const VerticalNav = () => {
   ].filter(Boolean);
 
   return (
-    <Box sx={{ width: 240, flexShrink: 0, bgcolor: 'background.paper' }}>
-      <List>
+    <Box 
+      height={"100%"} 
+      display={"flex"} 
+      flexDirection={"column"}
+      sx={{ 
+        width: 240, 
+        flexShrink: 0,  
+        bgcolor: 'background.paper',
+        borderRight:1, 
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        WebkitTouchCallout: 'none',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+    >
+      <List sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "100%" }}>
+        <Box >
         {navItems.map((item) => item && (
           <ListItem key={item.text} disablePadding>
             <ListItemButton
               component={RouterLink}
               to={item.to}
               selected={location.pathname === item.to}
+              sx={{
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                MozUserSelect: 'none',
+                msUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+                WebkitTapHighlightColor: 'transparent'
+              }}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
+        </Box>
+        <Box  >
+          <Divider />
+          <ListItemButton
+            onClick={toggleTheme}
+            sx={{
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              MozUserSelect: 'none',
+              msUserSelect: 'none',
+              WebkitTouchCallout: 'none',
+              WebkitTapHighlightColor: 'transparent'
+            }}
+          >
+            <ListItemIcon>
+              {isDarkMode ? <LightMode /> : <DarkMode />}
+            </ListItemIcon>
+            <ListItemText primary={isDarkMode ? 'Light Mode' : 'Dark Mode'} />
+          </ListItemButton>
+        </Box>
       </List>
     </Box>
   );

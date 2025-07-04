@@ -48,6 +48,7 @@ export const Input = (props: InputProps) => {
     ...sizeStyles[props.size || 'medium'],
     ...variantStyles[props.variant || 'outlined'],
     width: props.fullWidth ? '100%' : 'auto',
+    color: theme.palette.text.primary,
     ...props.style,
   };
 

@@ -63,12 +63,35 @@ export interface IUserResponse {
   uuid: string;
 }
 
+export interface IRegistrationResponse {
+  access_token: string;
+  refresh_token: string;
+  user: {
+    id: number;
+    username: string;
+    email: string;
+  };
+}
+
 export const createUser = async (username: string): Promise<IUserResponse> => {
   debugLog('Creating user:', username);
   
   try {
-    const response = await apiClient.post<IUserResponse>('/users/', { username });
-    return response.data;
+    const response = await apiClient.post<IRegistrationResponse>('/auth/register/', { 
+      username,
+      email: `${username}@example.com`, // Generate a placeholder email
+      password: 'tempPassword123!' // Generate a temporary password
+    });
+    
+    // Store the access token if provided
+    if (response.data.access_token) {
+      setToken(response.data.access_token);
+    }
+    
+    return {
+      username: response.data.user.username,
+      uuid: response.data.user.id.toString()
+    };
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.data) {
       const errorData = error.response.data as IAPIError;

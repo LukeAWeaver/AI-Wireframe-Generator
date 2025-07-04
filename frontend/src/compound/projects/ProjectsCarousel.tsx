@@ -132,7 +132,6 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      border={1}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"

@@ -1,4 +1,4 @@
-import { Box, Typography, Button, TextField, Divider, Paper } from '@mui/material';
+import { Typography, Button, TextField, Divider, Paper } from '@mui/material';
 import { useThemeContext } from '@contexts';
 import { useUser } from '@hooks/useUser';
 

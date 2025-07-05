@@ -134,8 +134,8 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       alignItems="center"
       onKeyDown={handleKeyDown}
       sx={{
+        userSelect: 'none',
         px: { xs: 0, sm: 2 },
-        py: { xs: 1, sm: 2 },
         '& .embla__container': {
           flexDirection: 'row',
         },
@@ -147,19 +147,17 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       }}
     >
       {/* Carousel */}
-      <Box
-        width="100%"
-        height="100%"
-        sx={{
-          touchAction: 'pan-y',
-          WebkitOverflowScrolling: 'touch',
-          overflowX: 'hidden',
-        }}
-      >
         <Box
           className="embla"
+          width="100%"
+          
           ref={emblaRef}
-          sx={{ overflow: 'hidden', borderRadius: 2 }}
+          sx={{ 
+            overflow: 'hidden',
+            borderRadius: 2,           
+            touchAction: 'pan-y',
+            WebkitOverflowScrolling: 'touch',
+            overflowX: 'hidden', }}
         >
           <Box
             className="embla__container"
@@ -198,7 +196,6 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
             ))}
           </Box>
         </Box>
-      </Box>
       {/* Pagination Buttons */}
       <Box display="flex" justifyContent="center" gap={2} sx={{ mt: { xs: 1, sm: 2 } }}>
         <CarouselArrow

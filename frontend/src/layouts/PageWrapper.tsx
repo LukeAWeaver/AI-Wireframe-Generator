@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 import { useRightSidebar } from '@contexts';
 
@@ -13,6 +13,8 @@ interface IPageWrapperProps {
 
 export const PageWrapper = (props: IPageWrapperProps) => {
   const { sidebarContent } = useRightSidebar();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box
@@ -29,8 +31,8 @@ export const PageWrapper = (props: IPageWrapperProps) => {
     >
       {/* Main horizontal flex area */}
       <Box sx={{ display: 'flex', flex: 1, minHeight: 0, width: '100%' }}>
-        {/* Left Sidebar */}
-        {props.sidebarLeft && (
+        {/* Left Sidebar - only on desktop */}
+        {props.sidebarLeft && !isMobile && (
           <Box
             sx={{
               width: 240,
@@ -81,6 +83,25 @@ export const PageWrapper = (props: IPageWrapperProps) => {
           </Box>
         )}
       </Box>
+
+      {/* Mobile Bottom Navigation - only on mobile */}
+      {props.sidebarLeft && isMobile && (
+        <Box
+          sx={{
+            width: '100%',
+            height: 60,
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            flexShrink: 0,
+            backgroundColor: 'background.paper',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {props.sidebarLeft}
+        </Box>
+      )}
 
       {/* Footer pinned at the bottom */}
       {props.footer && (

@@ -34,6 +34,7 @@ class FeatureAnalysis(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=20, unique=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    build_count = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

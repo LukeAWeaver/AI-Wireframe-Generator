@@ -8,7 +8,8 @@ import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
-import { Paper } from '@mui/material'
+import { useTheme } from '@mui/material'
+import { ProjectPurpose, ProjectDescription, Card } from '@ui/components'
 
 interface IProject {
   id: string
@@ -39,6 +40,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
 
   const { setSidebarContent } = useRightSidebar()
   const { technologiesByName } = usePortfolioTechnologies()
+  const theme = useTheme()
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -94,12 +96,12 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
           textAlign: 'center',
         }}
       >
-        <Typography sx={{ fontSize: 16, fontWeight: 500, mb: 2 }}>
+        <ProjectPurpose>
           {project.purpose}
-        </Typography>
-        <Typography sx={{ fontSize: 14, color: '#888', mb: 3, maxWidth: 320 }}>
+        </ProjectPurpose>
+        <ProjectDescription>
           {project.description}
-        </Typography>
+        </ProjectDescription>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
           {project.technologiesUsed.map(techKey => {
             const technology = technologiesByName[techKey]
@@ -112,7 +114,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
         </Box>
       </Box>
     )
-  }, [selectedIndex, setSidebarContent, projects, technologiesByName])
+  }, [selectedIndex, setSidebarContent, projects, technologiesByName, theme.palette.text.secondary])
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'ArrowLeft') {
@@ -135,7 +137,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       onKeyDown={handleKeyDown}
       sx={{
         userSelect: 'none',
-        px: { xs: 0, sm: 2 },
+        px: { xs: 0, sm: 0 },
         '& .embla__container': {
           flexDirection: 'row',
         },
@@ -150,11 +152,10 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
         <Box
           className="embla"
           width="100%"
-          
           ref={emblaRef}
           sx={{ 
             overflow: 'hidden',
-            borderRadius: 2,           
+            borderRadius: 0,           
             touchAction: 'pan-y',
             WebkitOverflowScrolling: 'touch',
             overflowX: 'hidden', }}
@@ -165,15 +166,17 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
               display: 'flex',
               alignItems: 'center',
               width: '100%',
-              borderRadius: 2,
+              borderRadius: 0,
             }}
           >
             {projects.map((project, idx) => (
-              <Paper
+              <Card
                 key={project.id}
+                cardVariant="default"
                 sx={{
+                  marginLeft: idx === 0 ? 8 : 0,
+                  marginRight: idx === projects.length -1 ? 8 : 0,
                   flex: '0 0 80%',
-                  maxWidth: '80%',
                   minWidth: 0,
                   width: { xs: '100vw', sm: 'auto' },
                   display: 'flex',
@@ -186,13 +189,14 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                 onClick={() => emblaApi && emblaApi.scrollTo(idx)}
               >
                 <ProjectCard
+                  isSelected={idx === selectedIndex}
                   title={project.title}
                   description={project.description}
                   technologies={project.technologiesUsed}
                   imageUrl={project.svgDiagram}
                   url={project.url}
                 />
-              </Paper>
+              </Card>
             ))}
           </Box>
         </Box>

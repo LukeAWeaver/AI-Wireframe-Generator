@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useUser } from '@hooks/useUser';
 import { validateUsername } from '@utils/validation';
 import { createUser, IUserResponse } from '@services/api';
 import { InputField } from '@compound/form/InputField';
 import { Button } from '@components/Button';
+import { Body2, FormCard } from '@ui/components';
 
 export const LoginForm = () => {
   const { setUserData } = useUser();
@@ -35,13 +36,13 @@ export const LoginForm = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 4, maxWidth: 400, mx: 'auto', mt: 4 }}>
+    <FormCard maxWidth={400}>
       <Typography variant="h5" component="h1" gutterBottom>
         Welcome! Set Your Username
       </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+      <Body2 color="text.secondary" sx={{ mb: 3 }}>
         Please choose a username to get started. This will be your unique identifier.
-      </Typography>
+      </Body2>
       <form onSubmit={(e) => { void handleSubmit(e); }} style={{ marginTop: 16 }}>
         <InputField
           label="Username"
@@ -64,6 +65,6 @@ export const LoginForm = () => {
           {isLoading ? 'Creating...' : 'Create Account'}
         </Button>
       </form>
-    </Paper>
+    </FormCard>
   );
 }; 

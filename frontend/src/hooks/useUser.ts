@@ -1,17 +1,29 @@
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/store';
-import { setUser, updateUsername, clearUser } from '../store/slices/userSlice';
+import { setUser, updateUsername, updateBuildCount, clearUser } from '../store/slices/userSlice';
+import { incrementBuildCount } from '../services/api';
 
 export const useUser = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
-  const setUserData = useCallback((username: string, uuid: string) => {
-    dispatch(setUser({ username, uuid }));
+  const setUserData = useCallback((username: string, uuid: string, build_count?: number) => {
+    dispatch(setUser({ username, uuid, build_count }));
   }, [dispatch]);
 
   const updateUserUsername = useCallback((username: string) => {
     dispatch(updateUsername(username));
+  }, [dispatch]);
+
+  const incrementUserBuildCount = useCallback(async (username: string) => {
+    try {
+      const response = await incrementBuildCount(username);
+      dispatch(updateBuildCount(response.build_count || 0));
+      return response.build_count;
+    } catch (error) {
+      console.error('Failed to increment build count:', error);
+      throw error;
+    }
   }, [dispatch]);
 
   const logout = useCallback(() => {
@@ -21,9 +33,11 @@ export const useUser = () => {
   return {
     username: user.username,
     uuid: user.uuid,
+    build_count: user.build_count,
     isAuthenticated: user.isAuthenticated,
     setUserData,
     updateUserUsername,
+    incrementUserBuildCount,
     logout,
   };
 }; 

@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import {
-  Box,
-  Paper,
   Typography,
   TextField,
   Button,
-  Divider,
+  Stack,
 } from '@mui/material';
 import { useUser } from '@hooks/useUser';
 import { validateUsername } from '@utils/validation';
+import { ProfileFieldLabel, UserIdDisplay, ContentCard } from '@ui/components';
+import { Box } from '@components/Box';
 
 export const UserProfilePanel = () => {
-  const { username, uuid, updateUserUsername, logout } = useUser();
+  const { username, uuid, build_count, updateUserUsername, logout } = useUser();
   const [newUsername, setNewUsername] = useState(username || '');
   const [error, setError] = useState<string | null>(null);
 
@@ -28,64 +28,80 @@ export const UserProfilePanel = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 4, maxWidth: 600, mx: 'auto', mt: 4 }}>
-      <Typography variant="h5" component="h1" gutterBottom>
-        User Profile
-      </Typography>
-      
-      <Box sx={{ mt: 3 }}>
-        <Typography variant="subtitle1" color="text.secondary">
-          Current Username
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          {username}
-        </Typography>
+    <Stack 
+    direction="row"
+    spacing={2}
+    flexWrap="wrap"
+    alignItems="center"
+    justifyContent={"space-evenly"}
+    style={{width: "100%"}}>
+        <ContentCard>
+          <Typography variant="h5" component="h1" gutterBottom>
+            User Profile
+          </Typography>
+          
+          <Box style={{marginTop: 3, marginBottom: 8}}>
+            <ProfileFieldLabel variant="subtitle1">
+              Current Username
+            </ProfileFieldLabel>
+            <Typography variant="h6" gutterBottom>
+              {username}
+            </Typography>
 
-        <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 2 }}>
-          User ID
-        </Typography>
-        <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>
-          {uuid}
-        </Typography>
-      </Box>
+            <ProfileFieldLabel variant="subtitle1">
+              User ID
+            </ProfileFieldLabel>
+            <UserIdDisplay variant="body2">
+              {uuid}
+            </UserIdDisplay>
 
-      <Divider sx={{ my: 4 }} />
+            <ProfileFieldLabel variant="subtitle1">
+              Build Count
+            </ProfileFieldLabel>
+            <Typography variant="h6" gutterBottom>
+              {build_count || 0}
+            </Typography>
+          </Box>
+        </ContentCard>
+        <ContentCard>
+        <Stack style={{gap: 12}}>
+            <Typography variant="h6" gutterBottom>
+              Update Username
+            </Typography>
+            
+            <Stack direction={"row"} gap={4}>
+              <TextField
+                label="New Username"
+                value={newUsername}
+                onChange={(e) => {
+                  setNewUsername(e.target.value);
+                  setError(null);
+                }}
+                error={!!error}
+                helperText={error}
+                sx={{ flex: 1 }}
+              />
+              <Button
+                variant="contained"
+                onClick={handleUpdateUsername}
+                disabled={newUsername === username}
+              >
+                Update
+              </Button>
+            </Stack>
 
-      <Typography variant="h6" gutterBottom>
-        Update Username
-      </Typography>
-      
-      <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-        <TextField
-          label="New Username"
-          value={newUsername}
-          onChange={(e) => {
-            setNewUsername(e.target.value);
-            setError(null);
-          }}
-          error={!!error}
-          helperText={error}
-          sx={{ flex: 1 }}
-        />
-        <Button
-          variant="contained"
-          onClick={handleUpdateUsername}
-          disabled={newUsername === username}
-        >
-          Update
-        </Button>
-      </Box>
-
-      <Box sx={{ mt: 4 }}>
-        <Button
-          variant="outlined"
-          color="error"
-          onClick={logout}
-          fullWidth
-        >
-          Logout
-        </Button>
-      </Box>
-    </Paper>
+            <Box style={{ marginTop: 4 }}>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={logout}
+                fullWidth
+              >
+                Logout
+              </Button>
+            </Box>
+          </Stack>
+        </ContentCard>
+    </Stack>
   );
 }; 

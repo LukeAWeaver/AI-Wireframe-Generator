@@ -146,6 +146,39 @@ class UserViewSet(viewsets.ModelViewSet):
                 )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(detail=False, methods=['post'])
+    def increment_build_count(self, request):
+        """Increment the build count for the current user"""
+        try:
+            # Get the user by username from the request
+            username = request.data.get('username')
+            if not username:
+                return Response(
+                    {'error': 'Username is required'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            user = User.objects.get(username=username)
+            user.build_count += 1
+            user.save()
+            
+            return Response({
+                'username': user.username,
+                'uuid': user.uuid,
+                'build_count': user.build_count
+            }, status=status.HTTP_200_OK)
+            
+        except User.DoesNotExist:
+            return Response(
+                {'error': 'User not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {'error': 'Failed to increment build count'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
 class PortfolioTechnologyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = PortfolioTechnology.objects.all().order_by('category', 'name')
     serializer_class = PortfolioTechnologySerializer

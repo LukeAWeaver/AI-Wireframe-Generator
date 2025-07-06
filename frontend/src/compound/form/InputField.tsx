@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input } from '@components/Input';
 import { Box } from '@components/Box';
-import { Badge } from '@components/Badge';
+import { BadgeRequired, BadgeDescription, BadgeError, FormLabel } from '@ui/components/typography';
+import { useTheme } from '@mui/material';
 
 export interface InputFieldProps {
   id?: string;
@@ -25,6 +26,7 @@ export const InputField = (props: InputFieldProps) => {
     ...inputProps
   } = props;
 
+  const theme = useTheme();
   const generatedId = React.useId();
   const inputId = props.id || generatedId;
   const descId = description ? `${inputId}-desc` : undefined;
@@ -33,10 +35,10 @@ export const InputField = (props: InputFieldProps) => {
   return (
     <Box spacing="sm">
       {label && (
-        <label htmlFor={inputId} style={{ marginBottom: 4, fontWeight: 500 }}>
+        <FormLabel htmlFor={inputId}>
           {label}
-          {required && <Badge style={{ color: 'error.main', marginLeft: 8 }}>*</Badge>}
-        </label>
+          {required && <BadgeRequired>*</BadgeRequired>}
+        </FormLabel>
       )}
       
       <Input
@@ -50,11 +52,11 @@ export const InputField = (props: InputFieldProps) => {
       />
       
       {description && (
-        <Badge id={descId} style={{ color: 'text.secondary', fontSize: 12, marginTop: 4 }}>{description}</Badge>
+        <BadgeDescription id={descId}>{description}</BadgeDescription>
       )}
       
       {error && (
-        <Badge id={errorId} style={{ color: 'error.main', fontSize: 12, marginTop: 4 }}>{error}</Badge>
+        <BadgeError id={errorId}>{error}</BadgeError>
       )}
     </Box>
   );

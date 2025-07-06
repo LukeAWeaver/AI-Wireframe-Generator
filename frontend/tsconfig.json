@@ -24,6 +24,8 @@
       "@compound": ["compound"],
       "@primitives/*": ["components/primitives/*"],
       "@styled/*": ["components/styled/*"],
+      "@ui/*": ["ui/*"],
+      "@ui": ["ui"],
       "@contexts/*": ["contexts/*"],
       "@contexts": ["contexts"],
       "@hooks/*": ["hooks/*"],

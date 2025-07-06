@@ -1,13 +1,14 @@
-import { Typography, Button, TextField, Divider, Paper } from '@mui/material';
+import { Typography, Button, TextField, Divider } from '@mui/material';
 import { useThemeContext } from '@contexts';
 import { useUser } from '@hooks/useUser';
+import { FormCard } from '@ui/components';
 
 export const SettingsPanel = () => {
   const { isDarkMode, toggleTheme } = useThemeContext();
   const { username, uuid } = useUser();
 
   return (
-    <Paper elevation={3} sx={{ p: 4, maxWidth: 600, mx: 'auto', mt: 4 }}>
+    <FormCard maxWidth={600}>
       <Typography variant="h5" gutterBottom>
         Settings for user {username}
       </Typography>
@@ -37,6 +38,6 @@ export const SettingsPanel = () => {
       </Button>
 
       {/* Add more settings here as needed */}
-    </Paper>
+    </FormCard>
   );
 }; 

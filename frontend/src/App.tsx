@@ -21,7 +21,7 @@ function App() {
         footer={
           fullscreenTabs.includes(location.pathname) ? undefined :
           <Typography variant="body2" color="text.secondary" align="center">
-            v{APP_VERSION} - {username}
+            v{APP_VERSION}{username && (" - " + username)}
           </Typography>
         }
       >

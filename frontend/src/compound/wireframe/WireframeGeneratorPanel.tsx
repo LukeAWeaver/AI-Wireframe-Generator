@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Box, Typography, TextField, Button, Paper, Card, CardContent, Grid, Divider } from '@mui/material';
+import { Box, Typography, TextField, Button, Card, CardContent, Grid, Divider, useTheme } from '@mui/material';
+import { HelpOutline } from '@mui/icons-material';
 import { useUser } from '@hooks/useUser';
 import { useRightSidebar } from '@contexts';
+import { WireframeSectionHeading, ContentCard } from '@ui/components';
+import { Tooltip } from '@components/Tooltip';
 
 export const WireframeGeneratorPanel = () => {
-  const { username, uuid } = useUser();
+  const { username, uuid, incrementUserBuildCount } = useUser();
   const [input, setInput] = useState('');
   const [wireframe, setWireframe] = useState<string | null>(null);
   const { setSidebarContent } = useRightSidebar();
+  const theme = useTheme();
 
   // Build Sidebar Content
   const buildSidebar = (
     <Box sx={{ p: 3, height: '100%', boxSizing: 'border-box' }}>
-      <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>Build History</Typography>
+      <WireframeSectionHeading variant="h6">Build History</WireframeSectionHeading>
       <Divider sx={{ mb: 2 }} />
       <Grid container spacing={2}>
         {/* Example filled card slot */}
@@ -46,19 +50,30 @@ export const WireframeGeneratorPanel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleBuild = () => {
-    setWireframe('Rendered wireframe will appear here.');
+  const handleBuild = async () => {
+    if (username) {
+      try {
+        await incrementUserBuildCount(username);
+        setWireframe('Rendered wireframe will appear here.');
+      } catch (error) {
+        console.error('Failed to increment build count:', error);
+        // Still show the wireframe even if build count increment fails
+        setWireframe('Rendered wireframe will appear here.');
+      }
+    } else {
+      setWireframe('Rendered wireframe will appear here.');
+    }
   };
 
   return (
     <Box sx={{ flex: 1, p: { xs: 2, md: 4 }, display: 'flex', flexDirection: 'column', gap: 3 }}>
       {/* User Info */}
-      <Paper sx={{ p: 2, mb: 2 }}>
+      <ContentCard>
         <Typography variant="subtitle1">User: <b>{username}</b></Typography>
         <Typography variant="body2" color="text.secondary">User ID: {uuid}</Typography>
-      </Paper>
+      </ContentCard>
       {/* Build Form */}
-      <Paper sx={{ p: 2, mb: 2, display: 'flex', gap: 2, alignItems: 'center' }}>
+      <ContentCard sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
         <TextField
           label="Describe your wireframe"
           value={input}
@@ -75,13 +90,13 @@ export const WireframeGeneratorPanel = () => {
               py: 2,
               '& fieldset': {
                 borderWidth: 2,
-                borderColor: 'rgba(255,255,255,0.5)',
+                borderColor: theme.palette.divider,
               },
               '&:hover fieldset': {
-                borderColor: 'primary.main',
+                borderColor: theme.palette.primary.main,
               },
               '&.Mui-focused fieldset': {
-                borderColor: 'primary.main',
+                borderColor: theme.palette.primary.main,
               },
             },
           }}
@@ -89,13 +104,18 @@ export const WireframeGeneratorPanel = () => {
         <Button variant="contained" onClick={handleBuild} sx={{ minWidth: 120 }}>
           Build
         </Button>
-      </Paper>
+      </ContentCard>
       {/* Rendered Wireframe */}
-      <Paper sx={{ p: 3, flex: 1, minHeight: 240, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Typography color="text.secondary" align="center">
-          {wireframe || 'Wireframe preview will be rendered here.'}
-        </Typography>
-      </Paper>
+      <ContentCard flex minHeight={240}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+          <Typography color="text.secondary" align="center">
+            {wireframe || 'Wireframe preview will be rendered here.'}
+          </Typography>
+          <Tooltip content="An LLM running via Ollama will convert text prompts into wireframes, code, and visuals, which will appear here">
+            <HelpOutline sx={{ fontSize: 16, color: 'text.secondary', cursor: 'pointer' }} />
+          </Tooltip>
+        </Box>
+      </ContentCard>
     </Box>
   );
 }; 

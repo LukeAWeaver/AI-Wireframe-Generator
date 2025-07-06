@@ -12,6 +12,7 @@ export default defineConfig({
       '@compound': path.resolve(__dirname, 'src/compound'),
       '@primitives': path.resolve(__dirname, 'src/components/primitives'),
       '@styled': path.resolve(__dirname, 'src/components/styled'),
+      '@ui': path.resolve(__dirname, 'src/ui'),
       '@contexts': path.resolve(__dirname, 'src/contexts'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@services': path.resolve(__dirname, 'src/services'),

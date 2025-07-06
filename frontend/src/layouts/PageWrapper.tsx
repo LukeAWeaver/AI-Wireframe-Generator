@@ -58,15 +58,15 @@ export const PageWrapper = (props: IPageWrapperProps) => {
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
-            px: { xs: 1, md: 2 },
+            px: { xs: 0, md: 0 },
             py: { xs: 1, md: 2 },
           }}
         >
           {props.children}
         </Box>
 
-        {/* Right Sidebar (dynamic from context) */}
-        {sidebarContent && (
+        {/* Right Sidebar (dynamic from context) - only on desktop */}
+        {sidebarContent && !isMobile && (
           <Box
             sx={{
               width: 300,

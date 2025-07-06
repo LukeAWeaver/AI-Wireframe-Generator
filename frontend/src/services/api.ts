@@ -61,6 +61,7 @@ interface IAPIError {
 export interface IUserResponse {
   username: string;
   uuid: string;
+  build_count?: number;
 }
 
 export interface IRegistrationResponse {
@@ -122,6 +123,24 @@ export const generateWireframe = async (prompt: string): Promise<IWireframeRespo
       const errorData = error.response.data as IAPIError;
       errorLog(errorData, 'generateWireframe');
       throw new Error(errorData.error || 'Failed to generate wireframe');
+    }
+    throw error;
+  }
+};
+
+export const incrementBuildCount = async (username: string): Promise<IUserResponse> => {
+  debugLog('Incrementing build count for user:', username);
+  
+  try {
+    const response = await apiClient.post<IUserResponse>('/users/increment_build_count/', { 
+      username 
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.data) {
+      const errorData = error.response.data as IAPIError;
+      errorLog(errorData, 'incrementBuildCount');
+      throw new Error(errorData.error || 'Failed to increment build count');
     }
     throw error;
   }

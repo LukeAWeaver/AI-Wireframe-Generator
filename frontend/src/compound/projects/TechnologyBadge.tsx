@@ -3,6 +3,7 @@ import { Tooltip } from '@components/Tooltip';
 import { Badge } from '@components/Badge';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { TechnologyDescription, TechnologyCategory } from '@ui/components/typography';
 
 interface IPortfolioTechnology {
   id: number;
@@ -28,12 +29,12 @@ export const TechnologyBadge = (props: TechnologyBadgeProps) => {
           <Typography variant="subtitle2" fontWeight={600} mb={0.5}>
             {technology.name}
           </Typography>
-          <Typography variant="body2" fontSize={12} sx={{ opacity: 0.8 }}>
+          <TechnologyDescription variant="body2">
             {technology.description}
-          </Typography>
-          <Typography variant="caption" fontSize={11} sx={{ opacity: 0.6, mt: 0.5 }}>
+          </TechnologyDescription>
+          <TechnologyCategory variant="caption">
             Category: {technology.category}
-          </Typography>
+          </TechnologyCategory>
         </Box>
       }
       position="top"

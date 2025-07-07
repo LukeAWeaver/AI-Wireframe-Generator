@@ -66,7 +66,7 @@ export const WireframeGeneratorPanel = () => {
   };
 
   const handleBuildClick = () => {
-    handleBuild();
+    handleBuild().catch(() => {});
   };
 
   return (

@@ -52,6 +52,7 @@ class PortfolioTechnology(models.Model):
     class Meta:
         db_table = 'portfolio_technologies'
         verbose_name_plural = 'Portfolio Technologies'
+        unique_together = ('category', 'name')
 
     def __str__(self):
         return f"{self.category}: {self.name}" 

@@ -9,6 +9,9 @@ apply-migrations:
 	docker compose run --rm backend python manage.py makemigrations
 	docker compose run --rm backend python manage.py migrate
 
+db-shell:
+	docker compose exec db bash
+
 build-backend:
 	docker compose build --no-cache backend
 

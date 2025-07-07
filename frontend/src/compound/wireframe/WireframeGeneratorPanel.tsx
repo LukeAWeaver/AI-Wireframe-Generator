@@ -65,6 +65,10 @@ export const WireframeGeneratorPanel = () => {
     }
   };
 
+  const handleBuildClick = () => {
+    handleBuild();
+  };
+
   return (
     <Box sx={{ flex: 1, p: { xs: 2, md: 4 }, display: 'flex', flexDirection: 'column', gap: 3 }}>
       {/* User Info */}
@@ -101,7 +105,11 @@ export const WireframeGeneratorPanel = () => {
             },
           }}
         />
-        <Button variant="contained" onClick={handleBuild} sx={{ minWidth: 120 }}>
+        <Button
+          variant="contained"
+          onClick={handleBuildClick}
+          sx={{ minWidth: 120 }}
+        >
           Build
         </Button>
       </ContentCard>

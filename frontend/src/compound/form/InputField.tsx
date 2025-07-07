@@ -2,7 +2,6 @@ import React from 'react';
 import { Input } from '@components/Input';
 import { Box } from '@components/Box';
 import { BadgeRequired, BadgeDescription, BadgeError, FormLabel } from '@ui/components/typography';
-import { useTheme } from '@mui/material';
 
 export interface InputFieldProps {
   id?: string;

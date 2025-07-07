@@ -9,6 +9,9 @@ apply-migrations:
 	docker compose run --rm backend python manage.py makemigrations
 	docker compose run --rm backend python manage.py migrate
 
+build-backend:
+	docker compose build --no-cache backend
+
 version-ts:
 	@echo "export const APP_VERSION = '$(VERSION)'" > frontend/src/version.ts
 	@echo "📝 Updated frontend/src/version.ts to v$(VERSION)"

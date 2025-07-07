@@ -16,7 +16,7 @@ interface IProject {
 const projects: IProject[] = [
   {
     id: 'this-project-files',
-    title: 'Full Stack ( React + Django ) + local LLM',
+    title: 'React + Django + local LLM',
     purpose: "Wireframe Generator",
     url: 'https://github.com/LukeAWeaver/AI-UX-visualization',
     svgDiagram: RDAIArchDiagram,
@@ -26,7 +26,7 @@ const projects: IProject[] = [
   },
   {
     id: 'tech-dem0-files',
-    title: 'Static FE Serverless ( React + Next.js )',
+    title: 'Static Serverless ( React + Next.js )',
     url: 'https://github.com/LukeAWeaver/tech-dem0-files',
     purpose: "Stock Analyzer",
     svgDiagram: nextServerlessDiagram,
@@ -44,4 +44,6 @@ const projects: IProject[] = [
   },
 ];
 
-export const Projects = () => <ProjectsCarousel projects={projects} />; 
+export const Projects = () => <ProjectsCarousel projects={projects} />;
+
+export { projects }; 

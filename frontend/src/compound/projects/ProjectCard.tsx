@@ -83,7 +83,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center',
-                borderRadius: 8,
+                borderRadius: 0,
               }}>
                 <Caption color="textSecondary">No Image</Caption>
               </Box>

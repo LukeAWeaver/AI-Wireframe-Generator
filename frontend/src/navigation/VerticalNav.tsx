@@ -12,9 +12,9 @@ export const VerticalNav = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const navItems = [
-    { text: 'Home', to: '/', icon: <Home />, auth: true },
-    { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
+    { text: 'About', to: '/', icon: <Home />, auth: true },
     { text: 'Projects', to: '/projects', icon: <Folder />, auth: true },
+    { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
     !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
     isAuthenticated && { text: 'Settings', to: '/settings', icon: <SettingsIcon />, auth: true },
@@ -28,7 +28,7 @@ export const VerticalNav = () => {
         width: isMobile ? '100%' : 240, 
         flexShrink: 0,  
         bgcolor: 'background.paper',
-        borderRight: isMobile ? 0 : 1, 
+        borderRight: isMobile ? 0 : 0.1, 
         userSelect: 'none',
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',

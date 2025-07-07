@@ -6,7 +6,6 @@ import { CarouselArrow } from '@components'
 import { Badge } from '@components'
 import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material'
 import { ProjectPurpose, ProjectDescription, Card } from '@ui/components'
@@ -152,6 +151,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
         <Box
           className="embla"
           width="100%"
+          flexGrow={1}
           ref={emblaRef}
           sx={{ 
             overflow: 'hidden',
@@ -170,9 +170,8 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
             }}
           >
             {projects.map((project, idx) => (
-              <Card
+              <Box
                 key={project.id}
-                cardVariant="default"
                 sx={{
                   marginLeft: idx === 0 ? 8 : 0,
                   marginRight: idx === projects.length -1 ? 8 : 0,
@@ -185,6 +184,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   transition: 'border 0.2s, transform 0.3s',
                   transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
                   opacity: idx === selectedIndex ? 1 : 0.7,
+                  cursor: 'pointer',
                 }}
                 onClick={() => emblaApi && emblaApi.scrollTo(idx)}
               >
@@ -196,7 +196,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   imageUrl={project.svgDiagram}
                   url={project.url}
                 />
-              </Card>
+              </Box>
             ))}
           </Box>
         </Box>

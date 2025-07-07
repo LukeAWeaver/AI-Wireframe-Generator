@@ -1,6 +1,5 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { ArchitectureHeading, ArchitectureDescription, ArchitecturePurpose } from '@ui/components/typography';
 import { useTheme } from '@mui/material';
 
@@ -15,7 +14,6 @@ const ArchitectureSVG = (props: React.SVGProps<SVGSVGElement>) => {
 };
 
 export const ArchitectureOverview = () => {
-  const theme = useTheme();
   
   return (
     <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>

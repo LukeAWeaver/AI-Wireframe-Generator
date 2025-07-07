@@ -54,13 +54,13 @@ export const HomeContent = () => {
               <CardContent>
                 <Stack gap={2}>
                   <Body2Description>
-                    I'm a software engineer who loves crafting polished, accessible user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences.
+                    A software engineer who loves crafting polished, accessible user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences.
                   </Body2Description>
                   <Body2Description>
                     Most recently, I worked as a Full Stack Software Engineer at Multi Media, where I helped launch the initial web platform and led frontend development on a new mobile app. I built features for profile, discovery, events, and socials — all while refining a layered UI system and closing gaps in the design system to prepare for production.
                   </Body2Description>
                   <Body2Description>
-                    When I'm not building software, I'm probably playing video games with friends, spending time with my wife and dogs, or doing a home project.
+                    When not building software, I am probably playing video games with friends, spending time with my wife and dogs, or doing a home project.
                   </Body2Description>
                 </Stack>
               </CardContent>

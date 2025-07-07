@@ -14,7 +14,7 @@ Body2.defaultProps = {
 };
 
 // Styled variant for descriptions with better line height and justification
-export const Body2Description = styled(Body2)<TypographyProps>(({ theme }) => ({
+export const Body2Description = styled(Body2)<TypographyProps>(({  }) => ({
   lineHeight: 1.5,
   textAlign: 'justify',
 }));

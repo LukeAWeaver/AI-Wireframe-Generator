@@ -8,7 +8,7 @@ import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material'
-import { ProjectPurpose, ProjectDescription, Card } from '@ui/components'
+import { ProjectPurpose, ProjectDescription } from '@ui/components'
 
 interface IProject {
   id: string

@@ -26,7 +26,6 @@ export const InputField = (props: InputFieldProps) => {
     ...inputProps
   } = props;
 
-  const theme = useTheme();
   const generatedId = React.useId();
   const inputId = props.id || generatedId;
   const descId = description ? `${inputId}-desc` : undefined;

@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { useRightSidebar, usePortfolioTechnologies } from '@contexts'
 import { TechnologyBadge } from '@compound'
-import { CarouselArrow } from '@components'
 import { Badge } from '@components'
 import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material'
 import { ProjectPurpose, ProjectDescription } from '@ui/components'
+import { PaginationControls } from './PaginationControls'
 
 interface IProject {
   id: string
@@ -175,16 +175,12 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                 sx={{
                   marginLeft: idx === 0 ? 8 : 0,
                   marginRight: idx === projects.length -1 ? 8 : 0,
-                  flex: '0 0 80%',
-                  minWidth: 0,
-                  width: { xs: '100vw', sm: 'auto' },
-                  display: 'flex',
+                  minWidth: "100%",
+                  minHeight: "100%",
                   boxSizing: 'border-box',
-                  borderRadius: 2,
-                  transition: 'border 0.2s, transform 0.3s',
+                  transition: 'opacity 0.2s, transform 0.3s',
                   transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
                   opacity: idx === selectedIndex ? 1 : 0.7,
-                  cursor: 'pointer',
                 }}
                 onClick={() => emblaApi && emblaApi.scrollTo(idx)}
               >
@@ -200,27 +196,12 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
             ))}
           </Box>
         </Box>
-      {/* Pagination Buttons */}
-      <Box display="flex" justifyContent="center" gap={2} sx={{ mt: { xs: 1, sm: 2 } }}>
-        <CarouselArrow
-          onClick={scrollPrev}
-          disabled={!prevBtnEnabled}
-          aria-label="Previous project"
-          active={prevBtnEnabled}
-          sx={{ minWidth: { xs: 44, sm: 36 }, minHeight: { xs: 44, sm: 36 } }}
-        >
-          &#8592;
-        </CarouselArrow>
-        <CarouselArrow
-          onClick={scrollNext}
-          disabled={!nextBtnEnabled}
-          aria-label="Next project"
-          active={nextBtnEnabled}
-          sx={{ minWidth: { xs: 44, sm: 36 }, minHeight: { xs: 44, sm: 36 } }}
-        >
-          &#8594;
-        </CarouselArrow>
-      </Box>
+      <PaginationControls
+        onPrev={scrollPrev}
+        onNext={scrollNext}
+        prevBtnEnabled={prevBtnEnabled}
+        nextBtnEnabled={nextBtnEnabled}
+      />
     </Stack>
   )
 }

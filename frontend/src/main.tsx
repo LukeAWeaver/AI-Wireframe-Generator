@@ -8,6 +8,7 @@ import App from './App'
 import { ThemeContextProvider, RightSidebarProvider, PortfolioTechnologiesProvider } from '@contexts'
 import { store, persistor } from './store/store'
 import './index.css'
+import { TutorialsContextProvider } from '@contexts/TutorialsContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -16,10 +17,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <ThemeContextProvider>
           <RightSidebarProvider>
             <PortfolioTechnologiesProvider>
+              <TutorialsContextProvider>
               <BrowserRouter>
                 <CssBaseline />
                 <App />
               </BrowserRouter>
+              </TutorialsContextProvider>
             </PortfolioTechnologiesProvider>
           </RightSidebarProvider>
         </ThemeContextProvider>

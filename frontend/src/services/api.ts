@@ -17,6 +17,14 @@ const apiClient: AxiosInstance = axios.create({
   },
 });
 
+// Public API client (no auth interceptor)
+const publicApiClient: AxiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 // Request interceptor to add auth token
 apiClient.interceptors.request.use(
   (config) => {
@@ -78,7 +86,7 @@ export const createUser = async (username: string): Promise<IUserResponse> => {
   debugLog('Creating user:', username);
   
   try {
-    const response = await apiClient.post<IRegistrationResponse>('/auth/register/', { 
+    const response = await publicApiClient.post<IRegistrationResponse>('/auth/register/', { 
       username,
       email: `${username}@example.com`, // Generate a placeholder email
       password: 'tempPassword123!' // Generate a temporary password
@@ -150,7 +158,7 @@ export const fetchPortfolioTechnologies = async (): Promise<IPortfolioTechnology
   debugLog('Fetching portfolio technologies');
   
   try {
-    const response = await apiClient.get<IPortfolioTechnology[]>('/portfolio-technologies/');
+    const response = await publicApiClient.get<IPortfolioTechnology[]>('/portfolio-technologies/');
     return response.data;
   } catch (error) {
     errorLog('Failed to fetch portfolio technologies', 'fetchPortfolioTechnologies');

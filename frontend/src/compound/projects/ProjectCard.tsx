@@ -1,7 +1,7 @@
 import { Box } from '@components/Box';
 import { Button } from '@components/Button';
 import { H3, Body2Description } from '@ui/components/typography';
-import { Stack, useTheme } from '@mui/material';
+import { Stack } from '@mui/material';
 import { FlippableCard } from '@components/FlippableCard';
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge';
 

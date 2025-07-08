@@ -1,5 +1,5 @@
 import React from 'react';
-import MuiTooltip from '@mui/material/Tooltip';
+import MuiTooltip, { TooltipProps as MuiTooltipProps } from '@mui/material/Tooltip';
 
 export interface TooltipPrimitiveProps {
   content: React.ReactNode;
@@ -7,7 +7,7 @@ export interface TooltipPrimitiveProps {
   position?: 'top' | 'bottom' | 'left' | 'right';
   delay?: number;
   disabled?: boolean;
-  componentsProps?: any;
+  componentsProps?: MuiTooltipProps['componentsProps'];
 }
 
 export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiveProps>(

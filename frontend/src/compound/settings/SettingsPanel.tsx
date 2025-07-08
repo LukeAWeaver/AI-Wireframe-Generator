@@ -133,7 +133,7 @@ export const SettingsPanel = () => {
             <Button
               variant="contained"
               color="error"
-              onClick={handleResetAppState}
+              onClick={() => { void handleResetAppState(); }}
             >
               Reset
             </Button>

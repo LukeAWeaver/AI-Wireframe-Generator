@@ -190,12 +190,13 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
           </Box>
         </Box>
       <PaginationControls
-        slidesCount={3}
+        slidesCount={projects.length}
         selectedIndex={selectedIndex} 
         onPrev={scrollPrev}
         onNext={scrollNext}
         prevBtnEnabled={prevBtnEnabled}
         nextBtnEnabled={nextBtnEnabled}
+        onDotClick={idx => emblaApi && emblaApi.scrollTo(idx)}
       />
     </Stack>
   )

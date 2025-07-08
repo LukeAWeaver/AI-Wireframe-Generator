@@ -51,14 +51,6 @@
     "model": "features.portfoliotechnology",
     "fields": {
       "category": "Styling",
-      "name": "Sass",
-      "description": "CSS preprocessor with nested rules, variables, and functions"
-    }
-  },
-  {
-    "model": "features.portfoliotechnology",
-    "fields": {
-      "category": "Styling",
       "name": "Styled-components",
       "description": "CSS-in-JS tool for styling React components"
     }
@@ -421,14 +413,6 @@
       "category": "APIs",
       "name": "GraphQL",
       "description": "Query language for APIs and runtime for executing those queries"
-    }
-  },
-  {
-    "model": "features.portfoliotechnology",
-    "fields": {
-      "category": "Styling",
-      "name": "Styled-components",
-      "description": "CSS-in-JS tool for styling React components"
     }
   },
   {

@@ -9,7 +9,7 @@ import { usePortfolioTechnologies } from '@contexts/PortfolioTechnologiesContext
 
 export const HomeContent = () => {
   const { technologies } = usePortfolioTechnologies();
-  
+  const displayedTechnologyNames = ["React", "React Native", "GraphQL", "Django", "Github Actions", "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"]
   const header = <H1>Luke Weaver</H1>
 
   const cardBack = (<Stack>
@@ -33,7 +33,7 @@ export const HomeContent = () => {
       {header}
         <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginTop: 16 }}>
           {technologies && technologies.length > 0 ? (
-            technologies.map(tech => (
+            technologies.filter(tech => displayedTechnologyNames.includes(tech.name)).map(tech => (
               <TechnologyBadge key={tech.id} techName={tech.name} />
             ))
           ) : (

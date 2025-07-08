@@ -25,16 +25,30 @@ export const TechnologyBadge = (props: TechnologyBadgeProps) => {
   const categoryColors: Record<string, string> = {
     Frontend: '#1976d2',
     Backend: '#388e3c',
-    Styling: '#8e24aa',
-    StateAndData: '#fbc02d',
+    Styling: '#ab47bc',
+    StateAndData: '#f57c00',
     Authentication: '#d32f2f',
-    Routing: '#0288d1',
-    UXInteractions: '#f57c00',
-    UIComponents: '#455a64',
+    Routing: '#5d4037',
+    UXInteractions: '#7b1fa2',
+    UIComponents: '#0288d1',
     Tooling: '#616161',
-    Testing: '#c2185b',
+    Testing: '#455a64',
     Database: '#6d4c41',
-  };
+    Hosting: '#00897b',
+    CICD: '#fbc02d',
+    APIs: '#0288d1',
+    Compute: '#ff7043',
+    Monitoring: '#8d6e63',
+    Mapping: '#43a047',
+    DevOps: '#0097a7',
+    Cloud: '#1e88e5',
+    ProgrammingLanguage: '#ffb300',
+    Library: '#c2185b',
+    OperatingSystem: '#757575',
+    Shell: '#546e7a'
+  }
+  
+  
   const backgroundColor = technology ? categoryColors[technology.category] || '#bdbdbd' : undefined;
   console.log(technology)
   return (

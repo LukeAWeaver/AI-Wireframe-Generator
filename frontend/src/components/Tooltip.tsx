@@ -1,5 +1,4 @@
 import { TooltipPrimitive, TooltipPrimitiveProps } from '../primitives/TooltipPrimitive';
-import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
 export interface TooltipProps extends TooltipPrimitiveProps {

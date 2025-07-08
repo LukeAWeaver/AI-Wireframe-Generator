@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { Box, Stack, Slider, Typography } from '@mui/material';
+import { Box, Stack, Slider } from '@mui/material';
 import { WorkHistoryCard } from './WorkHistoryCard';
 import { IWorkCard } from '../../app/workHistoryData';
 
@@ -19,12 +19,6 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
   const [selectedIndex, setSelectedIndex] = useState(0);
 
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
   const scrollTo = useCallback((idx: number) => {
     if (emblaApi) emblaApi.scrollTo(idx);
   }, [emblaApi]);

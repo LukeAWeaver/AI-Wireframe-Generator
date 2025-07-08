@@ -1,9 +1,8 @@
 import { Box } from '@components/Box'
 import { CardContent, Stack } from '@mui/material'
-import { Badge, Body2Description, H1, H2, H4 } from '@ui/components'
+import { Body2Description, H1 } from '@ui/components'
 import { projects } from '../../app/projects'
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge'
-import { usePortfolioTechnologies } from '@contexts'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { FlippableCard } from '@components/FlippableCard';

@@ -50,7 +50,7 @@ export const TechnologyBadge = (props: TechnologyBadgeProps) => {
   
   
   const backgroundColor = technology ? categoryColors[technology.category] || '#bdbdbd' : undefined;
-  console.log(technology)
+
   return (
     <Tooltip
       content={

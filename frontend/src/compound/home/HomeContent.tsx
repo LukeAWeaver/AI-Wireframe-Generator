@@ -1,17 +1,14 @@
 import { Box } from '@components/Box'
 import { CardContent, Stack } from '@mui/material'
 import { Body2Description, H1 } from '@ui/components'
-import { projects } from '../../app/projects'
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { FlippableCard } from '@components/FlippableCard';
+import { usePortfolioTechnologies } from '@contexts/PortfolioTechnologiesContext'
 
 export const HomeContent = () => {
-
-  const allTechNames: string[] = Array.from(
-    new Set(projects.flatMap((p) => p.technologiesUsed))
-  );
+  const { technologies } = usePortfolioTechnologies();
   
   const header = <H1>Luke Weaver</H1>
 
@@ -35,9 +32,13 @@ export const HomeContent = () => {
     <Stack style={{height: "100%", flex:1, justifyContent: "space-between"}}>
       {header}
         <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginTop: 16 }}>
-          {allTechNames.map(techKey => {
-            return <TechnologyBadge key={techKey} techName={techKey} />
-          })}
+          {technologies && technologies.length > 0 ? (
+            technologies.map(tech => (
+              <TechnologyBadge key={tech.id} techName={tech.name} />
+            ))
+          ) : (
+            <Body2Description>Loading technologies...</Body2Description>
+          )}
         </Box>
       <Box style={{ display: 'flex', gap: 24, margin: '16px 0' }}>
         <a

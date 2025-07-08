@@ -294,5 +294,149 @@
       "name": "AWS CloudWatch",
       "description": "Monitoring and observability service for AWS applications"
     }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Frontend",
+      "name": "React Native",
+      "description": "Framework for building native apps using React"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Database",
+      "name": "PostgreSQL",
+      "description": "Advanced open-source relational database system"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "Tamagui",
+      "description": "Universal React design system and style library"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "Redux",
+      "description": "Predictable state container for JavaScript apps"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Routing",
+      "name": "Expo Router",
+      "description": "File-based routing for Expo and React Native apps"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Backend",
+      "name": "Laravel",
+      "description": "PHP web application framework with expressive syntax"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Mapping",
+      "name": "Mapbox",
+      "description": "Location data platform for maps and spatial applications"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "DevOps",
+      "name": "Kubernetes",
+      "description": "Container orchestration platform for automating deployment, scaling, and management"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Cloud",
+      "name": "AWS",
+      "description": "Amazon Web Services cloud computing platform"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "ProgrammingLanguage",
+      "name": "C",
+      "description": "General-purpose procedural programming language"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "ProgrammingLanguage",
+      "name": "JavaScript",
+      "description": "High-level, interpreted programming language for web development"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Library",
+      "name": "LibUV",
+      "description": "Multi-platform support library with a focus on asynchronous I/O"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "OperatingSystem",
+      "name": "Linux",
+      "description": "Open-source Unix-like operating system kernel"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "OperatingSystem",
+      "name": "Linux Kernel",
+      "description": "Core component of the Linux operating system"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Shell",
+      "name": "Bash",
+      "description": "Unix shell and command language"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "APIs",
+      "name": "GraphQL",
+      "description": "Query language for APIs and runtime for executing those queries"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "Styled-components",
+      "description": "CSS-in-JS tool for styling React components"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Styling",
+      "name": "SASS",
+      "description": "CSS preprocessor with nested rules, variables, and functions"
+    }
   }
 ]

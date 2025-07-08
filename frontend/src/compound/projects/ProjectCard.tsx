@@ -3,6 +3,7 @@ import { Button } from '@components/Button';
 import { H3, Body2Description } from '@ui/components/typography';
 import { Stack, useTheme } from '@mui/material';
 import { FlippableCard } from '@components/FlippableCard';
+import { TechnologyBadge } from '@compound/projects/TechnologyBadge';
 
 export interface ProjectCardProps {
   title: string;
@@ -25,8 +26,6 @@ export const ProjectCard = (props: ProjectCardProps) => {
     isSelected,
     url,
   } = props;
-
-  const theme = useTheme();
 
   const frontContent = (
       <Stack style={{ flex: 1, display: 'flex', height: "100%", justifyContent: 'space-between' }}>
@@ -73,19 +72,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
           <Box>
             <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
               {technologies.map((tech, index) => (
-                <Box
-                  key={index}
-                  style={{
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.primary.contrastText,
-                    padding: '4px 8px',
-                    borderRadius: 12,
-                    fontSize: theme.typography.caption.fontSize,
-                    fontWeight: 500,
-                  }}
-                >
-                  {tech}
-                </Box>
+                <TechnologyBadge key={index} techName={tech} />
               ))}
             </Box>
           </Box>

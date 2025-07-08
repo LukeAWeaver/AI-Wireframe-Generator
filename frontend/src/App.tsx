@@ -10,6 +10,7 @@ import { PageWrapper } from './layouts/PageWrapper';
 import { VerticalNav } from './navigation/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
+import { WorkHistory } from './app/work-history';
 
 function App() {
   const { isAuthenticated, username } = useUser();
@@ -33,6 +34,7 @@ function App() {
           {/* <Route path="/architecture" element={<Architecture />} /> */}
           <Route path="/wireframe-generator" element={<WireframeGenerator />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/work-history" element={<WorkHistory />} />
         </Routes>
       </PageWrapper>
   );

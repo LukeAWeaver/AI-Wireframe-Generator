@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
-import { useRightSidebar } from '@contexts';
+import { useRightSidebar, useThemeContext } from '@contexts';
 
 interface IPageWrapperProps {
   children: ReactNode;
@@ -13,6 +13,7 @@ interface IPageWrapperProps {
 
 export const PageWrapper = (props: IPageWrapperProps) => {
   const { sidebarContent } = useRightSidebar();
+  const { isDarkMode } = useThemeContext();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -20,12 +21,14 @@ export const PageWrapper = (props: IPageWrapperProps) => {
     <Box
       component="main"
       sx={{
+        background: isDarkMode 
+        ? 'linear-gradient(135deg,rgb(9, 9, 16) 0%, #16213e 100%)'
+        : 'linear-gradient(135deg,rgb(98, 101, 163) 0%, #fefeff 100%)',
         width: '100%',
         height: '100%',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: props.backgroundColor || 'background.default',
         ...props.sx,
       }}
     >
@@ -37,12 +40,9 @@ export const PageWrapper = (props: IPageWrapperProps) => {
             sx={{
               width: 240,
               flexShrink: 0,
-              borderRight: '1px solid',
-              borderColor: 'divider',
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
-              backgroundColor: 'background.paper',
             }}
           >
             {props.sidebarLeft}
@@ -76,7 +76,6 @@ export const PageWrapper = (props: IPageWrapperProps) => {
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
-              backgroundColor: 'background.paper',
             }}
           >
             {sidebarContent}
@@ -93,7 +92,6 @@ export const PageWrapper = (props: IPageWrapperProps) => {
             borderTop: '1px solid',
             borderColor: 'divider',
             flexShrink: 0,
-            backgroundColor: 'background.paper',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -108,10 +106,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         <Box
           sx={{
             width: '100%',
-            borderTop: '1px solid',
-            borderColor: 'divider',
             flexShrink: 0,
-            backgroundColor: 'background.paper',
           }}
         >
           {props.footer}

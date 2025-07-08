@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import { useRightSidebar, usePortfolioTechnologies } from '@contexts'
+import { useRightSidebar } from '@contexts'
 import { TechnologyBadge } from '@compound'
-import { Badge } from '@components'
 import { ProjectCard } from '@compound'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
@@ -38,7 +37,6 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const { setSidebarContent } = useRightSidebar()
-  const { technologiesByName } = usePortfolioTechnologies()
   const theme = useTheme()
 
   const scrollPrev = useCallback(() => {
@@ -103,17 +101,12 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
         </ProjectDescription>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
           {project.technologiesUsed.map(techKey => {
-            const technology = technologiesByName[techKey]
-            return technology ? (
-              <TechnologyBadge key={techKey} technology={technology} />
-            ) : (
-              <Badge key={techKey}>{techKey}</Badge>
-            )
+            return <TechnologyBadge key={techKey} techName={techKey} />
           })}
         </Box>
       </Box>
     )
-  }, [selectedIndex, setSidebarContent, projects, technologiesByName, theme.palette.text.secondary])
+  }, [selectedIndex, setSidebarContent, projects, theme.palette.text.secondary])
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'ArrowLeft') {
@@ -136,7 +129,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       onKeyDown={handleKeyDown}
       sx={{
         userSelect: 'none',
-        px: { xs: 0, sm: 0 },
+        px: { xs: 0, sm: 0 }, 
         '& .embla__container': {
           flexDirection: 'row',
         },
@@ -197,6 +190,8 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
           </Box>
         </Box>
       <PaginationControls
+        slidesCount={3}
+        selectedIndex={selectedIndex} 
         onPrev={scrollPrev}
         onNext={scrollNext}
         prevBtnEnabled={prevBtnEnabled}

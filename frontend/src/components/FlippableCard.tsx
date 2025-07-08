@@ -10,12 +10,13 @@ interface IFlippableCard {
     backContent: ReactNode
     mustBeSelectedToFlip?: boolean
     showFlipTip?: boolean
+    header?: ReactNode
+    flexHeight?: boolean
 }
 
-export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mustBeSelectedToFlip}: IFlippableCard) => {
+export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mustBeSelectedToFlip, header, flexHeight}: IFlippableCard) => {
   const [flipped, setFlipped] = useState(false)
   const { flipControlsAck, setFlipControlsAck } = useTutorialsContext();
-  
   return (
     <>
       {/* Overlay for tutorial - covers entire page, pointerEvents: none */}
@@ -32,17 +33,19 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            pointerEvents: 'all',
-          }}
+          }} 
           onClick={() => setFlipControlsAck(true)}
         >
-          <Stack direction={"row"} gap={2} style={{ pointerEvents: 'auto' }}>
-            <H4 color="white">
-              Tap on a card to show more details
+          <Stack gap={2} direction={"row"} style={{ pointerEvents: 'auto' }}>
+            <H4 style={{color: 'white'}}>
+              Click on a Card to flip it and see more details
             </H4>
             <Box
               style={{
                 width: "fit-content",
+                zIndex: 2010,
+                display: 'flex',
+                alignItems: 'center',
                 background: 'rgba(255,255,255,0.85)',
                 borderRadius: 16,
                 padding: '2px 8px',
@@ -62,7 +65,7 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
           </Stack>
         </Box>
       )}
-      <Box style={{ perspective: '1200px', minWidth: 400, width: '50%', cursor: "pointer", position: 'relative' }}>
+      <Box style={{ perspective: '1200px', minWidth: 500, width: '50%', cursor: "pointer", position: 'relative' }}>
           <Box
               onClick={() => {
                   if(mustBeSelectedToFlip || mustBeSelectedToFlip === undefined) {                
@@ -71,15 +74,14 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
               }}
               style={{
               width: '100%',
-              height: 500,
+              height: 600,
               position: 'relative',
               transformStyle: 'preserve-3d',
               transition: 'transform 0.6s',
               transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
               }}
           >
-          {/* Flip tip - absolutely positioned inside the card */}
-          { showFlipTip && !flipped && (
+          { showFlipTip && (
             <Box
               style={{
                 position: 'absolute',
@@ -95,6 +97,7 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
                 boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
                 cursor: 'pointer',
                 userSelect: 'none',
+                transform: flipped ? 'rotateY(180deg)' : undefined,
               }}
               onClick={e => {
                 e.stopPropagation();
@@ -116,7 +119,21 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
               left: 0,
           }}
           >
-          <ContentCard variant='elevation' style={{ width: '100%', height: '100%' }}>
+          <ContentCard variant='elevation' style={{ width: '100%', height: '100%'}}>
+          { header && <Box
+              style={{
+                width: "100%",
+                height: 80,
+                display: 'flex',
+                alignItems: 'center',
+                padding: '2px 8px',
+                fontSize: 14,
+                cursor: 'pointer',
+                userSelect: 'none',
+              }}
+            >
+              {header}
+            </Box>}
               {frontContent}
           </ContentCard>
           </Box>

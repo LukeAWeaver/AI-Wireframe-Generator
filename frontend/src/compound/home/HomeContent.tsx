@@ -1,6 +1,6 @@
 import { Box } from '@components/Box'
 import { CardContent, Stack } from '@mui/material'
-import { Badge, Body2Description, H4 } from '@ui/components'
+import { Badge, Body2Description, H1, H2, H4 } from '@ui/components'
 import { projects } from '../../app/projects'
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge'
 import { usePortfolioTechnologies } from '@contexts'
@@ -9,16 +9,14 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { FlippableCard } from '@components/FlippableCard';
 
 export const HomeContent = () => {
-  const { technologiesByName } = usePortfolioTechnologies();
 
   const allTechNames: string[] = Array.from(
     new Set(projects.flatMap((p) => p.technologiesUsed))
   );
   
-  const cardFront = (<Stack>
-      <CardContent>
-        <H4>Luke Weaver</H4>
-      </CardContent>
+  const header = <H1>Luke Weaver</H1>
+
+  const cardBack = (<Stack>
       <CardContent>
         <Stack gap={2}>
           <Body2Description>
@@ -34,7 +32,14 @@ export const HomeContent = () => {
       </CardContent>
   </Stack>)
 
-    const cardBack = (<Stack>
+    const cardFront = (
+    <Stack style={{height: "100%", flex:1, justifyContent: "space-between"}}>
+      {header}
+        <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginTop: 16 }}>
+          {allTechNames.map(techKey => {
+            return <TechnologyBadge key={techKey} techName={techKey} />
+          })}
+        </Box>
       <Box style={{ display: 'flex', gap: 24, margin: '16px 0' }}>
         <a
           href="https://github.com/LukeAWeaver"
@@ -55,17 +60,6 @@ export const HomeContent = () => {
           <LinkedInIcon fontSize="large" />
         </a>
       </Box>
-      <H4>Technologies Used</H4>
-      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginTop: 16 }}>
-        {allTechNames.map(techKey => {
-          const technology = technologiesByName[techKey]
-          return technology ? (
-            <TechnologyBadge key={techKey} technology={technology} />
-          ) : (
-            <Badge key={techKey}>{techKey}</Badge>
-          )
-        })}
-      </Box>
   </Stack>)
 
 
@@ -75,9 +69,8 @@ export const HomeContent = () => {
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      marginTop: 40,
     }}>
-      <FlippableCard showFlipTip={true} frontContent={cardFront} backContent={cardBack} />
+      <FlippableCard showFlipTip={true} flexHeight={true} frontContent={cardFront} backContent={cardBack} />
     </Box>
   )
 }

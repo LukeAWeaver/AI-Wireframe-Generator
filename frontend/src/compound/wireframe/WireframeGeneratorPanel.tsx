@@ -3,11 +3,12 @@ import { Box, Typography, TextField, Button, Card, CardContent, Grid, Divider, u
 import { HelpOutline } from '@mui/icons-material';
 import { useUser } from '@hooks/useUser';
 import { useRightSidebar } from '@contexts';
-import { WireframeSectionHeading, ContentCard } from '@ui/components';
+import { WireframeSectionHeading, ContentCard, H4 } from '@ui/components';
 import { Tooltip } from '@components/Tooltip';
+import { Stack } from '@ui/primitives';
 
 export const WireframeGeneratorPanel = () => {
-  const { username, uuid, incrementUserBuildCount } = useUser();
+  const { username, uuid, build_count, incrementUserBuildCount } = useUser();
   const [input, setInput] = useState('');
   const [wireframe, setWireframe] = useState<string | null>(null);
   const { setSidebarContent } = useRightSidebar();
@@ -73,8 +74,14 @@ export const WireframeGeneratorPanel = () => {
     <Box sx={{ flex: 1, p: { xs: 2, md: 4 }, display: 'flex', flexDirection: 'column', gap: 3 }}>
       {/* User Info */}
       <ContentCard>
-        <Typography variant="subtitle1">User: <b>{username}</b></Typography>
-        <Typography variant="body2" color="text.secondary">User ID: {uuid}</Typography>
+        <Stack gap={2}>
+          <H4>User Profile</H4>
+          <Stack gap={1}>
+          <Typography variant="subtitle1">User: <b>{username}</b></Typography>
+          <Typography variant="subtitle1">build count: <b>{build_count}</b></Typography>
+          <Typography variant="body2" color="text.secondary">User ID: {uuid}</Typography>
+          </Stack>
+        </Stack>
       </ContentCard>
       {/* Build Form */}
       <ContentCard sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>

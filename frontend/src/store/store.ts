@@ -21,7 +21,16 @@ const rootReducer = combineReducers({
   // auth: authReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// Create a wrapper reducer that handles RESET_APP_STATE
+const appReducer = (state: any, action: any) => {
+  if (action.type === 'RESET_APP_STATE') {
+    // Reset to initial state by returning undefined, which will be replaced with initial state
+    return rootReducer(undefined, action);
+  }
+  return rootReducer(state, action);
+};
+
+const persistedReducer = persistReducer(persistConfig, appReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -41,4 +50,9 @@ export type AppDispatch = typeof store.dispatch;
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector; 
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+// Action creator for resetting app state
+export const resetAppState = () => ({
+  type: 'RESET_APP_STATE' as const,
+}); 

@@ -35,6 +35,8 @@ class User(models.Model):
     username = models.CharField(max_length=20, unique=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     build_count = models.PositiveIntegerField(default=0)
+    onboarding_complete = models.BooleanField(default=False)
+    theme_pref = models.CharField(max_length=16, default='light')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

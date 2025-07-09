@@ -4,6 +4,7 @@ import {  ContentCard, H4 } from '@ui/components'
 import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import { useTutorialsContext } from '@contexts/TutorialsContext';
 import { Stack } from '@ui/primitives';
+import { useThemeContext } from '@contexts/ThemeContext';
 
 interface IFlippableCard {
     frontContent: ReactNode
@@ -17,6 +18,7 @@ interface IFlippableCard {
 export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mustBeSelectedToFlip, header, flexHeight}: IFlippableCard) => {
   const [flipped, setFlipped] = useState(false)
   const { flipControlsAck, setFlipControlsAck } = useTutorialsContext();
+  const { isDarkMode } = useThemeContext();
   return (
     <>
       {/* Overlay for tutorial - covers entire page, pointerEvents: none */}
@@ -119,7 +121,9 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
               left: 0,
           }}
           >
-          <ContentCard variant='elevation' style={{ width: '100%', height: '100%'}}>
+          <ContentCard variant='elevation' style={{ width: '100%', height: '100%', background: isDarkMode 
+        ? 'linear-gradient(135deg,rgba(9, 9, 16, 0.1) 0%,rgba(22, 33, 62, 1) 50%)'
+        : 'linear-gradient(135deg,rgba(98, 101, 163, 0.1) 0%,rgba(255, 255, 255, 1) 50%)'}}>
           { header && <Box
               style={{
                 width: "100%",

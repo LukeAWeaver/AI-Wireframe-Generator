@@ -70,7 +70,7 @@ export const HomeContent = () => {
               <CircularProgress />
               <Body2Description>Loading technologies...</Body2Description>
             </Stack>
-            <Body2Description>...hosting with Render free web service takes a while, doesn't it?</Body2Description>
+            <Body2Description>...waking django backend</Body2Description>
           </Stack>
         )}
       </Box>

@@ -5,6 +5,12 @@ declare module '*.svg' {
   export default src;
 }
 
+declare module '*.svg?react' {
+  import * as React from 'react';
+  const ReactComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  export { ReactComponent };
+}
+
 // Vite environment variables
 interface IImportMetaEnv {
   readonly VITE_API_URL?: string;

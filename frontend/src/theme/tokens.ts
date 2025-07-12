@@ -30,11 +30,11 @@ export const colors = {
 };
 
 export const spacing = {
-  xs: '4px',
-  sm: '8px',
-  md: '16px',
-  lg: '24px',
-  xl: '32px',
+  xs: '0.2rem', // 4px -> 0.2rem (1rem = 20px at 125% zoom)
+  sm: '0.4rem', // 8px -> 0.4rem
+  md: '0.8rem', // 16px -> 0.8rem
+  lg: '1.2rem', // 24px -> 1.2rem
+  xl: '1.6rem', // 32px -> 1.6rem
 };
 
 export const radii = {
@@ -46,13 +46,14 @@ export const radii = {
 };
 
 export const fontSizes = {
-  xs: '12px',
-  sm: '14px',
-  md: '16px',
-  lg: '20px',
-  xl: '28px',
-  display: '40px',
+  xs: '0.6rem', // 12px -> 0.6rem
+  sm: '0.7rem', // 14px -> 0.7rem
+  md: '0.8rem', // 16px -> 0.8rem
+  lg: '1rem',   // 20px -> 1rem
+  xl: '1.4rem', // 28px -> 1.4rem
+  display: '2rem', // 40px -> 2rem
 };
+// [REVIEW] If the base html font-size is not 20px, these rem values may need further adjustment for perfect scaling.
 
 export const shadows = {
   sm: '0 1px 2px rgba(20,20,30,0.25)',

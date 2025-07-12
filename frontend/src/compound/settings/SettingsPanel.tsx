@@ -4,25 +4,21 @@ import { useThemeContext, useTutorialsContext } from '@contexts';
 import { useUser } from '@hooks/useUser';
 import { FormCard } from '@ui/components';
 import { Dialog } from '@components/Dialog';
-import { useAppDispatch, resetAppState, persistor } from '../../store/store';
+import { useAppDispatch, persistor } from '../../store/store';
 import { validateUsername } from '@utils/validation';
 
 export const SettingsPanel = () => {
   const { isDarkMode, toggleTheme } = useThemeContext();
   const { resetTutorialsState } = useTutorialsContext();
   const { username, uuid, updateUserUsername } = useUser();
-  const dispatch = useAppDispatch();
+  useAppDispatch();
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [newUsername, setNewUsername] = useState(username || '');
   const [error, setError] = useState<string | null>(null);
 
   const handleResetAppState = async () => {
-    // Purge persisted state first
     await persistor.purge();
-    // Reset tutorials context state
     resetTutorialsState();
-    // Then dispatch the reset action
-    dispatch(resetAppState());
     setShowResetDialog(false);
   };
 
@@ -43,7 +39,6 @@ export const SettingsPanel = () => {
           Settings for user {username}
         </Typography>
         <Divider sx={{ my: 2 }} />
-
         <Typography variant="subtitle1" gutterBottom>
           Your Identifier
         </Typography>
@@ -54,7 +49,6 @@ export const SettingsPanel = () => {
           fullWidth
           sx={{ mb: 3 }}
         />
-
         <Typography variant="subtitle1" gutterBottom>
           Update Username
         </Typography>
@@ -84,7 +78,6 @@ export const SettingsPanel = () => {
           General
         </Typography>
         <Divider sx={{ my: 2 }} />
-
         <Typography variant="subtitle1" gutterBottom>
           Theme
         </Typography>
@@ -96,9 +89,7 @@ export const SettingsPanel = () => {
         >
           Toggle to {isDarkMode ? 'Light' : 'Dark'} Mode
         </Button>
-
         <Divider sx={{ my: 3 }} />
-
         <Typography variant="subtitle1" gutterBottom>
           App Management
         </Typography>
@@ -111,8 +102,6 @@ export const SettingsPanel = () => {
         >
           Reset App State
         </Button>
-
-        {/* Reset Confirmation Dialog */}
         <Dialog
           open={showResetDialog}
           onClose={() => setShowResetDialog(false)}

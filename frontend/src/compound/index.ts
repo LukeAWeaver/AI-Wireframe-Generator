@@ -1,6 +1,7 @@
 export { InputField } from './form/InputField';
 export { ButtonGroup } from './form/ButtonGroup';
-export { ProjectCard } from './projects/ProjectCard';
+export { ProjectCard } from './projects/projectCard/ProjectCard';
+export { ProjectCardSummary } from './projects/projectCard/ProjectCardSummary'
 export { TechnologyBadge } from './projects/TechnologyBadge';
 export { DynamicForm } from './form/DynamicForm';
 export { LoginForm } from './login/LoginForm';

@@ -1,18 +1,33 @@
 import { Box } from '@components/Box'
-import { CardContent, Stack } from '@mui/material'
+import { CardContent, CircularProgress, Stack } from '@mui/material'
 import { Body2Description, H1 } from '@ui/components'
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge'
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { FlippableCard } from '@components/FlippableCard';
+import GitHubIcon from '@mui/icons-material/GitHub'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import { FlippableCard } from '@components/FlippableCard'
 import { usePortfolioTechnologies } from '@contexts/PortfolioTechnologiesContext'
+import { useRef, useState, useLayoutEffect } from 'react'
 
 export const HomeContent = () => {
-  const { technologies } = usePortfolioTechnologies();
-  const displayedTechnologyNames = ["React", "React Native", "GraphQL", "Django", "Github Actions", "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"]
+  const { technologies } = usePortfolioTechnologies()
+  const displayedTechnologyNames = [
+    "React", "React Native", "GraphQL", "Django", "Github Actions",
+    "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"
+  ]
+
+  const [cardHeight, setCardHeight] = useState<number | null>(null)
+  const backRef = useRef<HTMLDivElement | null>(null)
+
+  useLayoutEffect(() => {
+    if (backRef.current !== null) {
+      setCardHeight(backRef.current.offsetHeight)
+    }
+  }, [technologies])
+
   const header = <H1>Luke Weaver</H1>
 
-  const cardBack = (<Stack>
+  const cardBack = (
+    <Stack ref={backRef}>
       <CardContent>
         <Stack gap={2}>
           <Body2Description>
@@ -26,20 +41,39 @@ export const HomeContent = () => {
           </Body2Description>
         </Stack>
       </CardContent>
-  </Stack>)
+    </Stack>
+  )
 
-    const cardFront = (
-    <Stack style={{height: "100%", flex:1, justifyContent: "space-between"}}>
+  const cardFront = (
+    <Stack style={{
+      height: cardHeight !== null ? `${cardHeight}px` : 'auto',
+      justifyContent: "space-between",
+      flex: 1,
+    }}>
       {header}
-        <Box style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginTop: 16 }}>
-          {technologies && technologies.length > 0 ? (
-            technologies.filter(tech => displayedTechnologyNames.includes(tech.name)).map(tech => (
+      <Box style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 16,
+        justifyContent: 'center',
+        marginTop: 16,
+      }}>
+        {technologies && technologies.length > 0 ? (
+          technologies
+            .filter(tech => displayedTechnologyNames.includes(tech.name))
+            .map(tech => (
               <TechnologyBadge key={tech.id} techName={tech.name} />
             ))
-          ) : (
-            <Body2Description>Loading technologies...</Body2Description>
-          )}
-        </Box>
+        ) : (
+          <Stack gap={1}>
+            <Stack direction={"row"} gap={1}>
+              <CircularProgress />
+              <Body2Description>Loading technologies...</Body2Description>
+            </Stack>
+            <Body2Description>...hosting with Render free web service takes a while, doesn't it?</Body2Description>
+          </Stack>
+        )}
+      </Box>
       <Box style={{ display: 'flex', gap: 24, margin: '16px 0' }}>
         <a
           href="https://github.com/LukeAWeaver"
@@ -60,8 +94,8 @@ export const HomeContent = () => {
           <LinkedInIcon fontSize="large" />
         </a>
       </Box>
-  </Stack>)
-
+    </Stack>
+  )
 
   return (
     <Box style={{
@@ -70,7 +104,12 @@ export const HomeContent = () => {
       alignItems: 'center',
       height: '100vh',
     }}>
-      <FlippableCard showFlipTip={true} flexHeight={true} frontContent={cardFront} backContent={cardBack} />
+      <FlippableCard
+        showFlipTip={true}
+        flexHeight={false}
+        frontContent={cardFront}
+        backContent={cardBack}
+      />
     </Box>
   )
 }

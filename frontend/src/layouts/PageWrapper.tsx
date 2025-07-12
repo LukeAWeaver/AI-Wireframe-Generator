@@ -38,7 +38,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         {props.sidebarLeft && !isMobile && (
           <Box
             sx={{
-              width: 240,
+              width: '12rem', // 240px -> 12rem
               flexShrink: 0,
               height: '100%',
               display: 'flex',
@@ -59,7 +59,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
             flexDirection: 'column',
             height: '100%',
             px: { xs: 0, md: 0 },
-            py: { xs: 1, md: 2 },
+            py: { xs: '0.5rem', md: '1rem' }, // 1 = 0.5rem, 2 = 1rem
           }}
         >
           {props.children}
@@ -69,7 +69,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         {sidebarContent && !isMobile && (
           <Box
             sx={{
-              width: 300,
+              width: '15rem', // 300px -> 15rem
               flexShrink: 0,
               borderLeft: '1px solid',
               borderColor: 'divider',
@@ -88,7 +88,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         <Box
           sx={{
             width: '100%',
-            height: 60,
+            height: '3rem', // 60px -> 3rem
             borderTop: '1px solid',
             borderColor: 'divider',
             flexShrink: 0,

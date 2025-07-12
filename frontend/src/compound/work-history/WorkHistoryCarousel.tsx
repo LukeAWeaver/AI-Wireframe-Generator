@@ -48,7 +48,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
   return (
     <Stack
       minHeight={0}
-      width="100%"
+      width="100vw" // changed from '100%' to '100vw' for full viewport width
       height="100%"
       justifyContent="space-between"
       alignItems="center"
@@ -67,7 +67,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
     >
       <Box
         className="embla"
-        width="100%"
+        width="100vw" // changed from '100%' to '100vw'
         flexGrow={1}
         ref={emblaRef}
         sx={{
@@ -91,9 +91,9 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
             <Box
               key={item.company + item.duration}
               sx={{
-                marginLeft: idx === 0 ? 8 : 0,
-                marginRight: idx === workHistory.length - 1 ? 8 : 0,
-                minWidth: '100%',
+                marginLeft: idx === 0 ? '2vw' : 0, // changed from 8px to 2vw
+                marginRight: idx === workHistory.length - 1 ? '2vw' : 0, // changed from 8px to 2vw
+                minWidth: '100vw', // changed from '100%'
                 minHeight: '100%',
                 boxSizing: 'border-box',
                 transition: 'opacity 0.2s, transform 0.3s',
@@ -107,7 +107,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
           ))}
         </Box>
       </Box>
-      <Box sx={{ width: { xs: '90%', sm: 500 }, mt: 3 }}>
+      <Box sx={{ width: { xs: '90vw', sm: '40rem' }, mt: '2.5rem' }}> {/* changed 500px to 40rem, 3 to 2.5rem */}
         <Slider
           value={selectedIndex}
           min={0}

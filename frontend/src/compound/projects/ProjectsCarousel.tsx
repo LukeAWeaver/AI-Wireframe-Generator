@@ -1,22 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { useRightSidebar } from '@contexts'
-import { TechnologyBadge } from '@compound'
-import { ProjectCard } from '@compound'
+import { ProjectCard, ProjectCardSummary } from '@compound'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material'
-import { ProjectPurpose, ProjectDescription } from '@ui/components'
 import { PaginationControls } from './PaginationControls'
 
 interface IProject {
-  id: string
-  title: string
-  url: string
-  purpose: string
-  svgDiagram: string
-  technologiesUsed: string[]
-  description: string
+  id: string;
+  title: string;
+  url: string;
+  purpose: string;
+  svgDiagram: string;
+  technologiesUsed: string[];
+  description: string;
 }
 
 interface ProjectsCarouselProps {
@@ -32,12 +30,15 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
     containScroll: 'trimSnaps',
   })
 
+
+
+  const theme = useTheme()
+  const { setSidebarContent } = useRightSidebar()
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const { setSidebarContent } = useRightSidebar()
-  const theme = useTheme()
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -82,29 +83,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
   useEffect(() => {
     const project = projects[selectedIndex]
     setSidebarContent(
-      <Box
-        sx={{
-          p: 4,
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <ProjectPurpose>
-          {project.purpose}
-        </ProjectPurpose>
-        <ProjectDescription>
-          {project.description}
-        </ProjectDescription>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
-          {project.technologiesUsed.map(techKey => {
-            return <TechnologyBadge key={techKey} techName={techKey} />
-          })}
-        </Box>
-      </Box>
+      <ProjectCardSummary {...project} />
     )
   }, [selectedIndex, setSidebarContent, projects, theme.palette.text.secondary])
 
@@ -123,7 +102,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
     <Stack
       minHeight={0}
       width="100%"
-      height="100%"
+      height="100vh"
       justifyContent="space-between"
       alignItems="center"
       onKeyDown={handleKeyDown}
@@ -166,18 +145,23 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
               <Box
                 key={project.id}
                 sx={{
+                  marginTop: 5,
                   marginLeft: idx === 0 ? 8 : 0,
                   marginRight: idx === projects.length -1 ? 8 : 0,
-                  minWidth: "100%",
-                  minHeight: "100%",
+                  width: { xs: idx === selectedIndex ? '90%' : '60%', md: idx === selectedIndex ? '70%' : '35%' },
+                  minWidth: { xs: idx === selectedIndex ? '90%' : '60%', md: idx === selectedIndex ? '70%' : '35%' },
+                  maxWidth: { xs: idx === selectedIndex ? '90%' : '60%', md: idx === selectedIndex ? '70%' : '35%' },
+                  minHeight: '100%',
                   boxSizing: 'border-box',
-                  transition: 'opacity 0.2s, transform 0.3s',
+                  transition: 'opacity 0.2s, transform 0.3s, width 0.3s',
                   transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
                   opacity: idx === selectedIndex ? 1 : 0.7,
+                  zIndex: idx === selectedIndex ? 2 : 1,
                 }}
                 onClick={() => emblaApi && emblaApi.scrollTo(idx)}
               >
                 <ProjectCard
+                  purpose={project.purpose}
                   isSelected={idx === selectedIndex}
                   title={project.title}
                   description={project.description}

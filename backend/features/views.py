@@ -10,13 +10,18 @@ from django.db import IntegrityError
 import os
 import re
 import html
+from django.views.decorators.cache import cache_control
+from django.utils.decorators import method_decorator
+from rest_framework.request import Request
+from rest_framework.response import Response
+from typing import Any
 
 class FeatureAnalysisViewSet(viewsets.ModelViewSet):
     queryset = FeatureAnalysis.objects.all().order_by('-created_at')
     serializer_class = FeatureAnalysisSerializer
     permission_classes = [IsAuthenticated]
 
-    def sanitize_input(self, text):
+    def sanitize_input(self, text: str) -> str:
         """Sanitize user input to prevent XSS and injection attacks"""
         if not text:
             return ""
@@ -28,7 +33,7 @@ class FeatureAnalysisViewSet(viewsets.ModelViewSet):
         return text[:1000]
 
     @action(detail=False, methods=['post'])
-    def analyze(self, request):
+    def analyze(self, request: Request) -> Response:
         try:
             # Validate required fields
             feature = request.data.get('feature')
@@ -36,9 +41,11 @@ class FeatureAnalysisViewSet(viewsets.ModelViewSet):
             priority = request.data.get('priority')
 
             if not all([feature, complexity, priority]):
-                return Response({
+                response = Response({
                     'error': 'feature, complexity, and priority are required'
                 }, status=status.HTTP_400_BAD_REQUEST)
+                response['Cache-Control'] = 'no-store'
+                return response
 
             # Sanitize inputs
             feature = self.sanitize_input(feature)
@@ -50,14 +57,18 @@ class FeatureAnalysisViewSet(viewsets.ModelViewSet):
             valid_priorities = ['low', 'medium', 'high', 'critical']
 
             if complexity.lower() not in valid_complexities:
-                return Response({
+                response = Response({
                     'error': f'complexity must be one of: {", ".join(valid_complexities)}'
                 }, status=status.HTTP_400_BAD_REQUEST)
+                response['Cache-Control'] = 'no-store'
+                return response
 
             if priority.lower() not in valid_priorities:
-                return Response({
+                response = Response({
                     'error': f'priority must be one of: {", ".join(valid_priorities)}'
                 }, status=status.HTTP_400_BAD_REQUEST)
+                response['Cache-Control'] = 'no-store'
+                return response
 
             # Create the prompt with sanitized content
             prompt = f"""
@@ -79,9 +90,11 @@ class FeatureAnalysisViewSet(viewsets.ModelViewSet):
 
             # Initialize OpenAI client with error handling
             if not hasattr(settings, 'OPENAI_API_KEY') or not settings.OPENAI_API_KEY:
-                return Response({
+                response = Response({
                     'error': 'OpenAI API key not configured'
                 }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                response['Cache-Control'] = 'no-store'
+                return response
 
             client = openai.OpenAI(api_key=settings.OPENAI_API_KEY)
 
@@ -105,9 +118,11 @@ class FeatureAnalysisViewSet(viewsets.ModelViewSet):
 
                 analysis = completion.choices[0].message.content
             except Exception as openai_error:
-                return Response({
+                response = Response({
                     'error': f'OpenAI API error: {str(openai_error)}'
                 }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                response['Cache-Control'] = 'no-store'
+                return response
 
             # Create and save the feature analysis with user association
             feature_obj = FeatureAnalysis.objects.create(
@@ -118,67 +133,86 @@ class FeatureAnalysisViewSet(viewsets.ModelViewSet):
                 created_by=request.user  # Associate with authenticated user
             )
 
-            return Response({
+            response = Response({
                 'id': feature_obj.id,
                 'analysis': analysis
             }, status=status.HTTP_201_CREATED)
+            response['Cache-Control'] = 'no-store'
+            return response
 
         except Exception as e:
-            return Response({
+            response = Response({
                 'error': 'Internal server error'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            response['Cache-Control'] = 'no-store'
+            return response
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             try:
                 user = serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                response = Response(serializer.data, status=status.HTTP_201_CREATED)
+                response['Cache-Control'] = 'no-store'
+                return response
             except IntegrityError:
-                return Response(
+                response = Response(
                     {'error': 'Username already exists'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                response['Cache-Control'] = 'no-store'
+                return response
+        response = Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        response['Cache-Control'] = 'no-store'
+        return response
 
     @action(detail=False, methods=['post'])
-    def increment_build_count(self, request):
+    def increment_build_count(self, request: Request) -> Response:
         """Increment the build count for the current user"""
         try:
             # Get the user by username from the request
             username = request.data.get('username')
             if not username:
-                return Response(
+                response = Response(
                     {'error': 'Username is required'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
+                response['Cache-Control'] = 'no-store'
+                return response
             
             user = User.objects.get(username=username)
             user.build_count += 1
             user.save()
             
-            return Response({
+            response = Response({
                 'username': user.username,
                 'uuid': user.uuid,
                 'build_count': user.build_count
             }, status=status.HTTP_200_OK)
+            response['Cache-Control'] = 'no-store'
+            return response
             
         except User.DoesNotExist:
-            return Response(
+            response = Response(
                 {'error': 'User not found'},
                 status=status.HTTP_404_NOT_FOUND
             )
+            response['Cache-Control'] = 'no-store'
+            return response
         except Exception as e:
-            return Response(
+            response = Response(
                 {'error': 'Failed to increment build count'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+            response['Cache-Control'] = 'no-store'
+            return response
 
+@method_decorator(cache_control(public=True, max_age=3600), name='dispatch')
 class PortfolioTechnologyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = PortfolioTechnology.objects.all().order_by('category', 'name')
     serializer_class = PortfolioTechnologySerializer

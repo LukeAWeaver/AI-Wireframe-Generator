@@ -78,7 +78,7 @@ export const FlippableCard = ({
         style={{
           perspective: '1200px',
           minWidth: '20rem',
-          maxWidth: '100%',
+          maxWidth: flexHeight ? '36rem' : '100%',
           height: flexHeight ? '100vh' : 'auto',
           width: '100%',
           margin: '0 auto',

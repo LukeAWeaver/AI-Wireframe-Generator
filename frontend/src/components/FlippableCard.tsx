@@ -5,6 +5,7 @@ import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import { useTutorialsContext } from '@contexts/TutorialsContext';
 import { Stack } from '@ui/primitives';
 import { useThemeContext } from '@contexts/ThemeContext';
+import { useTheme, useMediaQuery } from '@mui/material';
 
 interface IFlippableCard {
   frontContent: ReactNode;
@@ -26,6 +27,9 @@ export const FlippableCard = ({
   const [flipped, setFlipped] = useState(false);
   const { flipControlsAck, setFlipControlsAck } = useTutorialsContext();
   const { isDarkMode } = useThemeContext();
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const aspectRatio = flexHeight ? (isMdUp ? '4 / 3' : '3 / 4') : undefined;
 
   return (
     <>
@@ -78,13 +82,15 @@ export const FlippableCard = ({
         style={{
           perspective: '1200px',
           minWidth: '20rem',
-          maxWidth: flexHeight ? '36rem' : '100%',
+          width: flexHeight ? 'auto' : '100%',
           height: flexHeight ? '100vh' : 'auto',
-          width: '100%',
+          maxWidth: flexHeight ? '100vw' : '100%',
+          aspectRatio: aspectRatio,
           margin: '0 auto',
           cursor: 'pointer',
           position: 'relative',
           maxHeight: '100vh',
+          overflow: 'hidden',
         }}
       >
         <Box

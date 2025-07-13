@@ -78,7 +78,7 @@ export const FlippableCard = ({
         style={{
           perspective: '1200px',
           minWidth: '20rem',
-          maxWidth: '36rem',
+          maxWidth: flexHeight ? '36rem' : '100%',
           height: flexHeight ? '100vh' : 'auto',
           width: '100%',
           margin: '0 auto',
@@ -97,7 +97,7 @@ export const FlippableCard = ({
             width: '100%',
             minHeight: '26rem',
             maxHeight: '80vh',
-            height: 'auto',
+            height: '100%',
             position: 'relative',
             transformStyle: 'preserve-3d',
             transition: 'transform 0.6s',
@@ -135,6 +135,7 @@ export const FlippableCard = ({
             style={{
               position: 'absolute',
               width: '100%',
+              height: '100%',
               backfaceVisibility: 'hidden',
               top: 0,
               left: 0,
@@ -145,6 +146,7 @@ export const FlippableCard = ({
               variant="elevation"
               style={{
                 width: '100%',
+                height: '100%',
                 background: isDarkMode
                   ? 'linear-gradient(135deg,rgba(9, 9, 16, 0.1) 0%,rgba(22, 33, 62, 1) 50%)'
                   : 'linear-gradient(135deg,rgba(98, 101, 163, 0.1) 0%,rgba(255, 255, 255, 1) 50%)',
@@ -174,6 +176,7 @@ export const FlippableCard = ({
             style={{
               position: 'absolute',
               width: '100%',
+              height: '100%',
               backfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
               top: 0,
@@ -188,6 +191,7 @@ export const FlippableCard = ({
               variant="elevation"
               style={{
                 width: '100%',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

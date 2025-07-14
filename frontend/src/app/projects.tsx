@@ -21,12 +21,12 @@ const projects: IProject[] = [
     url: 'https://github.com/LukeAWeaver/AI-UX-visualization',
     svgDiagram: RDAIArchDiagram,
     technologiesUsed: ['React', 'Django', 'TypeScript', 'MUI', 'Redux Toolkit', 'Axios'],
-    description: "A full-stack monorepo web app that takes natural language descriptions from users and returns rendered wireframes via a local AI model (Ollama). This app tunnels API requests securely to a local GPU-hosted LLM over Cloudflare. Ideal for visual prototyping and real-time prompt-to-layout interactions.",
+    description: "A full-stack monorepo web app that takes natural language descriptions from users and returns rendered wireframes utilizing Ollama + llama4:Mavrick. This app tunnels API requests securely to a GPU-hosted LLM over Cloudflare. Ideal for visual prototyping and real-time prompt-to-layout interactions.",
     // description: `The project follows a modern monorepo architecture with a clear separation between frontend and backend services. The frontend is built with React, TypeScript, and Material-UI (MUI), utilizing a comprehensive theming system that defines design tokens (colors, typography, spacing, etc.) in a centralized theme/index.ts file. The backend is an Express.js API that handles AI-related requests. Both services are containerized using Docker, with hot-reloading enabled for development through volume mounts and nodemon (backend) and Vite (frontend). The architecture emphasizes type safety with TypeScript throughout, modular component design with reusable UI components like DynamicForm, and a clean separation of concerns where the frontend handles UI/UX while the backend manages AI processing and data operations. The entire system is orchestrated through Docker Compose, which manages the services, volumes, and networking, making it easy to develop and deploy the application as a cohesive unit.`,
   },
   {
     id: 'tech-dem0-files',
-    title: 'React + Next.js',
+    title: 'NextFire Stack',
     url: 'https://github.com/LukeAWeaver/tech-dem0-files',
     purpose: "Stock Analyzer",
     svgDiagram: nextServerlessDiagram,
@@ -35,7 +35,7 @@ const projects: IProject[] = [
   },
   {
     id: 'soda-sopa-files',
-    title: 'React + AWS',
+    title: 'Serverless JAMstack',
     url: 'https://github.com/LukeAWeaver/SodaSopa-Vite',
     purpose: "Soda Machine for Gamers",
     svgDiagram: reactServerlessArchDiagram,

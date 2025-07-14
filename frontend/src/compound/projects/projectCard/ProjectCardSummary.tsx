@@ -1,5 +1,5 @@
 import { Box } from '@components/Box';
-import { ProjectDescription, H5 } from '@ui/components';
+import { ProjectDescription, H5, H3 } from '@ui/components';
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge';
 import { Stack } from '@ui/primitives';
 
@@ -17,12 +17,12 @@ export const ProjectCardSummary = ({ purpose, description, technologiesUsed }: P
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             alignItems: 'center',
             textAlign: 'center',
         }}
     >
-        <H5 style={{ textAlign: 'center' }}>{purpose}</H5>
+        <H3 style={{ textAlign: 'center', paddingTop: 10 }}>{purpose}</H3>
         <ProjectDescription>
             {description}
         </ProjectDescription>

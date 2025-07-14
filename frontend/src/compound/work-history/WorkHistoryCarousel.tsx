@@ -67,7 +67,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
     >
       <Box
         className="embla"
-        width="100vw" // changed from '100%' to '100vw'
+        width="70%"
         flexGrow={1}
         ref={emblaRef}
         sx={{
@@ -91,23 +91,21 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
             <Box
               key={item.company + item.duration}
               sx={{
-                marginLeft: idx === 0 ? '2vw' : 0, // changed from 8px to 2vw
-                marginRight: idx === workHistory.length - 1 ? '2vw' : 0, // changed from 8px to 2vw
-                minWidth: '100vw', // changed from '100%'
+                minWidth: '100vw',
                 minHeight: '100%',
                 boxSizing: 'border-box',
                 transition: 'opacity 0.2s, transform 0.3s',
-                transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
+                transform: idx === selectedIndex ? 'scale(0.8)' : 'scale(0.6)',
                 opacity: idx === selectedIndex ? 1 : 0.7,
               }}
               onClick={() => emblaApi && emblaApi.scrollTo(idx)}
             >
-              <WorkHistoryCard item={item} />
+              <WorkHistoryCard item={item} mustBeSelectedToFlip={idx === selectedIndex} />
             </Box>
           ))}
         </Box>
       </Box>
-      <Box sx={{ width: { xs: '90vw', sm: '40rem' }, mt: '2.5rem' }}> {/* changed 500px to 40rem, 3 to 2.5rem */}
+      <Box sx={{ width: '100%', maxWidth: '40rem', mt: '2.5rem', overflow: 'visible' }}>
         <Slider
           value={selectedIndex}
           min={0}

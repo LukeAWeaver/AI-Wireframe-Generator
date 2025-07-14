@@ -40,10 +40,16 @@ export const ProjectCard = (props: ProjectCardProps) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      width: '100%',
+      maxWidth: '100%',
+      maxHeight: '80vh',
       height: 'auto',
-      width: "100%", 
     }}>
-    <FlippableCard flexHeight={true} mustBeSelectedToFlip={isSelected} frontContent={frontContent} backContent={backContent} />
+      <FlippableCard
+        mustBeSelectedToFlip={isSelected}
+        frontContent={frontContent}
+        backContent={backContent}
+      />
     </Box>
   );
 }; 

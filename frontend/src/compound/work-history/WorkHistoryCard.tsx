@@ -6,9 +6,10 @@ import { FlippableCard } from '@components/FlippableCard';
 
 export interface WorkHistoryCardProps {
   item: IWorkCard;
+  mustBeSelectedToFlip?: boolean;
 }
 
-export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item }) => {
+export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item, mustBeSelectedToFlip }) => {
   // Front: Concise Overview
   const frontContent = (
     <Stack spacing={2} style={{ flex: 1, height: '100%', justifyContent: 'space-between' }}>
@@ -19,6 +20,7 @@ export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item }) => {
         <Typography variant="body2" color="text.secondary" gutterBottom>
           Duration: {item.duration}
         </Typography>
+        </Box>
         <Divider sx={{ my: 1.5 }} />
         <Typography variant="subtitle2" fontWeight={600} gutterBottom>
           Key Areas:
@@ -46,7 +48,6 @@ export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item }) => {
             <TechnologyBadge key={tech} techName={tech} />
           ))}
         </Box>
-      </Box>
     </Stack>
   );
 
@@ -76,6 +77,22 @@ export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item }) => {
   );
 
   return (
-    <FlippableCard frontContent={frontContent} backContent={backContent} flexHeight={true} />
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: '100%',
+        maxHeight: '80vh',
+        height: 'auto',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <FlippableCard
+        frontContent={frontContent}
+        backContent={backContent}
+        mustBeSelectedToFlip={mustBeSelectedToFlip}
+      />
+    </Box>
   );
 }; 

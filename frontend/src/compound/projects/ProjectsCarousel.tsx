@@ -83,7 +83,9 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
   useEffect(() => {
     const project = projects[selectedIndex]
     setSidebarContent(
-      <ProjectCardSummary {...project} />
+      <Box style={{maxHeight: "max-content", flex: 1, justifyContent: "center"}}>
+        <ProjectCardSummary {...project} />
+      </Box>
     )
   }, [selectedIndex, setSidebarContent, projects, theme.palette.text.secondary])
 
@@ -135,6 +137,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
           <Box
             className="embla__container"
             sx={{
+              marginTop: 10,
               display: 'flex',
               alignItems: 'center',
               width: '100%',
@@ -145,9 +148,6 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
               <Box
                 key={project.id}
                 sx={{
-                  marginTop: 5,
-                  marginLeft: idx === 0 ? 8 : 0,
-                  marginRight: idx === projects.length -1 ? 8 : 0,
                   width: { xs: idx === selectedIndex ? '100%' : '80%', md: idx === selectedIndex ? '100%' : '60%' },
                   minWidth: { xs: idx === selectedIndex ? '100%' : '80%', md: idx === selectedIndex ? '100%' : '60%' },
                   maxWidth: { xs: idx === selectedIndex ? '100%' : '80%', md: idx === selectedIndex ? '100%' : '60%' },

@@ -11,13 +11,14 @@ interface ProjectCardArchOverviewProps {
 
 export const ProjectCardArchOverview = ({ title, imageUrl, url }: ProjectCardArchOverviewProps) => (
     <Stack style={{ flex: 1, display: 'flex', height: "100%", justifyContent: 'space-between' }}>
-        <Box style={{ flex: 1, flexGrow: 1, flexShrink: 0 }}>
+        <Box style={{ flex: 1, flexGrow: 1, flexShrink: 0, alignItems: "center", flexDirection: "column" }}>
             <H3 style={{ textAlign: 'center' }}>{title}</H3>
             <img
                 src={imageUrl}
                 alt={title}
                 style={{
-                    width: '100%',
+                    width: "100%",
+                    alignSelf: "center",
                     objectFit: 'contain',
                     borderRadius: 8,
                 }}

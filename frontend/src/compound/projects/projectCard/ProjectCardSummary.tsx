@@ -1,5 +1,5 @@
 import { Box } from '@components/Box';
-import { ProjectDescription, H5, H3 } from '@ui/components';
+import { ProjectDescription, H3 } from '@ui/components';
 import { TechnologyBadge } from '@compound/projects/TechnologyBadge';
 import { Stack } from '@ui/primitives';
 

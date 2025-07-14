@@ -6,7 +6,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { FlippableCard } from '@components/FlippableCard'
 import { usePortfolioTechnologies } from '@contexts/PortfolioTechnologiesContext'
-import { useRef, useState, useLayoutEffect } from 'react'
+import { useRef, useLayoutEffect } from 'react'
 
 export const HomeContent = () => {
   const { technologies } = usePortfolioTechnologies()
@@ -15,12 +15,10 @@ export const HomeContent = () => {
     "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"
   ]
 
-  const [cardHeight, setCardHeight] = useState<number | null>(null)
   const backRef = useRef<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
     if (backRef.current !== null) {
-      setCardHeight(backRef.current.offsetHeight)
     }
   }, [technologies])
 

@@ -45,85 +45,7 @@ export const HomeContent = () => {
   )
 
   const cardFront = (
-    <Stack style={{
-      height: cardHeight !== null ? `${cardHeight}px` : 'auto',
-      justifyContent: "space-between",
-      flex: 1,
-    }}>
-      {header}
-      <Box style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: 16,
-        justifyContent: 'center',
-        marginTop: 16,
-      }}>
-        {technologies && technologies.length > 0 ? (
-          technologies
-            .filter(tech => displayedTechnologyNames.includes(tech.name))
-            .map(tech => (
-              <TechnologyBadge key={tech.id} techName={tech.name} />
-            ))
-        ) : (
-          <Stack gap={1}>
-            <Stack direction={"row"} gap={1}>
-              <CircularProgress />
-              <Body2Description>Loading technologies...</Body2Description>
-            </Stack>
-            <Body2Description>...waking django backend</Body2Description>
-          </Stack>
-        )}
-      </Box>
-      <Box style={{ display: 'flex', gap: 24, margin: '16px 0' }}>
-        <a
-          href="https://github.com/LukeAWeaver"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          style={{ color: 'inherit' }}
-        >
-          <GitHubIcon fontSize="large" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/fullstackengineer/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          style={{ color: 'inherit' }}
-        >
-          <LinkedInIcon fontSize="large" />
-        </a>
-      </Box>
-    </Stack>
-  )
-
-  return (
-    <Box
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        width: '100vw',
-        overflow: 'auto',
-      }}
-    >
-      <Box
-        style={{
-          width: '50%',
-          maxWidth: '50%',
-          maxHeight: '80vh',
-          height: 'auto',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <FlippableCard
-          showFlipTip={true}
-          flexHeight={true}
-          frontContent={
-            <Stack
+    <Stack
               style={{
                 height: '100%',
                 justifyContent: 'space-between',
@@ -176,6 +98,35 @@ export const HomeContent = () => {
                 </a>
               </Box>
             </Stack>
+  )
+
+  return (
+    <Box
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100vw',
+        overflow: 'auto',
+      }}
+    >
+      <Box
+        style={{
+          width: '50%',
+          maxWidth: '50%',
+          maxHeight: '80vh',
+          height: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <FlippableCard
+          showFlipTip={true}
+          flexHeight={true}
+          frontContent={
+            cardFront
           }
           backContent={cardBack}
         />

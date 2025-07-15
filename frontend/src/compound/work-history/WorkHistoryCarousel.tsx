@@ -76,6 +76,8 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
           touchAction: 'pan-y',
           WebkitOverflowScrolling: 'touch',
           overflowX: 'hidden',
+          alignContent: "center",
+
         }}
       >
         <Box
@@ -95,7 +97,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
                 minHeight: '100%',
                 boxSizing: 'border-box',
                 transition: 'opacity 0.2s, transform 0.3s',
-                transform: idx === selectedIndex ? 'scale(0.8)' : 'scale(0.6)',
+                transform: idx === selectedIndex ? 'scale(1)' : 'scale(0.8)',
                 opacity: idx === selectedIndex ? 1 : 0.7,
               }}
               onClick={() => emblaApi && emblaApi.scrollTo(idx)}

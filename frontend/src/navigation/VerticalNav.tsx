@@ -14,7 +14,7 @@ export const VerticalNav = () => {
   const navItems = ([
     { text: 'About', to: '/', icon: <Home />, auth: true },
     { text: 'Projects', to: '/projects', icon: <Folder />, auth: true },
-    { text: 'Work History', to: '/work-history', icon: <AccountCircle />, auth: false },
+    { text: isMobile ? "Work" : 'Work History', to: '/work-history', icon: <AccountCircle />, auth: false },
     // { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
     !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     // isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },

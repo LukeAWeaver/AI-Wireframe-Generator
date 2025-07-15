@@ -16,7 +16,7 @@ interface IProject {
 const projects: IProject[] = [
   {
     id: 'this-project-files',
-    title: 'React + Django + local LLM',
+    title: 'React + DRF + LLM',
     purpose: "Wireframe Generator",
     url: 'https://github.com/LukeAWeaver/AI-UX-visualization',
     svgDiagram: RDAIArchDiagram,

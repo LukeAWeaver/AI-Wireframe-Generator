@@ -76,7 +76,8 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
               }}
               style={{
               width: '100%',
-              height: flexHeight ? 450 : 650,
+              height: flexHeight ? 450 : 6550,
+              maxHeight: "70vh",
               position: 'relative',
               transformStyle: 'preserve-3d',
               transition: 'transform 0.6s',

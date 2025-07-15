@@ -102,7 +102,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
       )}
 
       {/* Footer pinned at the bottom */}
-      {props.footer && (
+      {props.footer && !isMobile && (
         <Box
           sx={{
             width: '100%',

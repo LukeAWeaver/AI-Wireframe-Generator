@@ -77,22 +77,10 @@ export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item, mustBeSe
   );
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        maxWidth: '100%',
-        maxHeight: '80vh',
-        height: 'auto',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
       <FlippableCard
         frontContent={frontContent}
         backContent={backContent}
         mustBeSelectedToFlip={mustBeSelectedToFlip}
       />
-    </Box>
   );
 }; 

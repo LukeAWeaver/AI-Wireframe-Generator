@@ -22,8 +22,8 @@ export const PageWrapper = (props: IPageWrapperProps) => {
       component="main"
       sx={{
         background: isDarkMode 
-        ? 'linear-gradient(135deg,rgb(9, 9, 16) 0%, #16213e 100%)'
-        : 'linear-gradient(135deg,rgb(98, 101, 163) 0%, #fefeff 100%)',
+        ? 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)'
+        : 'linear-gradient(135deg,rgba(0, 241, 254, 0.09),rgba(127, 127, 213, 0.53),rgba(194, 110, 146, 0.26))',
         width: '100%',
         height: '100%',
         overflow: 'hidden',
@@ -102,7 +102,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
       )}
 
       {/* Footer pinned at the bottom */}
-      {props.footer && !isMobile && (
+      {/* {props.footer && !isMobile && (
         <Box
           sx={{
             width: '100%',
@@ -111,7 +111,7 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         >
           {props.footer}
         </Box>
-      )}
+      )} */}
     </Box>
   );
 }; 

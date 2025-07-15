@@ -8,11 +8,11 @@ export interface ProjectCardProps {
   description: string;
   technologies: string[];
   purpose: string;
-  imageUrl: string;
+  SvgDiagram: React.ComponentType<any>;
   onViewDetails?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
-  isSelected: boolean
+  isSelected: boolean;
   url?: string;
 }
 
@@ -21,14 +21,14 @@ export const ProjectCard = (props: ProjectCardProps) => {
     title,
     description,
     technologies,
-    imageUrl,
+    SvgDiagram,
     isSelected,
     url,
     purpose,
   } = props;
 
   const frontContent = (
-      <ProjectCardArchOverview title={title} imageUrl={imageUrl} url={url} />
+      <ProjectCardArchOverview title={title} SvgDiagram={SvgDiagram} url={url} />
   );
 
   const backContent = (

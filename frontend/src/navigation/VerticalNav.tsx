@@ -25,9 +25,12 @@ export const VerticalNav = () => {
   return (
     <Box 
       height="100%"
-      sx={{ 
+      sx={{
+        backgroundColor: "rgb(255, 255, 255, 0.01)",
+        backdropFilter: "blur(10px)",
         width: isMobile ? '100%' : 240, 
-        flexShrink: 0,  
+        flexShrink: 0,
+        zIndex: 9999,
         userSelect: 'none',
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',

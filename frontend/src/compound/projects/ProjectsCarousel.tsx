@@ -12,7 +12,7 @@ interface IProject {
   title: string;
   url: string;
   purpose: string;
-  svgDiagram: string;
+  SvgDiagram: React.ComponentType<any>;
   technologiesUsed: string[];
   description: string;
 }
@@ -26,6 +26,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
     loop: false,
     align: 'center',
     skipSnaps: false,
+    startIndex: 1,
     dragFree: false,
     containScroll: 'trimSnaps',
   })
@@ -38,7 +39,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
   
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(1)
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -166,7 +167,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                   title={project.title}
                   description={project.description}
                   technologies={project.technologiesUsed}
-                  imageUrl={project.svgDiagram}
+                  SvgDiagram={project.SvgDiagram}
                   url={project.url}
                 />
               </Box>

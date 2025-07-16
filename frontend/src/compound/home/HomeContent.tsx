@@ -1,7 +1,6 @@
 import { Box } from '@components/Box'
-import { CardContent, CircularProgress, Stack } from '@mui/material'
+import { CardContent, Stack } from '@mui/material'
 import { Body2Description, H1 } from '@ui/components'
-import { TechnologyBadge } from '@compound/projects/TechnologyBadge'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { FlippableCard } from '@components/FlippableCard'
@@ -10,10 +9,10 @@ import { useRef, useLayoutEffect } from 'react'
 
 export const HomeContent = () => {
   const { technologies } = usePortfolioTechnologies()
-  const displayedTechnologyNames = [
-    "React", "React Native", "GraphQL", "Django", "Github Actions",
-    "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"
-  ]
+  // const displayedTechnologyNames = [
+  //   "React", "React Native", "GraphQL", "Django", "Github Actions",
+  //   "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"
+  // ]
 
   const backRef = useRef<HTMLDivElement | null>(null)
 

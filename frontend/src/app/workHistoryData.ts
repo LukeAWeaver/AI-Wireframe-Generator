@@ -25,7 +25,7 @@ export const workHistory: IWorkCard[] = [
       'Settings',
       'Notification History',
     ],
-    tech: ['React', 'React Native', 'Tamagui', 'Redux', 'Expo Router', 'Django', 'PostgreSQL'],
+    tech: ['React', 'React Native', 'Tamagui', 'Redux', 'Lighthouse', 'Expo Router', 'Django', 'PostgreSQL'],
     impact: [
       'Delivered production features for web and mobile',
       'Owned mobile features with scroll, keyboard avoidance, animated headers',
@@ -71,7 +71,7 @@ export const workHistory: IWorkCard[] = [
       'Sole engineer for frontend + backend',
     ],
     featuresOwned: [],
-    tech: ['C', 'JavaScript', 'LibWebSockets', 'LibUV', 'Linux'],
+    tech: ['C', 'JavaScript', 'WebSockets', 'React', 'TypeScript', 'LibWebSockets', 'LibUV', 'Linux'],
     impact: [
       'Designed and built low-latency dashboards using raw JavaScript and WebSockets',
       'Implemented device protocols and alerting logic in C',

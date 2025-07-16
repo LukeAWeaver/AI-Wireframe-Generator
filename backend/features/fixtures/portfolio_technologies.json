@@ -422,5 +422,29 @@
       "name": "SASS",
       "description": "CSS preprocessor with nested rules, variables, and functions"
     }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "Lighthouse",
+      "description": "Automated auditing tool for measuring web performance, accessibility, and WCAG compliance"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Networking",
+      "name": "WebSockets",
+      "description": "Protocol enabling real-time, bidirectional communication between client and server"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Library",
+      "name": "LibWebSockets",
+      "description": "C library for lightweight WebSocket clients and servers, used in embedded and real-time systems"
+    }
   }
 ]

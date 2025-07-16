@@ -29,13 +29,13 @@ export const HomeContent = () => {
       <CardContent>
         <Stack gap={2}>
           <Body2Description>
-            A software engineer who loves crafting polished, accessible user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences.
-          </Body2Description>
-          <Body2Description>
-            Most recently, I worked as a Full Stack Software Engineer at Multi Media, where I helped launch the initial web platform and led frontend development on a new mobile app. I built features for profile, discovery, events, and socials — all while refining a layered UI system and closing gaps in the design system to prepare for production.
+           Most recently, I worked as a Full Stack Software Engineer at Multi Media, where I made impactful contributions to launching the web platform and led feature development for a new mobile app. I built core experiences across profile, discovery, events, and social features — while also refining a layered UI system and closing gaps in the design system to prepare for production.
           </Body2Description>
           <Body2Description>
             When not building software, I am probably playing video games with friends, spending time with my wife and dogs, or doing a home project.
+          </Body2Description>
+          <Body2Description>
+            For now, I'm keeping up my skills by building this portfolio site and exploring new technologies. I'm open to new opportunities, so please feel free to reach out!
           </Body2Description>
         </Stack>
       </CardContent>
@@ -59,7 +59,7 @@ export const HomeContent = () => {
                 justifyContent: 'center',
                 marginTop: 16,
               }}>
-                {technologies && technologies.length > 0 ? (
+                {/* {technologies && technologies.length > 0 ? (
                   technologies
                     .filter(tech => displayedTechnologyNames.includes(tech.name))
                     .map(tech => (
@@ -73,7 +73,15 @@ export const HomeContent = () => {
                     </Stack>
                     <Body2Description>...waking django backend</Body2Description>
                   </Stack>
-                )}
+                )} */}
+                 <CardContent>
+        <Stack gap={2}>
+          <Body2Description>
+            A full-stack software engineer who loves crafting polished, accessible user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences. 5 years experience in a React + Django environment, 2 years in a Vanilla JS + C environment, and 6 months in React Native.
+          </Body2Description>
+          
+        </Stack>
+      </CardContent>
               </Box>
               <Box style={{ display: 'flex', gap: 24, margin: '16px 0' }}>
                 <a

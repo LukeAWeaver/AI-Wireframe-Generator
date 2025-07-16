@@ -62,7 +62,7 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
               }}
             >
               <FlipCameraAndroidIcon fontSize="small" style={{ marginRight: 4 }} />
-              Flip
+              Flip to read more
             </Box>
           </Stack>
         </Box>
@@ -93,7 +93,7 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
                 zIndex: 2010,
                 display: 'flex',
                 alignItems: 'center',
-                background: 'rgba(255,255,255,0.85)',
+                background: isDarkMode ? 'rgba(22,33,62,0.85)' : 'rgba(255,255,255,0.85)',
                 borderRadius: 16,
                 padding: '2px 8px',
                 fontSize: 14,
@@ -106,8 +106,16 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
                 e.stopPropagation();
                 setFlipped(f => !f);
               }}
+              onMouseEnter={e => {
+                const icon = e.currentTarget.querySelector('.flip-icon');
+                if (icon) (icon as HTMLElement).style.transform = 'rotate(180deg)';
+                }}
+                onMouseLeave={e => {
+                const icon = e.currentTarget.querySelector('.flip-icon');
+                if (icon) (icon as HTMLElement).style.transform = 'rotate(0deg)';
+              }}
             >
-              <FlipCameraAndroidIcon fontSize="small" style={{ marginRight: 4 }} />
+              <FlipCameraAndroidIcon className="flip-icon" fontSize="small" style={{ marginRight: 4, transition: 'transform 0.3s' }} />
               Flip
             </Box>
           )}

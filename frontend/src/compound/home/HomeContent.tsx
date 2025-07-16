@@ -1,6 +1,6 @@
 import { Box } from '@components/Box'
 import { CardContent, Stack } from '@mui/material'
-import { Body2Description, H1 } from '@ui/components'
+import { Body2Description, H1, H5 } from '@ui/components'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { FlippableCard } from '@components/FlippableCard'
@@ -48,6 +48,7 @@ export const HomeContent = () => {
                 justifyContent: 'space-between',
                 boxSizing: 'border-box',
                 padding: 32,
+                paddingBottom: 0,
               }}
             >
               {header}
@@ -56,7 +57,7 @@ export const HomeContent = () => {
                 flexWrap: 'wrap',
                 gap: 16,
                 justifyContent: 'center',
-                marginTop: 16,
+                marginBottom: 16,
               }}>
                 {/* {technologies && technologies.length > 0 ? (
                   technologies
@@ -74,34 +75,36 @@ export const HomeContent = () => {
                   </Stack>
                 )} */}
                  <CardContent>
-        <Stack gap={2}>
-          <Body2Description>
-            A full-stack software engineer who loves crafting polished, accessible user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences. 5 years experience in a React + Django environment, 2 years in a Vanilla JS + C environment, and 6 months in React Native.
-          </Body2Description>
-          
-        </Stack>
-      </CardContent>
+                <Body2Description>
+                  A full-stack software engineer who loves crafting untuitive, pixel-perfect user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences. 5 years experience in a React + Django environment, 2 years in a Vanilla JS + C environment, and 6 months in React Native.
+                </Body2Description>
+              </CardContent>
               </Box>
-              <Box style={{ display: 'flex', gap: 24, margin: '16px 0' }}>
-                <a
-                  href="https://github.com/LukeAWeaver"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  style={{ color: 'inherit' }}
-                >
-                  <GitHubIcon fontSize="large" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/fullstackengineer/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  style={{ color: 'inherit' }}
-                >
-                  <LinkedInIcon fontSize="large" />
-                </a>
-              </Box>
+              <Stack direction={"row"} style={{ display: 'flex', gap: 24, alignItems: "center", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: 16 }}>
+  <a  
+    href="https://github.com/LukeAWeaver"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="GitHub"
+    style={{ color: 'inherit', transition: 'transform 0.2s, color 0.2s', cursor: 'pointer' }}
+    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.color = '#333' }}
+    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.color = 'inherit' }}
+  >
+    <GitHubIcon fontSize="large" />
+  </a>
+  <a
+    href="https://www.linkedin.com/in/fullstackengineer/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+    style={{ color: 'inherit', transition: 'transform 0.2s, color 0.2s', cursor: 'pointer' }}
+    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.color = '#0A66C2' }}
+    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.color = 'inherit' }}
+  >
+    <LinkedInIcon fontSize="large" />
+  </a>
+  <H5 >Full Stack Software Engineer</H5>
+</Stack>
             </Stack>
   )
 

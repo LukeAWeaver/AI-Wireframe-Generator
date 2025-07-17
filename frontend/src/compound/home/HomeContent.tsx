@@ -81,31 +81,31 @@ export const HomeContent = () => {
               </CardContent>
               </Box>
               <Stack direction={"row"} style={{ display: 'flex', gap: 24, alignItems: "center", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: 16 }}>
-  <a  
-    href="https://github.com/LukeAWeaver"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="GitHub"
-    style={{ color: 'inherit', transition: 'transform 0.2s, color 0.2s', cursor: 'pointer' }}
-    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.color = '#333' }}
-    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.color = 'inherit' }}
-  >
-    <GitHubIcon fontSize="large" />
-  </a>
-  <a
-    href="https://www.linkedin.com/in/fullstackengineer/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="LinkedIn"
-    style={{ color: 'inherit', transition: 'transform 0.2s, color 0.2s', cursor: 'pointer' }}
-    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.color = '#0A66C2' }}
-    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.color = 'inherit' }}
-  >
-    <LinkedInIcon fontSize="large" />
-  </a>
-  <H5 >Full Stack Software Engineer</H5>
-</Stack>
+                <a  
+                  href="https://github.com/LukeAWeaver"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  style={{ color: 'inherit', transition: 'transform 0.2s, color 0.2s', cursor: 'pointer' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.color = '#333' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.color = 'inherit' }}
+                >
+                  <GitHubIcon fontSize="large" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/fullstackengineer/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  style={{ color: 'inherit', transition: 'transform 0.2s, color 0.2s', cursor: 'pointer' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.color = '#0A66C2' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.color = 'inherit' }}
+                >
+                  <LinkedInIcon fontSize="large" />
+                </a>
+                <H5 >Full Stack Software Engineer</H5>
             </Stack>
+    </Stack>
   )
 
   return (
@@ -131,11 +131,10 @@ export const HomeContent = () => {
         }}
       >
         <FlippableCard
+          isTransparent={false}
           showFlipTip={true}
           flexHeight={true}
-          frontContent={
-            cardFront
-          }
+          frontContent={cardFront}
           backContent={cardBack}
         />
       </Box>

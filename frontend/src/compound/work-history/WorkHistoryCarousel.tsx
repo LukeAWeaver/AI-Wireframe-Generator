@@ -67,7 +67,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
     >
       <Box
         className="embla"
-        width="70%"
+        width={{ xs: '100vw', sm: '70%' }}
         flexGrow={1}
         ref={emblaRef}
         sx={{
@@ -85,7 +85,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
           sx={{
             display: 'flex',
             alignItems: 'center',
-            width: '100%',
+            width: { xs: '100vw', sm: '100%' },
             borderRadius: 0,
           }}
         >
@@ -93,7 +93,9 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
             <Box
               key={item.company + item.duration}
               sx={{
-                minWidth: '100vw',
+                minWidth: { xs: '100vw', sm: 'auto' },
+                maxWidth: { xs: '100vw', sm: 'auto' },
+                width: { xs: '100vw', sm: 'auto' },
                 minHeight: '100%',
                 boxSizing: 'border-box',
                 transition: 'opacity 0.2s, transform 0.3s',
@@ -122,4 +124,4 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
       </Box>
     </Stack>
   );
-}; 
+};

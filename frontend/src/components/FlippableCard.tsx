@@ -13,12 +13,28 @@ interface IFlippableCard {
     showFlipTip?: boolean
     header?: ReactNode
     flexHeight?: boolean
+    isTransparent?: boolean
 }
 
-export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mustBeSelectedToFlip, header, flexHeight}: IFlippableCard) => {
+export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mustBeSelectedToFlip, header, flexHeight, isTransparent=true}: IFlippableCard) => {
   const [flipped, setFlipped] = useState(false)
   const { flipControlsAck, setFlipControlsAck } = useTutorialsContext();
   const { isDarkMode } = useThemeContext();
+
+  // const solidCardStyle = isDarkMode ? { backgroundColor: '#161F3E', border: '1px solid rgba(255,255,255,0.05)' } : { backgroundColor: 'white', border: '1px solid rgba(0,0,0,0.05)' };
+
+  const solidCardStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    background: isDarkMode
+      ? 'linear-gradient(135deg,rgba(9, 9, 16, 0.1) 0%,rgba(22, 33, 62, 1) 50%)'
+      : 'linear-gradient(135deg,rgba(98, 101, 163, 0.1) 0%,rgba(255, 255, 255, 1) 50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+
   return (
     <>
       {/* Overlay for tutorial - covers entire page, pointerEvents: none */}
@@ -130,9 +146,19 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
               left: 0,
           }}
           >
-          <ContentCard variant='elevation' style={{ width: '100%', height: '100%', background: isDarkMode 
-        ? 'linear-gradient(135deg,rgba(9, 9, 16, 0.1) 0%,rgba(22, 33, 62, 1) 50%)'
-        : 'linear-gradient(135deg,rgba(98, 101, 163, 0.1) 0%,rgba(255, 255, 255, 1) 50%)'}}>
+          <ContentCard variant='elevation' style={ !isTransparent ? solidCardStyle : {
+              width: '100%',
+              height: '100%',
+              borderRadius: 24,
+              border: '2px solid rgba(255,255,255,0.25)',
+              boxShadow: '0 4px 32px rgba(0,0,0,0.10)',
+              background: isDarkMode
+                ? 'linear-gradient(135deg,rgba(22,33,62,0.25) 0%,rgba(9,9,16,0.15) 100%)'
+                : 'linear-gradient(135deg,rgba(255,255,255,0.25) 0%,rgba(98,101,163,0.10) 100%)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              overflow: 'hidden',
+            }}>
           { header && <Box
               style={{
                 width: "100%",
@@ -167,15 +193,24 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
           >
           <ContentCard
               variant='elevation'
-              style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
+              style={ !isTransparent ? solidCardStyle : {
+                width: '100%',
+                height: '100%',
+                borderRadius: 24,
+                border: '2px solid rgba(255,255,255,0.25)',
+                boxShadow: '0 4px 32px rgba(0,0,0,0.10)',
+                background: isDarkMode
+                  ? 'linear-gradient(135deg,rgba(22,33,62,0.25) 0%,rgba(9,9,16,0.15) 100%)'
+                  : 'linear-gradient(135deg,rgba(255,255,255,0.25) 0%,rgba(98,101,163,0.10) 100%)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-          >
+>
               {backContent}
           </ContentCard>
           </Box>

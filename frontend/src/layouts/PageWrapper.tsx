@@ -15,7 +15,11 @@ export const PageWrapper = (props: IPageWrapperProps) => {
   const { sidebarContent } = useRightSidebar();
   const { isDarkMode } = useThemeContext();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  // Custom media queries for nav and sidebar
+  const isNarrowForSidebar = useMediaQuery('(max-width:1050px)');
+  const isBottomNav = useMediaQuery('(max-width:740px)');
+  const isNarrowForLeftSidebar = useMediaQuery('(max-width:740px)');
 
   return (
     <Box
@@ -34,8 +38,8 @@ export const PageWrapper = (props: IPageWrapperProps) => {
     >
       {/* Main horizontal flex area */}
       <Box sx={{ display: 'flex', flex: 1, minHeight: 0, width: '100%' }}>
-        {/* Left Sidebar - only on desktop */}
-        {props.sidebarLeft && !isMobile && (
+        {/* Left Sidebar - only on desktop and not on narrow screens */}
+        {props.sidebarLeft && !isNarrowForLeftSidebar && !isMobile && (
           <Box
             sx={{
               width: '12rem', // 240px -> 12rem
@@ -65,8 +69,8 @@ export const PageWrapper = (props: IPageWrapperProps) => {
           {props.children}
         </Box>
 
-        {/* Right Sidebar (dynamic from context) - only on desktop */}
-        {sidebarContent && !isMobile && (
+        {/* Right Sidebar (dynamic from context) - only when width >= 1050px */}
+        {sidebarContent && !isNarrowForSidebar && (
           <Box
             sx={{
               width: '15rem', // 300px -> 15rem
@@ -83,8 +87,8 @@ export const PageWrapper = (props: IPageWrapperProps) => {
         )}
       </Box>
 
-      {/* Mobile Bottom Navigation - only on mobile */}
-      {props.sidebarLeft && isMobile && (
+      {/* Mobile Bottom Navigation - show when width <= 740px */}
+      {props.sidebarLeft && isBottomNav && (
         <Box
           sx={{
             width: '100%',
@@ -95,6 +99,13 @@ export const PageWrapper = (props: IPageWrapperProps) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            position: 'fixed',
+            left: 0,
+            bottom: 0,
+            zIndex: 1200,
+            background: isDarkMode 
+              ? 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)'
+              : 'linear-gradient(135deg,rgba(0, 241, 254, 0.09),rgba(127, 127, 213, 0.53),rgba(194, 110, 146, 0.26))',
           }}
         >
           {props.sidebarLeft}
@@ -114,4 +125,4 @@ export const PageWrapper = (props: IPageWrapperProps) => {
       )} */}
     </Box>
   );
-}; 
+};

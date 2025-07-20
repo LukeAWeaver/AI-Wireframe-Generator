@@ -9,7 +9,7 @@ export const VerticalNav = () => {
   const { isDarkMode, toggleTheme } = useThemeContext();
   const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery('(max-width:740px)');
 
   const navItems = ([
     { text: 'About', to: '/', icon: <Home />, auth: true },
@@ -183,4 +183,4 @@ export const VerticalNav = () => {
       )}
     </Box>
   );
-}; 
+};

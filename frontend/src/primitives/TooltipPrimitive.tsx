@@ -21,6 +21,7 @@ export const TooltipPrimitive = React.forwardRef<HTMLDivElement, TooltipPrimitiv
         disableFocusListener={disabled}
         disableTouchListener={disabled}
         componentsProps={componentsProps}
+        style={{cursor: 'help'}}
         {...props}
       >
         <span ref={ref}>{children}</span>

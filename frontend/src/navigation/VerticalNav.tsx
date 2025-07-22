@@ -15,10 +15,10 @@ export const VerticalNav = () => {
     { text: 'About', to: '/', icon: <Home />, auth: true },
     { text: 'Projects', to: '/projects', icon: <Folder />, auth: true },
     { text: isMobile ? "Work" : 'Work History', to: '/work-history', icon: <AccountCircle />, auth: false },
-    // { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
     !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
-    // isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
     isAuthenticated && { text: 'Settings', to: '/settings', icon: <SettingsIcon />, auth: true },
+    // isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
+    // { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
     // { text: 'Architecture', to: '/architecture', icon: <Info />, auth: true },
   ] as Array<{ text: string; to: string; icon: React.ReactNode; auth: boolean; }> ).filter(Boolean);
 

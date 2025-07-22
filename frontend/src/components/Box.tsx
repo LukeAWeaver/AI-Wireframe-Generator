@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxPrimitive } from '../primitives/BoxPrimitive';
+import { Box as BoxPrimitive } from '../primitives/Box';
 import { useTheme } from '@mui/material/styles';
 
 export interface BoxProps extends React.ComponentProps<typeof BoxPrimitive> {

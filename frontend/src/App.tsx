@@ -1,21 +1,19 @@
 import { Typography } from '@mui/material';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { Settings } from './app/settings';
-import { Profile } from './app/profile';
-import { Projects } from './app/projects';
-import { Home } from './app/home';
-import { Login } from './app/login';
-import { WireframeGenerator } from './app/wireframe-generator';
+import ProjectsPage from './features/Projects/pages/ProjectsPage';
+import WorkHistoryPage from './features/WorkHistory/pages/WorkHistoryPage';
+import LoginPage from './features/Login/pages/LoginPage';
+import SettingsPage from './features/Settings/pages/SettingsPage';
 import { PageWrapper } from './layouts/PageWrapper';
 import { VerticalNav } from './navigation/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
-import { WorkHistory } from './app/work-history';
+import HomePage from './features/Home/pages/HomePage';
 
 function App() {
   const { isAuthenticated, username } = useUser();
   const location = useLocation(); 
-  const fullscreenTabs = ["/wireframe-generator", "/projects"]
+  const fullscreenTabs = ["/wireframe-generator", "/projects"];
   return (
       <PageWrapper
         sidebarLeft={<VerticalNav />}
@@ -27,17 +25,14 @@ function App() {
         }
       >
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={isAuthenticated ? <Navigate to="/profile" /> : <Login />} />
-          <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
-          <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
-          {/* <Route path="/architecture" element={<Architecture />} /> */}
-          <Route path="/wireframe-generator" element={<WireframeGenerator />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/work-history" element={<WorkHistory />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/settings" /> : <LoginPage />} />
+          <Route path="/settings" element={isAuthenticated ? <SettingsPage /> : <Navigate to="/login" />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/work-history" element={<WorkHistoryPage />} />
         </Routes>
       </PageWrapper>
   );
 }
 
-export default App; 
+export default App;

@@ -10,7 +10,7 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@components': path.resolve(__dirname, 'src/components'),
       '@compound': path.resolve(__dirname, 'src/compound'),
-      '@primitives': path.resolve(__dirname, 'src/components/primitives'),
+      '@primitives': path.resolve(__dirname, 'src/primitives'),
       '@styled': path.resolve(__dirname, 'src/components/styled'),
       '@ui': path.resolve(__dirname, 'src/ui'),
       '@contexts': path.resolve(__dirname, 'src/contexts'),

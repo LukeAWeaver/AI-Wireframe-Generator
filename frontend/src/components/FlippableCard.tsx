@@ -1,10 +1,11 @@
 import { ReactNode, useState } from 'react';
 import { Box } from '@components/Box'
-import {  ContentCard, H4 } from '@ui/components'
 import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import { useTutorialsContext } from '@contexts/TutorialsContext';
-import { Stack } from '@ui/primitives';
 import { useThemeContext } from '@contexts/ThemeContext';
+import { ContentCard } from './ContentCard';
+import { Stack } from '@primitives/Stack';
+import { Text } from '@primitives/Text';
 
 interface IFlippableCard {
     frontContent: ReactNode
@@ -55,9 +56,9 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
           onClick={() => setFlipControlsAck(true)}
         >
           <Stack gap={2} direction={"row"} style={{ pointerEvents: 'auto' }}>
-            <H4 style={{color: 'white'}}>
+            <Text variant='h4' style={{color: 'white'}}>
               Click on a Card to flip it and see more details
-            </H4>
+            </Text>
             <Box
               style={{
                 width: "fit-content",

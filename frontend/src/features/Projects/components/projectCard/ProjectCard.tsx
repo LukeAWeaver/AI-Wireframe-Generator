@@ -2,18 +2,14 @@ import { Box } from '@components/Box';
 import { FlippableCard } from '@components/FlippableCard';
 import { ProjectCardSummary } from './ProjectCardSummary';
 import { ProjectCardArchOverview } from './ProjectCardArchOverview';
+import { IProject } from 'features/Projects/data/projects';
 
-export interface ProjectCardProps {
-  title: string;
-  description: string;
+export interface ProjectCardProps extends Pick<IProject, "SvgDiagram" | "url" | "title" | "purpose" | "description"> {
   technologies: string[];
-  purpose: string;
-  SvgDiagram: React.ComponentType<any>;
+  isSelected: boolean;
   onViewDetails?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
-  isSelected: boolean;
-  url?: string;
 }
 
 export const ProjectCard = (props: ProjectCardProps) => {

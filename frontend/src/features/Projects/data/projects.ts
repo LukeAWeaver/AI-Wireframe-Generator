@@ -2,7 +2,7 @@ import NextServerlessDiagram from '@assets/svg/nextjs-serverless-diagram.svg?rea
 import ReactServerlessArchDiagram from '@assets/svg/react-aws-arch.svg?react';
 import RDAIArchDiagram from '@assets/svg/react-django-llm-arch.svg?react';
 
-interface IProject {
+export interface IProject {
   id: string;
   title: string;
   url: string;

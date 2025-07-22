@@ -3,12 +3,11 @@ import { CardContent, Stack } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { FlippableCard } from '@components/FlippableCard'
-import { usePortfolioTechnologies } from '@contexts/PortfolioTechnologiesContext'
-import { useRef, useLayoutEffect } from 'react'
+import { useRef } from 'react'
 import { Text } from '@primitives/Text'
 
 export const HomeContent = () => {
-  const { technologies } = usePortfolioTechnologies()
+  // const { technologies } = usePortfolioTechnologies()
   // const displayedTechnologyNames = [
   //   "React", "React Native", "GraphQL", "Django", "Github Actions",
   //   "AWS S3", "AWS Lambda", "PostgreSQL", "SASS", "MUI", "Tamagui", "TypesScript"
@@ -16,10 +15,10 @@ export const HomeContent = () => {
 
   const backRef = useRef<HTMLDivElement | null>(null)
 
-  useLayoutEffect(() => {
-    if (backRef.current !== null) {
-    }
-  }, [technologies])
+  // useLayoutEffect(() => {
+  //   if (backRef.current !== null) {
+  //   }
+  // }, [technologies])
 
   const header = <Text variant='h1'>Luke Weaver</Text>
 
@@ -34,7 +33,7 @@ export const HomeContent = () => {
             When not building software, I am probably playing video games with friends, spending time with my wife and dogs, or doing a home project.
           </Text>
           <Text variant='body2' color='textSecondary' textAlign={'justify'}>
-            For now, I'm keeping up my skills by building this portfolio site and exploring new technologies. I'm open to new opportunities, so please feel free to reach out!
+            For now, I am keeping up my skills by building this portfolio site and exploring new technologies. I am open to new opportunities, so please feel free to reach out!
           </Text>
         </Stack>
       </CardContent>

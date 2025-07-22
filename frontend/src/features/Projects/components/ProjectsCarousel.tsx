@@ -7,16 +7,8 @@ import { useTheme } from '@mui/material'
 import { ProjectCardSummary } from './projectCard/ProjectCardSummary'
 import { ProjectCard } from './projectCard/ProjectCard'
 import { PaginationControls } from './PaginationControls'
+import { IProject } from '../data/projects'
     
-interface IProject {
-  id: string;
-  title: string;
-  url: string;
-  purpose: string;
-  SvgDiagram: React.ComponentType<any>;
-  technologiesUsed: string[];
-  description: string;
-}
 
 interface ProjectsCarouselProps {
   projects: IProject[]

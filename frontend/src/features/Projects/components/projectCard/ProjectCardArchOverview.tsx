@@ -3,14 +3,9 @@ import { Button } from '@components/Button';
 import { useThemeContext } from '@contexts';
 import { Stack } from '@primitives/Stack';
 import { Text } from '@primitives/Text';
+import { IProject } from 'features/Projects/data/projects';
 
-interface ProjectCardArchOverviewProps {
-    title: string;
-    SvgDiagram: React.ComponentType<any>;
-    url?: string;
-}
-
-export const ProjectCardArchOverview = ({ title, SvgDiagram, url }: ProjectCardArchOverviewProps) => {
+export const ProjectCardArchOverview = ({ title, SvgDiagram, url }: Pick<IProject, "SvgDiagram" | "title" | "url">) => {
     const { isDarkMode } = useThemeContext();
     return (
         <Stack style={{ flex: 1, display: 'flex', height: "100%", justifyContent: 'space-between' }}>

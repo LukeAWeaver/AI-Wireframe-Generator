@@ -9,6 +9,7 @@ import { VerticalNav } from './navigation/VerticalNav';
 import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 import HomePage from './features/Home/pages/HomePage';
+import WireframePage from './features/WireframeGenerator/pages/WireframePage';
 
 function App() {
   const { isAuthenticated, username } = useUser();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/settings" element={isAuthenticated ? <SettingsPage /> : <Navigate to="/login" />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/work-history" element={<WorkHistoryPage />} />
+          <Route path="/wireframe" element={<WireframePage />} />
         </Routes>
       </PageWrapper>
   );

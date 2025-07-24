@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { Box, Typography, TextField, Button, Card, CardContent, Grid, Divider, useTheme } from '@mui/material';
 import { HelpOutline } from '@mui/icons-material';
 import { useUser } from '@hooks/useUser';
@@ -7,11 +7,12 @@ import { Text } from '@primitives/Text';
 import { ContentCard } from '@components/ContentCard';
 import { Stack } from '@primitives/Stack';
 import { Tooltip } from '@components/Tooltip';
+import { WireframeRenderer } from './WireframeRenderer';
 
 export const WireframePanel = () => {
-  const { username, uuid, build_count, incrementUserBuildCount } = useUser();
+  const { username, uuid, build_count, incrementUserBuildCount, generateUserWireframe } = useUser();
   const [input, setInput] = useState('');
-  const [wireframe, setWireframe] = useState<string | null>(null);
+  const [wireframe, setWireframe] = useState<ReactNode | null>(null);
   const { setSidebarContent } = useRightSidebar();
   const theme = useTheme();
 
@@ -45,15 +46,28 @@ export const WireframePanel = () => {
     </Box>
   );
 
+  useEffect(() => {
+    setSidebarContent(buildSidebar);
+  }, [setSidebarContent, buildSidebar]);
+
+    useEffect(() => {
+      return () => setSidebarContent(null);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
   const handleBuild = async () => {
     if (username) {
       try {
-        await incrementUserBuildCount(username);
-        setWireframe('Rendered wireframe will appear here.');
+        generateUserWireframe(input).then((result) => {
+          setWireframe(<WireframeRenderer node={result} />);
+        });
+
+        // await incrementUserBuildCount(username);
+        // setWireframe('Rendered wireframe will appear here.');
       } catch (error) {
         console.error('Failed to increment build count:', error);
         // Still show the wireframe even if build count increment fails
-        setWireframe('Rendered wireframe will appear here.');
+        setWireframe('Error Rendering wireframe.');
       }
     } else {
       setWireframe('Rendered wireframe will appear here.');

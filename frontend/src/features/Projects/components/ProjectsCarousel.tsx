@@ -8,6 +8,7 @@ import { ProjectCardSummary } from './projectCard/ProjectCardSummary'
 import { ProjectCard } from './projectCard/ProjectCard'
 import { PaginationControls } from './PaginationControls'
 import { IProject } from '../data/projects'
+import { CarouselShell } from '@components/CarouselShell'
     
 
 interface ProjectsCarouselProps {
@@ -28,7 +29,6 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
 
   const theme = useTheme()
   const { setSidebarContent } = useRightSidebar()
-  // const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
@@ -111,43 +111,8 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       height="100vh"
       justifyContent="space-between"
       alignItems="center"
-      onKeyDown={handleKeyDown}
-      sx={{
-        userSelect: 'none',
-        px: { xs: 0, sm: 0 }, 
-        '& .embla__container': {
-          flexDirection: 'row',
-        },
-        '& .embla__slide, & .embla__container > *': {
-          minWidth: { xs: '100vw', sm: 'auto' },
-          maxWidth: { xs: '100vw', sm: 'auto' },
-          width: { xs: '100vw', sm: 'auto' },
-        },
-      }}
     >
-      {/* Carousel */}
-        <Box
-          className="embla"
-          width="100%"
-          flexGrow={1}
-          ref={emblaRef}
-          sx={{ 
-            overflow: 'hidden',
-            borderRadius: 0,           
-            touchAction: 'pan-y',
-            WebkitOverflowScrolling: 'touch',
-            overflowX: 'hidden', }}
-        >
-          <Box
-            className="embla__container"
-            sx={{
-              marginTop: 10,
-              display: 'flex',
-              alignItems: 'center',
-              width: '100%',
-              borderRadius: 0,
-            }}
-          >
+      <CarouselShell emblaRef={emblaRef} onKeyDown={handleKeyDown}>
             {projects.map((project: IProject, idx: number) => (
               <Box
                 key={project.id}
@@ -175,8 +140,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
                 />
               </Box>
             ))}
-          </Box>
-        </Box>
+          </CarouselShell>
       <PaginationControls
         slidesCount={projects.length}
         selectedIndex={selectedIndex} 

@@ -111,10 +111,21 @@ export const createUser = async (username: string): Promise<IUserResponse> => {
   }
 };
 
-// Placeholder type for wireframe response
-interface IWireframeResponse {
-  [key: string]: unknown;
+type WireframeComponentType =
+  | 'Layout'
+  | 'AppBar'
+  | 'Sidebar'
+  | 'Main'
+  | 'Card'
+  | 'Table'
+  | 'FloatingActionButton';
+
+export interface IWireframeResponse {
+  type: WireframeComponentType;
+  props?: Record<string, any>;
+  children?: IWireframeResponse[];
 }
+
 
 export const generateWireframe = async (prompt: string): Promise<IWireframeResponse> => {
   debugLog('Generating wireframe for prompt:', prompt);

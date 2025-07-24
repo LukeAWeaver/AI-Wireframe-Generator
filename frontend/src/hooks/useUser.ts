@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { setUser, updateUsername, updateBuildCount, clearUser } from '../store/slices/userSlice';
-import { incrementBuildCount } from '../services/api';
+import { generateWireframe, incrementBuildCount } from '../services/api';
 
 export const useUser = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,16 @@ export const useUser = () => {
   const updateUserUsername = useCallback((username: string) => {
     dispatch(updateUsername(username));
   }, [dispatch]);
+
+  const generateUserWireframe = useCallback(async (prompt: string) => {
+    try {
+      const wireframe = await generateWireframe(prompt);
+      return wireframe;
+    } catch (error) {
+      console.error('Failed to generate wireframe:', error);
+      throw error;
+    }
+  }, []);
 
   const incrementUserBuildCount = useCallback(async (username: string) => {
     try {
@@ -38,6 +48,7 @@ export const useUser = () => {
     setUserData,
     updateUserUsername,
     incrementUserBuildCount,
+    generateUserWireframe,
     logout,
   };
 }; 

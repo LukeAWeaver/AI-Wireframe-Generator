@@ -1,6 +1,6 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Box, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Divider, useMediaQuery, useTheme } from '@mui/material';
-import { Home, Login, AccountCircle, Settings as SettingsIcon, Folder, LightMode, DarkMode } from '@mui/icons-material';
+import { Home, Login, AccountCircle, Settings as SettingsIcon, Folder, LightMode, DarkMode, ViewQuilt } from '@mui/icons-material';
 import { useUser } from '../hooks/useUser';
 import { useThemeContext } from '../contexts/ThemeContext';
 
@@ -12,13 +12,13 @@ export const VerticalNav = () => {
   const isMobile = useMediaQuery('(max-width:740px)');
 
   const navItems = ([
-    { text: 'About', to: '/', icon: <Home />, auth: true },
-    { text: 'Projects', to: '/projects', icon: <Folder />, auth: true },
+    { text: 'About', to: '/', icon: <Home />, auth: false },
+    { text: 'Projects', to: '/projects', icon: <Folder />, auth: false },
     { text: isMobile ? "Work" : 'Work History', to: '/work-history', icon: <AccountCircle />, auth: false },
     !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     isAuthenticated && { text: 'Settings', to: '/settings', icon: <SettingsIcon />, auth: true },
+    // { text: 'Wireframe Generator', to: '/wireframe', icon: <ViewQuilt />, auth: true },
     // isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
-    // { text: 'Wireframe Generator', to: '/wireframe-generator', icon: <ViewQuilt />, auth: true },
     // { text: 'Architecture', to: '/architecture', icon: <Info />, auth: true },
   ] as Array<{ text: string; to: string; icon: React.ReactNode; auth: boolean; }> ).filter(Boolean);
 

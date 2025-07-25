@@ -111,20 +111,19 @@ export const createUser = async (username: string): Promise<IUserResponse> => {
   }
 };
 
-type WireframeComponentType =
-  | 'Layout'
-  | 'AppBar'
-  | 'Sidebar'
-  | 'Main'
-  | 'Card'
-  | 'Table'
-  | 'FloatingActionButton';
+type WireframeComponentProps =
+  | { type: 'Layout'; props?: { direction?: 'row' | 'column' } }
+  | { type: 'AppBar'; props: { title: string; actions?: string[] } }
+  | { type: 'Sidebar'; props: { items: string[] } }
+  | { type: 'Main'; props?: undefined }
+  | { type: 'Card'; props: { title: string } }
+  | { type: 'Table'; props: { title: string; columns: string[] } }
+  | { type: 'FloatingActionButton'; props: { icon: string; label?: string } };
 
-export interface IWireframeResponse {
-  type: WireframeComponentType;
-  props?: Record<string, any>;
+export type IWireframeResponse = WireframeComponentProps & {
   children?: IWireframeResponse[];
-}
+};
+
 
 
 export const generateWireframe = async (prompt: string): Promise<IWireframeResponse> => {

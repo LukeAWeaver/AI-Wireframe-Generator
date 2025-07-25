@@ -114,7 +114,7 @@ export const SettingsPanel = () => {
           </Typography>
           <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
             <Button
-              variant="text"
+              variant="outlined"
               onClick={() => setShowResetDialog(false)}
             >
               Cancel

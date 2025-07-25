@@ -10,7 +10,7 @@ import { Tooltip } from '@components/Tooltip';
 import { WireframeRenderer } from './WireframeRenderer';
 
 export const WireframePanel = () => {
-  const { username, uuid, build_count, incrementUserBuildCount, generateUserWireframe } = useUser();
+  const { username, uuid, build_count, generateUserWireframe } = useUser();
   const [input, setInput] = useState('');
   const [wireframe, setWireframe] = useState<ReactNode | null>(null);
   const { setSidebarContent } = useRightSidebar();

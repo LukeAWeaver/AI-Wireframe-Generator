@@ -6,6 +6,7 @@ import { useThemeContext } from '@contexts/ThemeContext';
 import { ContentCard } from './ContentCard';
 import { Stack } from '@primitives/Stack';
 import { Text } from '@primitives/Text';
+import { Button } from './Button';
 
 interface IFlippableCard {
     frontContent: ReactNode
@@ -59,13 +60,12 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
             <Text variant='h4' style={{color: 'white'}}>
               Click on a Card to flip it and see more details
             </Text>
-            <Box
+            <Button variant="contained"
               style={{
                 width: "fit-content",
                 zIndex: 2010,
                 display: 'flex',
                 alignItems: 'center',
-                background: 'rgba(255,255,255,0.85)',
                 borderRadius: 16,
                 padding: '2px 8px',
                 fontSize: 14,
@@ -80,7 +80,7 @@ export const FlippableCard = ({frontContent, backContent, showFlipTip=false, mus
             >
               <FlipCameraAndroidIcon fontSize="small" style={{ marginRight: 4 }} />
               Flip to read more
-            </Box>
+            </Button>
           </Stack>
         </Box>
       )}

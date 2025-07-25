@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { Box, Stack, Slider } from '@mui/material';
+import { Box, Stack, Slider, useMediaQuery } from '@mui/material';
 import { WorkHistoryCard } from './WorkHistoryCard';
 import { IWorkCard } from '../data/workHistory';
 import { CarouselShell } from '@components/CarouselShell';
@@ -10,6 +10,7 @@ export interface WorkHistoryCarouselProps {
 }
 
 export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHistory }) => {
+  const isMobile = useMediaQuery('(max-width:740px)');
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     align: 'center',
@@ -50,7 +51,7 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
         <Stack
           minHeight={0}
           width="100%"
-          height="100vh"
+          height="100%"
           justifyContent="space-between"
           alignItems="center"
         >
@@ -74,19 +75,32 @@ export const WorkHistoryCarousel: React.FC<WorkHistoryCarouselProps> = ({ workHi
             </Box>
           ))}
         </CarouselShell>
-      <Box sx={{ width: '100%', maxWidth: '40rem', mt: '2.5rem', overflow: 'visible' }}>
-        <Slider
-          value={selectedIndex}
-          min={0}
-          max={workHistory.length - 1}
-          step={1}
-          marks={marks}
-          onChange={(_, value) => {
-            if (typeof value === 'number') scrollTo(value);
-          }}
-          valueLabelDisplay="off"
-        />
-      </Box>
+      <Box
+  sx={{
+    width: '80%',
+    mt: '2.5rem',
+    px: isMobile ? '1.25rem' : '2rem',
+    overflow: 'visible',
+  }}
+>
+  <Slider
+    value={selectedIndex}
+    min={0}
+    max={workHistory.length - 1}
+    step={1}
+    marks={marks}
+    onChange={(_, value) => {
+      if (typeof value === 'number') scrollTo(value);
+    }}
+    valueLabelDisplay="off"
+    sx={{
+      '.MuiSlider-markLabel': {
+        fontSize: isMobile ? '0.5rem' : '0.875rem',
+        whiteSpace: 'nowrap',
+      },
+    }}
+  />
+</Box>
     </Stack>
   );
 };

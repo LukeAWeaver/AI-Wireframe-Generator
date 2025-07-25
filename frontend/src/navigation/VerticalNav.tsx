@@ -41,64 +41,95 @@ export const VerticalNav = () => {
     >
       {isMobile ? (
         // Mobile: Horizontal bottom navigation
-        <List sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", height: "100%" }}>
-          {navItems.map((item) => item && (
-            <ListItem key={item.text} disablePadding sx={{ flex: 1 }}>
-              <ListItemButton
-                component={RouterLink}
-                to={item.to}
-                selected={location.pathname === item.to}
-                sx={{
-                  flexDirection: "column",
-                  minHeight: 0,
-                  py: 1,
-                  userSelect: 'none',
-                  WebkitUserSelect: 'none',
-                  MozUserSelect: 'none',
-                  msUserSelect: 'none',
-                  WebkitTouchCallout: 'none',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-              >
-                <ListItemIcon sx={{ minWidth: 0, mb: 0.5 }}>{item.icon}</ListItemIcon>
-                <ListItemText 
-                  primary={item.text} 
-                  sx={{ 
-                    textAlign: 'center',
-                    '& .MuiListItemText-primary': { fontSize: '0.75rem' }
-                  }} 
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-          <ListItem disablePadding sx={{ flex: 1 }}>
-            <ListItemButton
-              onClick={toggleTheme}
-              sx={{
-                flexDirection: "column",
-                minHeight: 0,
-                py: 1,
-                userSelect: 'none',
-                WebkitUserSelect: 'none',
-                MozUserSelect: 'none',
-                msUserSelect: 'none',
-                WebkitTouchCallout: 'none',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-            >
-              <ListItemIcon sx={{ minWidth: 0, mb: 0.5 }}>
-                {isDarkMode ? <LightMode /> : <DarkMode />}
-              </ListItemIcon>
-              <ListItemText 
-                primary={isDarkMode ? 'Light' : 'Dark'} 
-                sx={{ 
-                  textAlign: 'center',
-                  '& .MuiListItemText-primary': { fontSize: '0.75rem' }
-                }} 
-              />
-            </ListItemButton>
-          </ListItem>
-        </List>
+     <List
+  sx={{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'stretch',     // ensure children fill vertical space
+    justifyContent: 'space-around',
+    height: '100%',
+    width: '100%',
+    p: 0,
+  }}
+>
+  {navItems.map((item) => item && (
+    <ListItem key={item.text} disablePadding sx={{ flex: 1, height: '100%' }}>
+      <ListItemButton
+        component={RouterLink}
+        to={item.to}
+        selected={location.pathname === item.to}
+        disableRipple
+        sx={{
+          height: '100%',
+          flexDirection: 'column',
+          borderRadius: 2,
+          overflow: 'hidden',
+          py: 1,
+          mx: 0.25,
+          minHeight: 0,
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
+          WebkitTouchCallout: 'none',
+          WebkitTapHighlightColor: 'transparent',
+          '&.Mui-selected': {
+            backgroundColor: (theme) => theme.palette.action.selected,
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: (theme) => theme.palette.action.selected,
+          },
+        }}
+      >
+        <ListItemIcon sx={{ minWidth: 0, mb: 0 }}>
+          {item.icon}
+        </ListItemIcon>
+        <ListItemText
+          primary={item.text}
+          sx={{
+            textAlign: 'center',
+            '& .MuiListItemText-primary': { fontSize: '0.75rem' },
+          }}
+        />
+      </ListItemButton>
+    </ListItem>
+  ))}
+
+  <ListItem disablePadding sx={{ flex: 1, height: '100%' }}>
+    <ListItemButton
+      onClick={toggleTheme}
+      disableRipple
+      sx={{
+        height: '100%',
+        flexDirection: 'column',
+        borderRadius: 2,
+        overflow: 'hidden',
+        py: 1,
+        mx: 0.25,
+        minHeight: 0,
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        WebkitTouchCallout: 'none',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+    >
+      <ListItemIcon sx={{ minWidth: 0, mb: 0 }}>
+        {isDarkMode ? <LightMode /> : <DarkMode />}
+      </ListItemIcon>
+      <ListItemText
+        primary={isDarkMode ? 'Light' : 'Dark'}
+        sx={{
+          textAlign: 'center',
+          '& .MuiListItemText-primary': { fontSize: '0.75rem' },
+        }}
+      />
+    </ListItemButton>
+  </ListItem>
+</List>
+
+
       ) : (
         // Desktop: Vertical sidebar navigation
         <List sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "100%" }}>

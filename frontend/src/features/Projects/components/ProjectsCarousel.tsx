@@ -83,7 +83,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
           flex: 1,
           alignItems: "center",
           justifyContent: "center",
-          height: "100vh",
+          height: "100%",
         }}
 >
         <Box style={{maxHeight: "max-content", flex: 1, justifyContent: "center"}}>
@@ -108,7 +108,7 @@ export const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
     <Stack
       minHeight={0}
       width="100%"
-      height="100vh"
+      height="100%"
       justifyContent="space-between"
       alignItems="center"
     >

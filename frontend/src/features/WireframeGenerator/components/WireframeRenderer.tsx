@@ -28,7 +28,7 @@ type WireframeNodeProps = {
   columns?: string[]
 }
 
-type WireframeNode = {
+export type WireframeNode = {
   type: NodeType
   props?: WireframeNodeProps
   children?: WireframeNode[]

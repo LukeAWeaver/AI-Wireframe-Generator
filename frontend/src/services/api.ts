@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { API_BASE_URL, debugLog, errorLog } from '@utils/config';
+import { WireframeNode } from 'features/WireframeGenerator/components/WireframeRenderer';
 
 // Local copy of IPortfolioTechnology for type safety
 interface IPortfolioTechnology {
@@ -126,11 +127,11 @@ export type IWireframeResponse = WireframeComponentProps & {
 
 
 
-export const generateWireframe = async (prompt: string): Promise<IWireframeResponse> => {
+export const generateWireframe = async (prompt: string): Promise<WireframeNode> => {
   debugLog('Generating wireframe for prompt:', prompt);
   
   try {
-    const response = await apiClient.post<IWireframeResponse>('/features/analyze/', {
+    const response = await apiClient.post<WireframeNode>('/features/analyze/', {
       feature: prompt,
       complexity: 'medium',
       priority: 'medium',

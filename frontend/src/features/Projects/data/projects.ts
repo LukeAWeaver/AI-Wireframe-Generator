@@ -47,7 +47,7 @@ const projects: IProject[] = [
     url: 'https://github.com/LukeAWeaver/AI-UX-visualization',
     SvgDiagram: RDAIArchDiagram,
     technologiesUsed: ['React', 'Django', 'TypeScript', 'MUI', 'Redux Toolkit', 'Axios'],
-    description: "A full-stack monorepo web app that takes natural language descriptions from users and returns rendered wireframes utilizing Ollama + llama4:Mavrick. This app tunnels API requests securely to a GPU-hosted LLM over Cloudflare. Ideal for visual prototyping and real-time prompt-to-layout interactions.",
+    description: "A full-stack monorepo web app that takes natural language descriptions from users and returns rendered wireframes utilizing Ollama + llama3. This app tunnels API requests securely to a GPU-hosted LLM over Cloudflare. Ideal for visual prototyping and real-time prompt-to-layout interactions.",
   },
 ];
 

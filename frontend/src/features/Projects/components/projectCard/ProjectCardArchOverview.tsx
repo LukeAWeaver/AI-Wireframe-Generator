@@ -15,7 +15,7 @@ export const ProjectCardArchOverview = ({ title, SvgDiagram, url }: Pick<IProjec
                     <SvgDiagram style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </Box>
             </Box>
-            <Stack style={{ flex: 1, flexGrow: 0, flexShrink: 1 }}>
+            { url && <Stack style={{ flex: 1, flexGrow: 0, flexShrink: 1 }}>
                 <Box style={{ display: 'flex', justifyContent: 'center' }}>
                     <Button
                         variant="contained"
@@ -24,15 +24,13 @@ export const ProjectCardArchOverview = ({ title, SvgDiagram, url }: Pick<IProjec
                         onClick={e => {
                             e.preventDefault();
                             e.stopPropagation();
-                            if (url) {
-                                window.open(url, '_blank', 'noopener,noreferrer');
-                            }
+                            window.open(url, '_blank', 'noopener,noreferrer');
                         }}
                     >
                         View on Github
                     </Button>
                 </Box>
-            </Stack>
+            </Stack>}
         </Stack>
     );
 };

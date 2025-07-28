@@ -6,6 +6,7 @@ from django.conf import settings
 import openai
 from .models import FeatureAnalysis, User, PortfolioTechnology
 from .serializers import FeatureAnalysisSerializer, UserSerializer, PortfolioTechnologySerializer
+from .mocks.portfolio_technologies import mock_portfolio_technologies
 from django.db import IntegrityError
 import os
 import re
@@ -15,6 +16,7 @@ from django.utils.decorators import method_decorator
 from rest_framework.request import Request
 from rest_framework.response import Response
 from typing import Any
+
 
 class FeatureAnalysisViewSet(viewsets.ModelViewSet):
     queryset = FeatureAnalysis.objects.all().order_by('-created_at')
@@ -214,6 +216,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
 @method_decorator(cache_control(public=True, max_age=3600), name='dispatch')
 class PortfolioTechnologyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = PortfolioTechnology.objects.all().order_by('category', 'name')
+    # queryset = PortfolioTechnology.objects.all().order_by('category', 'name')
     serializer_class = PortfolioTechnologySerializer
     permission_classes = [AllowAny] 
+    def list(self, request, *args, **kwargs):
+        return Response(mock_portfolio_technologies)

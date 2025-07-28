@@ -19,7 +19,10 @@ def test_endpoint(request):
 router = DefaultRouter()
 router.register(r'features', FeatureAnalysisViewSet)
 router.register(r'users', UserViewSet)
-router.register(r'portfolio-technologies', PortfolioTechnologyViewSet)
+router.register(
+    r'portfolio-technologies', 
+    PortfolioTechnologyViewSet,
+    basename='portfolio-technology')
 
 urlpatterns = [
     path('api/', include(router.urls)),

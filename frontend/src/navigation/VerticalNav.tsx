@@ -1,6 +1,6 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Box, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Divider, useMediaQuery, useTheme } from '@mui/material';
-import { Home, Login, AccountCircle, Settings as SettingsIcon, Folder, LightMode, DarkMode } from '@mui/icons-material';
+import { Home, AccountCircle, Settings as SettingsIcon, Folder, LightMode, DarkMode } from '@mui/icons-material';
 import { useUser } from '../hooks/useUser';
 import { useThemeContext } from '../contexts/ThemeContext';
 
@@ -15,8 +15,8 @@ export const VerticalNav = () => {
     { text: 'About', to: '/', icon: <Home />, auth: false },
     { text: 'Projects', to: '/projects', icon: <Folder />, auth: false },
     { text: isMobile ? "Work" : 'Work History', to: '/work-history', icon: <AccountCircle />, auth: false },
-    !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     isAuthenticated && { text: 'Settings', to: '/settings', icon: <SettingsIcon />, auth: true },
+    // !isAuthenticated && { text: 'Login', to: '/login', icon: <Login />, auth: false },
     // { text: 'Wireframe Generator', to: '/wireframe', icon: <ViewQuilt />, auth: true },
     // isAuthenticated && { text: 'User Profile', to: '/profile', icon: <AccountCircle />, auth: true },
     // { text: 'Architecture', to: '/architecture', icon: <Info />, auth: true },
@@ -30,7 +30,7 @@ export const VerticalNav = () => {
         backdropFilter: "blur(10px)",
         width: isMobile ? '100%' : 240, 
         flexShrink: 0,
-        zIndex: 9999,
+        zIndex: 1000,
         userSelect: 'none',
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',

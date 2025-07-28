@@ -15,10 +15,11 @@ function App() {
   const { isAuthenticated, username } = useUser();
   const location = useLocation(); 
   const fullscreenTabs = ["/wireframe-generator", "/projects"];
+  const disableFooter = true; //disable footer for now
   return (
       <PageWrapper
         sidebarLeft={<VerticalNav />}
-        footer={
+        footer={ disableFooter ? null :
           fullscreenTabs.includes(location.pathname) ? undefined :
           <Typography variant="body2" color="text.secondary" align="center">
             v{APP_VERSION}{username && (" - " + username)}

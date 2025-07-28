@@ -33,11 +33,11 @@ const projects: IProject[] = [
   },
   {
     id: 'tech-dem0-files',
-    title: 'Real-Time Stock Dashboard: OAuth + Firebase + Finance APIs',
+    title: 'Real-Time Stock Dashboard',
     url: 'https://github.com/LukeAWeaver/tech-dem0-files',
-    purpose: "Live Stock Viewer with Auth & Dynamic Filtering",
+    purpose: "OAuth + Firebase + Yahoo Finance API",
     SvgDiagram: NextServerlessDiagram,
-    technologiesUsed: ['React', 'Next.js', 'TypeScript', 'MUI', 'Firebase Authentication', "Rest APIs", 'Firebase Realtime DB', 'OAuth 2.0', 'Axios'],
+    technologiesUsed: ['React', 'Next.js', 'TypeScript', 'MUI', 'Firebase Authentication', "REST APIs", 'Firebase Realtime DB', 'OAuth 2.0', 'Axios'],
     description: 'Demonstrates a production-ready authentication flow with Firebase (Google OAuth and anonymous sign-in), real-time stock data fetching from Yahoo finance API, and dynamic, responsive UI rendering using Next.js. Built to showcase practical integration of secure user auth, API consumption, and live client updates—ideal for dashboards, fintech, or data-driven apps.',
   },
     {

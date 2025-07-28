@@ -20,10 +20,10 @@ export const workHistory: IWorkCard[] = [
       'API + UI collaboration with Django backend',
     ],
     featuresOwned: [
-      'Events',
-      'Edit Profile',
-      'Settings',
-      'Notification History',
+      'Applied layered UI architecture (primitives → components → compound → app) in feature development to improve scalability and maintainability in the React Native app ',
+      'Developed a scroll-driven layout handling safe area insets, keyboard avoidance, scroll behavior, and animated header slots — with a scroll-driven drop shadow using Reanimated.',
+      'Designed flexible navigation patterns with nested routes, full-screen transitions, drawers, and modal stacking.',
+      'Built a reusable form system with primitives for layout, local state, validation, and backend error handling — applied consistently across the app.',
     ],
     tech: ['React', 'React Native', 'Tamagui', 'Redux', 'Lighthouse', 'Expo Router', 'Django', 'PostgreSQL'],
     impact: [
@@ -35,7 +35,7 @@ export const workHistory: IWorkCard[] = [
     ],
     featureDetails: [
       'Events: Scrollable carousels, RSVP logic, animated states',
-      'Edit Profile: 10+ screens, custom form components, nav suppression',
+      'Profile: 10+ screens, custom form components, nav suppression',
       'Settings: Animated toggles, persistence, Reanimated fixes',
       'Animated Header Layout: Scroll-based elevation, transform logic',
     ],
@@ -52,7 +52,8 @@ export const workHistory: IWorkCard[] = [
     featuresOwned: [],
     tech: ['React', 'GraphQL', 'Django', 'Laravel', 'Mapbox', 'Kubernetes', 'AWS'],
     impact: [
-      'Led production support triage and mentored incoming engineers',
+      'Provided production support and mentored incoming engineers',
+      'Championed Field Management Information System (FMIS) integration',
       'Shipped UI/API enhancements for a dashboard platform',
       'Authored AWS-integrated features using Lambda, SQS, S3',
       'Transitioned to feature team and led partner integration to standardize field data from linked accounts',
@@ -66,9 +67,10 @@ export const workHistory: IWorkCard[] = [
     role: 'Full Stack Software Engineer',
     duration: 'May 2018 – Sep 2021',
     keyAreas: [
-      'Built commercial real-time monitoring software',
-      'Developed in C + JavaScript',
-      'Sole engineer for frontend + backend',
+      'Built commercial real-time Telecom Equipment Management System',
+      'Developed LibWebSockets-based backend services in C',
+      'Designed LibUV event-driven architecture for real-time updates',
+      'Managed HAPROXY load balancers and Linux servers in Azure',
     ],
     featuresOwned: [],
     tech: ['C', 'JavaScript', 'WebSockets', 'React', 'TypeScript', 'LibWebSockets', 'LibUV', 'Linux'],

@@ -150,6 +150,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Frontend dev server (localhost)
     "http://127.0.0.1:3000",  # Frontend dev server (127.0.0.1)
     "https://ai-ux-visualization.onrender.com",  # Production frontend
+    "https://luke-weaver-portfolio.onrender.com",  # Production frontend
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_METHODS = [

@@ -46,8 +46,8 @@ export const workHistory: IWorkCard[] = [
     duration: 'Sep 2021 – Mar 2023',
     keyAreas: [
       'React + Django full-stack enhancements',
-      'GraphQL schema design',
-      'Production support → Feature team transition',
+      'Production Support',
+      'Farmobile feature team transition',
     ],
     featuresOwned: [],
     tech: ['React', 'GraphQL', 'Django', 'Laravel', 'Mapbox', 'Kubernetes', 'AWS'],

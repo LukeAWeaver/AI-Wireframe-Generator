@@ -59,7 +59,7 @@ export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item, mustBeSe
 
   // Back: Details & Impact
   const backContent = (
-    <Stack spacing={2} style={{ flex: 1, height: '100%', overflowY: "auto" }}>
+    <Stack spacing={2} style={{ flex: 1, height: '100%', justifyContent: 'space-between' }}>
       <Typography variant="h6" fontWeight={700} gutterBottom>
         {item.company} — {item.role}
       </Typography>

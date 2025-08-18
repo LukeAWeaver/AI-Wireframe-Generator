@@ -67,7 +67,7 @@ export const FlippableCard: FC<IFlippableCard> = ({
       : 'linear-gradient(135deg,rgba(255,255,255,0.25) 0%,rgba(98,101,163,0.10) 100%)',
     backdropFilter: 'blur(16px)',
     WebkitBackdropFilter: 'blur(16px)',
-    overflow: 'scroll',
+    overflowY: 'scroll',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

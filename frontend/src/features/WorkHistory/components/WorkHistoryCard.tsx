@@ -35,7 +35,7 @@ export const WorkHistoryCard: React.FC<WorkHistoryCardProps> = ({ item, mustBeSe
         <Stack>
           {item.featuresOwned.length > 0 && <>
             <Typography variant="subtitle2" fontWeight={600} gutterBottom>
-              UI Architecture and Patterns Owned:
+              Architecture and Patterns Owned:
             </Typography>
             <Stack spacing={0.5} mb={1}>
               {item.featuresOwned.map((feature, i) => (

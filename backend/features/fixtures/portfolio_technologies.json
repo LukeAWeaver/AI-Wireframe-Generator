@@ -446,5 +446,213 @@
       "name": "LibWebSockets",
       "description": "C library for lightweight WebSocket clients and servers, used in embedded and real-time systems"
     }
-  }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Backend",
+      "name": "Node.js",
+      "description": "JavaScript runtime for building server-side applications"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Backend",
+      "name": "NestJS",
+      "description": "TypeScript-first Node.js framework with modular architecture and dependency injection"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Database",
+      "name": "Prisma",
+      "description": "Type-safe ORM for Node.js with schema-driven migrations and query typing"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Database",
+      "name": "Redis",
+      "description": "In-memory data store used for caching, queues, and pub/sub messaging"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Database",
+      "name": "MySQL",
+      "description": "Open-source relational database management system for OLTP workloads"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "DevOps",
+      "name": "Docker",
+      "description": "Container platform to build, ship, and run applications consistently"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "DevOps",
+      "name": "Docker Compose",
+      "description": "Tool to define and run multi-container Docker applications via YAML"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Cloud",
+      "name": "Azure",
+      "description": "Microsoft cloud platform for compute, storage, networking, and managed services"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Networking",
+      "name": "HAProxy",
+      "description": "High-performance TCP/HTTP load balancer and reverse proxy for high availability"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Networking",
+      "name": "SNMP",
+      "description": "Protocol for monitoring and managing network devices and telemetry"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "Apache Kafka",
+      "description": "Distributed event streaming platform for high-throughput pub/sub and pipelines"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "TanStack Query",
+      "description": "Server-state management with caching, request de-duplication, and background sync"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "React Hook Form",
+      "description": "Performant form state and validation for React with minimal re-renders"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "Formik",
+      "description": "Form state management library for React with schema-based validation support"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "StateAndData",
+      "name": "React Native Async Storage",
+      "description": "Persistent key-value storage API for React Native applications"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UXInteractions",
+      "name": "React Native Reanimated",
+      "description": "Native-driven animations and gesture integration for React Native"
+    }
+  },
+  {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UXInteractions",
+      "name": "React Native Gesture Handler",
+      "description": "Native gesture system for React Native enabling reliable touch interactions"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "UXInteractions",
+      "name": "Framer Motion",
+      "description": "Production-grade animation and gesture library for React on the web"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Frontend",
+      "name": "Expo",
+      "description": "Open-source platform and toolchain for building React Native apps faster"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "Storybook",
+      "description": "UI component explorer for building, testing, and documenting components in isolation"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "APIs",
+      "name": "Django REST Framework",
+      "description": "Toolkit for building RESTful APIs on Django with serialization and auth"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Cloud",
+      "name": "Amazon SQS",
+      "description": "Fully managed message queuing service for decoupled, asynchronous workloads"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "APIs",
+      "name": "Ably",
+      "description": "Realtime pub/sub messaging platform for live updates and presence"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Routing",
+      "name": "React Navigation",
+      "description": "Routing and navigation library for React Native with stacks, tabs, and drawers"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Frontend",
+      "name": "Three.js",
+      "description": "JavaScript 3D library for WebGL-powered graphics and interactive scenes"
+    }
+    },
+    {
+    "model": "features.portfoliotechnology",
+    "fields": {
+      "category": "Tooling",
+      "name": "Metro",
+      "description": "JavaScript bundler optimized for React Native development"
+    }
+    }
 ]

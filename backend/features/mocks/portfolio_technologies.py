@@ -1,4 +1,4 @@
-# free Render DB instance expired, so using mock data for now T_T
+# free Render DB instance expired, so using mock data for now in portfolio_technologies.json instead
 
 mock_portfolio_technologies = [
     {"id": 1, "name": "React", "category": "Frontend", "description": "Component-based JavaScript library for building user interfaces"},

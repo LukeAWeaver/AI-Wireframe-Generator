@@ -1,4 +1,4 @@
-# free Render DB instance expired, so using mock data for now in portfolio_technologies.json instead
+# free Render DB instance expired, so using mock data for now T_T
 
 mock_portfolio_technologies = [
     {"id": 1, "name": "React", "category": "Frontend", "description": "Component-based JavaScript library for building user interfaces"},
@@ -60,5 +60,32 @@ mock_portfolio_technologies = [
     {"id": 57, "name": "OAuth 2.0", "category": "Authentication", "description": "Authorization framework enabling third-party applications to obtain limited access to user accounts"},
     {"id": 58, "name": "Kafka", "category": "Messaging", "description": "Distributed event streaming platform for building real-time data pipelines and streaming apps"},
     {"id": 59, "name": "Express", "category": "Backend", "description": "Minimalist Node.js web framework for building APIs and web applications"},
-    {"id": 60, "name": "REST APIs", "category": "APIs", "description": "Architectural style for building stateless, resource-based APIs over HTTP"}
+    {"id": 60, "name": "REST APIs", "category": "APIs", "description": "Architectural style for building stateless, resource-based APIs over HTTP"},
+
+    {"id": 61, "name": "Node.js", "category": "Backend", "description": "JavaScript runtime for building server-side applications"},
+    {"id": 62, "name": "NestJS", "category": "Backend", "description": "TypeScript-first Node.js framework with modular architecture and dependency injection"},
+    {"id": 63, "name": "Prisma", "category": "Database", "description": "Type-safe ORM for Node.js with schema-driven migrations and query typing"},
+    {"id": 64, "name": "Redis", "category": "Database", "description": "In-memory data store used for caching, queues, and pub/sub messaging"},
+    {"id": 65, "name": "MySQL", "category": "Database", "description": "Open-source relational database for transactional workloads"},
+    {"id": 66, "name": "Docker", "category": "DevOps", "description": "Container platform to build, ship, and run applications consistently"},
+    {"id": 67, "name": "Docker Compose", "category": "DevOps", "description": "Tool to define and run multi-container Docker applications via YAML"},
+    {"id": 68, "name": "Azure", "category": "Cloud", "description": "Microsoft cloud platform for compute, storage, networking, and managed services"},
+    {"id": 69, "name": "HAProxy", "category": "Networking", "description": "High-performance TCP and HTTP load balancer and reverse proxy"},
+    {"id": 70, "name": "SNMP", "category": "Networking", "description": "Protocol for monitoring and managing network devices and telemetry"},
+    {"id": 71, "name": "TanStack Query", "category": "StateAndData", "description": "Server-state management with caching, request de-duplication, and background sync"},
+    {"id": 72, "name": "React Hook Form", "category": "StateAndData", "description": "Performant form state and validation for React with minimal re-renders"},
+    {"id": 73, "name": "Formik", "category": "StateAndData", "description": "Form state management library for React with schema-based validation support"},
+    {"id": 74, "name": "React Native Async Storage", "category": "StateAndData", "description": "Persistent key-value storage API for React Native applications"},
+    {"id": 75, "name": "React Native Reanimated", "category": "UXInteractions", "description": "Native-driven animations and gesture integration for React Native"},
+    {"id": 76, "name": "React Native Gesture Handler", "category": "UXInteractions", "description": "Native gesture system for React Native enabling reliable touch interactions"},
+    {"id": 77, "name": "Framer Motion", "category": "UXInteractions", "description": "Production-grade animation and gesture library for React on the web"},
+    {"id": 78, "name": "Expo", "category": "Frontend", "description": "Open-source platform and toolchain for building React Native apps faster"},
+    {"id": 79, "name": "Storybook", "category": "Tooling", "description": "UI component explorer for building, testing, and documenting components in isolation"},
+    {"id": 80, "name": "Django REST Framework", "category": "APIs", "description": "Toolkit for building RESTful APIs on Django with serialization and auth"},
+    {"id": 81, "name": "Apollo GraphQL", "category": "APIs", "description": "GraphQL client and server tooling for type-safe, cache-aware data access"},
+    {"id": 82, "name": "React Navigation", "category": "Routing", "description": "Routing and navigation library for React Native with stacks, tabs, and drawers"},
+    {"id": 83, "name": "Three.js", "category": "Library", "description": "JavaScript 3D library for WebGL-powered graphics and interactive scenes"},
+    {"id": 84, "name": "Metro", "category": "Tooling", "description": "JavaScript bundler optimized for React Native development"},
+    {"id": 85, "name": "Amazon SQS", "category": "Messaging", "description": "Managed message queue for decoupled, asynchronous workloads"},
+    {"id": 86, "name": "Ably", "category": "Messaging", "description": "Realtime pub/sub messaging platform for live updates and presence"}
 ]

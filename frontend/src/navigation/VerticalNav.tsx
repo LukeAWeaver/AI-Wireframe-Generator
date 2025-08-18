@@ -1,6 +1,6 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Box, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Divider, useMediaQuery, useTheme } from '@mui/material';
-import { Home, AccountCircle, Settings as SettingsIcon, Folder, LightMode, DarkMode, ViewQuilt } from '@mui/icons-material';
+import { Home, AccountCircle, Settings as SettingsIcon, Folder, LightMode, DarkMode} from '@mui/icons-material';
 import { useUser } from '../hooks/useUser';
 import { useThemeContext } from '../contexts/ThemeContext';
 

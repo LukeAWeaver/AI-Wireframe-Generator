@@ -60,7 +60,7 @@ export const HomeContent = () => {
               }}>
                  <CardContent>
                 <Text variant='body2' color='textSecondary' textAlign={'justify'}>
-                  A full-stack software engineer who loves crafting untuitive, pixel-perfect user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences. 5 years experience in a React + Django environment, 2 years in a Vanilla JS + C environment, and 6 months in React Native.
+                  A full-stack software engineer who loves crafting intuitive, pixel-perfect user interfaces with clean architecture under the hood. My focus is on frontend development where design and engineering meet — translating complex requirements into smooth, maintainable user experiences. 5 years experience in a React + Django environment, 2 years in a Vanilla JS + C environment, and 6 months in React Native.
                 </Text>
               </CardContent>
               </Box>

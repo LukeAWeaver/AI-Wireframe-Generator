@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { API_BASE_URL, debugLog, errorLog } from '@utils/config';
-import { WireframeNode } from 'features/WireframeGenerator/components/WireframeRenderer';
+import { WireframeNode } from 'features/WireframeGenerator/types';
 
 // Local copy of IPortfolioTechnology for type safety
 interface IPortfolioTechnology {
@@ -13,6 +13,13 @@ interface IPortfolioTechnology {
 // Create Axios instance with default configuration
 const apiClient: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+const llamaApiClient = axios.create({
+  baseURL: 'http://localhost:11434/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -112,40 +119,99 @@ export const createUser = async (username: string): Promise<IUserResponse> => {
   }
 };
 
-type WireframeComponentProps =
-  | { type: 'Layout'; props?: { direction?: 'row' | 'column' } }
-  | { type: 'AppBar'; props: { title: string; actions?: string[] } }
-  | { type: 'Sidebar'; props: { items: string[] } }
-  | { type: 'Main'; props?: undefined }
-  | { type: 'Card'; props: { title: string } }
-  | { type: 'Table'; props: { title: string; columns: string[] } }
-  | { type: 'FloatingActionButton'; props: { icon: string; label?: string } };
+interface LlamaResponse {
+  response: string;
+  done: boolean;
+}
 
-export type IWireframeResponse = WireframeComponentProps & {
-  children?: IWireframeResponse[];
+const systemMessage = `
+You are an AI wireframe generator. Respond only with valid JSON that matches the following TypeScript types:
+
+type NodeType =
+  | 'Layout'
+  | 'AppBar'
+  | 'Sidebar'
+  | 'Main'
+  | 'Card'
+  | 'Table'
+  | 'FloatingActionButton'
+  | 'Text'
+  | 'Image'
+  | 'Graph'
+  | 'Form'
+  | 'Button'
+  | 'Tabs'
+
+type WireframeNode = {
+  type: NodeType
+  props?: {
+    style?: Record<string, any>
+    [key: string]: any
+  }
+  children?: WireframeNode[]
+}
+
+Return exactly one valid JSON object of type WireframeNode.
+Do not include:
+- Comments (e.g. // or /* */)
+- Markdown (e.g. \`\`\`json)
+- Any explanation, labels, or prose before or after the JSON
+
+Only return pure, valid, syntactically correct JSON with all brackets and braces closed.
+`.trim();
+
+
+export const sanitizeLlamaJson = (text: string): string => {
+  const firstBrace = text.indexOf('{');
+  const lastBrace = text.lastIndexOf('}');
+  if (firstBrace === -1 || lastBrace === -1) {
+    throw new Error('No JSON object found');
+  }
+
+  let jsonSlice = text.slice(firstBrace, lastBrace + 1);
+
+  // Strip JS-style comments
+  jsonSlice = jsonSlice.replace(/\/\/.*$/gm, '');
+
+  // Patch missing commas between array elements
+  jsonSlice = jsonSlice.replace(/]\s*{/g, ']},{');
+  jsonSlice = jsonSlice.replace(/}\s*{/g, '},{');
+
+  // Remove trailing commas before closing arrays/objects
+  jsonSlice = jsonSlice.replace(/,\s*(\]|\})/g, '$1');
+
+  return jsonSlice;
 };
 
-
-
-export const generateWireframe = async (prompt: string): Promise<WireframeNode> => {
-  debugLog('Generating wireframe for prompt:', prompt);
-  
+export const generateWireframe = async (userPrompt: string): Promise<WireframeNode> => {
   try {
-    const response = await apiClient.post<WireframeNode>('/features/analyze/', {
-      feature: prompt,
-      complexity: 'medium',
-      priority: 'medium',
+    const prompt = `${systemMessage}\n\n${userPrompt}`;
+    const res = await llamaApiClient.post<LlamaResponse>('/generate', {
+      model: 'llama3',
+      prompt,
+      stream: false,
     });
-    return response.data;
+
+    const text = res.data.response.trim();
+    debugLog('RESULT', text);
+
+    const jsonText = sanitizeLlamaJson(text);
+    const parsed = JSON.parse(jsonText) as WireframeNode;
+
+    return parsed;
+
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.data) {
       const errorData = error.response.data as IAPIError;
       errorLog(errorData, 'generateWireframe');
       throw new Error(errorData.error || 'Failed to generate wireframe');
     }
+
+    errorLog(error, 'generateWireframe (unhandled)');
     throw error;
   }
 };
+
 
 export const incrementBuildCount = async (username: string): Promise<IUserResponse> => {
   debugLog('Incrementing build count for user:', username);

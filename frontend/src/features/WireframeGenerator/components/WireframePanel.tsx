@@ -18,71 +18,57 @@ import { ContentCard } from '@components/ContentCard'
 import { Stack } from '@primitives/Stack'
 import { Tooltip } from '@components/Tooltip'
 import { WireframeRenderer } from './WireframeRenderer'
+import { TextInput } from '@primitives/TextInput'
 
 export const WireframePanel = () => {
   const { username, uuid, build_count, generateUserWireframe } = useUser()
   const [input, setInput] = useState('')
   const [wireframe, setWireframe] = useState<ReactNode | null>(null)
   const { setSidebarContent } = useRightSidebar()
-  const theme = useTheme()
 
-  const buildSidebar = useMemo(() => {
-    return (
-      <Box sx={{ p: 3, height: '100%', boxSizing: 'border-box' }}>
-        <Text variant="h6">Build History</Text>
-        <Divider sx={{ mb: 2 }} />
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Card variant="outlined">
+  const buildSidebar = useMemo(() => (
+    <Box sx={{ p: 3, height: '100%', boxSizing: 'border-box' }}>
+      <Text variant="h6">Build History</Text>
+      <Divider sx={{ mb: 2 }} />
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Card variant="outlined">
+            <CardContent>
+              <Text variant="subtitle2">Component 1</Text>
+              <Text variant="body2" color="text.secondary">Card content here</Text>
+            </CardContent>
+          </Card>
+        </Grid>
+        {[2, 3, 4].map((slot) => (
+          <Grid item xs={12} key={slot}>
+            <Card variant="outlined" sx={{ borderStyle: 'dashed', opacity: 0.5 }}>
               <CardContent>
-                <Text variant="subtitle2">Component 1</Text>
-                <Text variant="body2" color="text.secondary">Card content here</Text>
+                <Typography variant="body2" color="text.secondary" align="center">
+                  Empty Slot
+                </Typography>
               </CardContent>
             </Card>
           </Grid>
-          {[2, 3, 4].map((slot) => (
-            <Grid item xs={12} key={slot}>
-              <Card variant="outlined" sx={{ borderStyle: 'dashed', opacity: 0.5 }}>
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary" align="center">
-                    Empty Slot
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    )
-  }, [])
+        ))}
+      </Grid>
+    </Box>
+  ), [])
 
   useEffect(() => {
     setSidebarContent(buildSidebar)
+    return () => setSidebarContent(null)
   }, [setSidebarContent, buildSidebar])
 
-  useEffect(() => {
-    return () => {
-      setSidebarContent(null)
-    }
-  }, [setSidebarContent])
-
   const handleBuild = useCallback(async () => {
-    if (username) {
-      try {
-        const result = await generateUserWireframe(input)
-        setWireframe(<WireframeRenderer node={result} />)
-      } catch (error) {
-        console.error('Failed to generate wireframe:', error)
-        setWireframe('Error Rendering wireframe.')
-      }
-    } else {
-      setWireframe('Rendered wireframe will appear here.')
+    try {
+      const result = await generateUserWireframe(input)
+      console.log(result)
+      setWireframe(<WireframeRenderer node={result} />)
+    } catch (error) {
+      console.error('Failed to generate wireframe:', error)
+      setWireframe(<Typography color="error">Error rendering wireframe.</Typography>)
     }
-  }, [username, input, generateUserWireframe])
-
-  const handleBuildClick = () => {
-    void handleBuild()
-  }
+  }, [input, generateUserWireframe])
 
   return (
     <Box sx={{ flex: 1, p: { xs: 2, md: 4 }, display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -91,55 +77,39 @@ export const WireframePanel = () => {
           <Text variant="h4">User Profile</Text>
           <Stack gap={1}>
             <Typography variant="subtitle1">User: <b>{username}</b></Typography>
-            <Typography variant="subtitle1">build count: <b>{build_count}</b></Typography>
+            <Typography variant="subtitle1">Build count: <b>{build_count}</b></Typography>
             <Typography variant="body2" color="text.secondary">User ID: {uuid}</Typography>
           </Stack>
         </Stack>
       </ContentCard>
 
-      <ContentCard sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-        <TextField
-          label="Describe your wireframe"
+      <ContentCard sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+        <TextInput
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          label="Describe your wireframe"
           fullWidth
-          variant="outlined"
-          InputProps={{
-            sx: { fontSize: 24, py: 2, border: 'none' }
-          }}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              borderRadius: 2,
-              fontSize: 24,
-              py: 2,
-              '& fieldset': {
-                borderWidth: 2,
-                borderColor: theme.palette.divider
-              },
-              '&:hover fieldset': {
-                borderColor: theme.palette.primary.main
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: theme.palette.primary.main
-              }
-            }
-          }}
         />
-        <Button variant="contained" onClick={handleBuildClick} sx={{ minWidth: 120 }}>
+        <Button variant="contained" onClick={handleBuild} sx={{ minWidth: 120 }}>
           Build
         </Button>
       </ContentCard>
 
-      <ContentCard flex minHeight={240}>
+    <ContentCard flex minHeight={240}>
+      {wireframe ? (
+        wireframe
+      ) : (
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
           <Typography color="text.secondary" align="center">
-            {wireframe || 'Wireframe preview will be rendered here.'}
+            Wireframe preview will be rendered here.
           </Typography>
           <Tooltip content="An LLM running via Ollama will convert text prompts into wireframes, code, and visuals, which will appear here">
             <HelpOutline sx={{ fontSize: 16, color: 'text.secondary', cursor: 'pointer' }} />
           </Tooltip>
         </Box>
-      </ContentCard>
+      )}
+    </ContentCard>
+
     </Box>
   )
 }

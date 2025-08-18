@@ -10,6 +10,10 @@ import { useUser } from './hooks/useUser';
 import { APP_VERSION } from './version';
 import HomePage from './features/Home/pages/HomePage';
 import WireframePage from './features/WireframeGenerator/pages/WireframePage';
+import WorkSamplePage from './features/WorkSample/pages/WorkSamplePage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient()
 
 function App() {
   const { isAuthenticated, username } = useUser();
@@ -26,14 +30,17 @@ function App() {
           </Typography>
         }
       >
+        <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={isAuthenticated ? <Navigate to="/settings" /> : <LoginPage />} />
           <Route path="/settings" element={isAuthenticated ? <SettingsPage /> : <Navigate to="/login" />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/work-history" element={<WorkHistoryPage />} />
+          <Route path="/work-sample" element={<WorkSamplePage />} />
           <Route path="/wireframe" element={<WireframePage />} />
         </Routes>
+        </QueryClientProvider>
       </PageWrapper>
   );
 }

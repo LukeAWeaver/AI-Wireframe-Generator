@@ -49,12 +49,18 @@ export const CarouselShell = ({
           touchAction: 'pan-y',
           WebkitOverflowScrolling: 'touch',
           overflowX: 'hidden',
+          paddingLeft: { xs: 10},
+          paddingRight: { xs: 10},
+          '@media (min-width: 2400px)': {
+            paddingLeft: "40%",
+            paddingRight: "40%",
+          },
         }}
       >
         <Box
           className="embla__container"
           sx={{
-            marginTop: 10,
+            marginTop: 5,
             display: 'flex',
             alignItems: 'center',
             width: '100%',
